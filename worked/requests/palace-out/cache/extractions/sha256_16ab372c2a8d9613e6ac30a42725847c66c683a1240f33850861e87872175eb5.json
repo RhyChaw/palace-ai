@@ -1,0 +1,1521 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 51,
+        "name": "parametrize"
+      },
+      {
+        "line": 56,
+        "name": "param"
+      },
+      {
+        "line": 57,
+        "name": "skipif"
+      },
+      {
+        "line": 63,
+        "name": "super_len"
+      },
+      {
+        "line": 63,
+        "name": "stream"
+      },
+      {
+        "line": 64,
+        "name": "super_len"
+      },
+      {
+        "line": 64,
+        "name": "stream"
+      },
+      {
+        "line": 68,
+        "name": "StringIO"
+      },
+      {
+        "line": 69,
+        "name": "write"
+      },
+      {
+        "line": 70,
+        "name": "super_len"
+      },
+      {
+        "line": 72,
+        "name": "parametrize"
+      },
+      {
+        "line": 81,
+        "name": "error"
+      },
+      {
+        "line": 83,
+        "name": "super_len"
+      },
+      {
+        "line": 83,
+        "name": "BoomFile"
+      },
+      {
+        "line": 85,
+        "name": "parametrize"
+      },
+      {
+        "line": 91,
+        "name": "error"
+      },
+      {
+        "line": 96,
+        "name": "super_len"
+      },
+      {
+        "line": 96,
+        "name": "NoLenBoomFile"
+      },
+      {
+        "line": 99,
+        "name": "super_len"
+      },
+      {
+        "line": 101,
+        "name": "parametrize"
+      },
+      {
+        "line": 109,
+        "name": "join"
+      },
+      {
+        "line": 110,
+        "name": "write"
+      },
+      {
+        "line": 111,
+        "name": "open"
+      },
+      {
+        "line": 112,
+        "name": "super_len"
+      },
+      {
+        "line": 113,
+        "name": "len"
+      },
+      {
+        "line": 116,
+        "name": "join"
+      },
+      {
+        "line": 117,
+        "name": "write"
+      },
+      {
+        "line": 119,
+        "name": "str"
+      },
+      {
+        "line": 119,
+        "name": "join"
+      },
+      {
+        "line": 120,
+        "name": "open"
+      },
+      {
+        "line": 121,
+        "name": "add"
+      },
+      {
+        "line": 121,
+        "name": "str"
+      },
+      {
+        "line": 123,
+        "name": "open"
+      },
+      {
+        "line": 124,
+        "name": "extractfile"
+      },
+      {
+        "line": 125,
+        "name": "super_len"
+      },
+      {
+        "line": 129,
+        "name": "super_len"
+      },
+      {
+        "line": 137,
+        "name": "super_len"
+      },
+      {
+        "line": 137,
+        "name": "LenFile"
+      },
+      {
+        "line": 140,
+        "name": "StringIO"
+      },
+      {
+        "line": 141,
+        "name": "super_len"
+      },
+      {
+        "line": 142,
+        "name": "read"
+      },
+      {
+        "line": 143,
+        "name": "super_len"
+      },
+      {
+        "line": 146,
+        "name": "open"
+      },
+      {
+        "line": 147,
+        "name": "super_len"
+      },
+      {
+        "line": 148,
+        "name": "read"
+      },
+      {
+        "line": 149,
+        "name": "len"
+      },
+      {
+        "line": 153,
+        "name": "super_len"
+      },
+      {
+        "line": 153,
+        "name": "object"
+      },
+      {
+        "line": 159,
+        "name": "setenv"
+      },
+      {
+        "line": 159,
+        "name": "str"
+      },
+      {
+        "line": 160,
+        "name": "open"
+      },
+      {
+        "line": 161,
+        "name": "write"
+      },
+      {
+        "line": 162,
+        "name": "get_netrc_auth"
+      },
+      {
+        "line": 167,
+        "name": "setenv"
+      },
+      {
+        "line": 167,
+        "name": "str"
+      },
+      {
+        "line": 168,
+        "name": "open"
+      },
+      {
+        "line": 169,
+        "name": "write"
+      },
+      {
+        "line": 170,
+        "name": "get_netrc_auth"
+      },
+      {
+        "line": 176,
+        "name": "setenv"
+      },
+      {
+        "line": 176,
+        "name": "str"
+      },
+      {
+        "line": 177,
+        "name": "open"
+      },
+      {
+        "line": 178,
+        "name": "write"
+      },
+      {
+        "line": 180,
+        "name": "get_netrc_auth"
+      },
+      {
+        "line": 185,
+        "name": "parametrize"
+      },
+      {
+        "line": 195,
+        "name": "to_key_val_list"
+      },
+      {
+        "line": 198,
+        "name": "raises"
+      },
+      {
+        "line": 199,
+        "name": "to_key_val_list"
+      },
+      {
+        "line": 203,
+        "name": "parametrize"
+      },
+      {
+        "line": 214,
+        "name": "unquote_header_value"
+      },
+      {
+        "line": 217,
+        "name": "unquote_header_value"
+      },
+      {
+        "line": 225,
+        "name": "fixture"
+      },
+      {
+        "line": 227,
+        "name": "setenv"
+      },
+      {
+        "line": 231,
+        "name": "parametrize"
+      },
+      {
+        "line": 242,
+        "name": "get_environ_proxies"
+      },
+      {
+        "line": 244,
+        "name": "parametrize"
+      },
+      {
+        "line": 253,
+        "name": "get_environ_proxies"
+      },
+      {
+        "line": 255,
+        "name": "parametrize"
+      },
+      {
+        "line": 265,
+        "name": "get_environ_proxies"
+      },
+      {
+        "line": 267,
+        "name": "parametrize"
+      },
+      {
+        "line": 280,
+        "name": "setenv"
+      },
+      {
+        "line": 282,
+        "name": "get_environ_proxies"
+      },
+      {
+        "line": 287,
+        "name": "is_ipv4_address"
+      },
+      {
+        "line": 289,
+        "name": "parametrize"
+      },
+      {
+        "line": 291,
+        "name": "is_ipv4_address"
+      },
+      {
+        "line": 296,
+        "name": "is_valid_cidr"
+      },
+      {
+        "line": 298,
+        "name": "parametrize"
+      },
+      {
+        "line": 309,
+        "name": "is_valid_cidr"
+      },
+      {
+        "line": 314,
+        "name": "address_in_network"
+      },
+      {
+        "line": 317,
+        "name": "address_in_network"
+      },
+      {
+        "line": 321,
+        "name": "parametrize"
+      },
+      {
+        "line": 323,
+        "name": "type"
+      },
+      {
+        "line": 326,
+        "name": "guess_filename"
+      },
+      {
+        "line": 328,
+        "name": "parametrize"
+      },
+      {
+        "line": 332,
+        "name": "decode"
+      },
+      {
+        "line": 336,
+        "name": "type"
+      },
+      {
+        "line": 337,
+        "name": "guess_filename"
+      },
+      {
+        "line": 339,
+        "name": "isinstance"
+      },
+      {
+        "line": 343,
+        "name": "parametrize"
+      },
+      {
+        "line": 353,
+        "name": "extract_zipped_paths"
+      },
+      {
+        "line": 356,
+        "name": "join"
+      },
+      {
+        "line": 357,
+        "name": "ZipFile"
+      },
+      {
+        "line": 358,
+        "name": "write"
+      },
+      {
+        "line": 360,
+        "name": "splitdrive"
+      },
+      {
+        "line": 361,
+        "name": "join"
+      },
+      {
+        "line": 361,
+        "name": "lstrip"
+      },
+      {
+        "line": 362,
+        "name": "extract_zipped_paths"
+      },
+      {
+        "line": 366,
+        "name": "exists"
+      },
+      {
+        "line": 367,
+        "name": "cmp"
+      },
+      {
+        "line": 369,
+        "name": "remove"
+      },
+      {
+        "line": 373,
+        "name": "extract_zipped_paths"
+      },
+      {
+        "line": 378,
+        "name": "get_encodings_from_content"
+      },
+      {
+        "line": 379,
+        "name": "len"
+      },
+      {
+        "line": 381,
+        "name": "parametrize"
+      },
+      {
+        "line": 395,
+        "name": "get_encodings_from_content"
+      },
+      {
+        "line": 396,
+        "name": "len"
+      },
+      {
+        "line": 400,
+        "name": "strip"
+      },
+      {
+        "line": 405,
+        "name": "get_encodings_from_content"
+      },
+      {
+        "line": 409,
+        "name": "parametrize"
+      },
+      {
+        "line": 423,
+        "name": "encode"
+      },
+      {
+        "line": 424,
+        "name": "guess_json_utf"
+      },
+      {
+        "line": 427,
+        "name": "guess_json_utf"
+      },
+      {
+        "line": 429,
+        "name": "parametrize"
+      },
+      {
+        "line": 439,
+        "name": "encode"
+      },
+      {
+        "line": 440,
+        "name": "guess_json_utf"
+      },
+      {
+        "line": 444,
+        "name": "quote"
+      },
+      {
+        "line": 445,
+        "name": "quote"
+      },
+      {
+        "line": 448,
+        "name": "parametrize"
+      },
+      {
+        "line": 473,
+        "name": "get_auth_from_url"
+      },
+      {
+        "line": 476,
+        "name": "parametrize"
+      },
+      {
+        "line": 493,
+        "name": "requote_uri"
+      },
+      {
+        "line": 496,
+        "name": "parametrize"
+      },
+      {
+        "line": 512,
+        "name": "unquote_unreserved"
+      },
+      {
+        "line": 515,
+        "name": "parametrize"
+      },
+      {
+        "line": 524,
+        "name": "dotted_netmask"
+      },
+      {
+        "line": 542,
+        "name": "parametrize"
+      },
+      {
+        "line": 565,
+        "name": "select_proxy"
+      },
+      {
+        "line": 568,
+        "name": "parametrize"
+      },
+      {
+        "line": 576,
+        "name": "parse_dict_header"
+      },
+      {
+        "line": 579,
+        "name": "parametrize"
+      },
+      {
+        "line": 636,
+        "name": "_parse_content_type_header"
+      },
+      {
+        "line": 639,
+        "name": "parametrize"
+      },
+      {
+        "line": 642,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 644,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 647,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 649,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 655,
+        "name": "get_encoding_from_headers"
+      },
+      {
+        "line": 658,
+        "name": "parametrize"
+      },
+      {
+        "line": 670,
+        "name": "len"
+      },
+      {
+        "line": 672,
+        "name": "len"
+      },
+      {
+        "line": 672,
+        "name": "list"
+      },
+      {
+        "line": 672,
+        "name": "iter_slices"
+      },
+      {
+        "line": 674,
+        "name": "len"
+      },
+      {
+        "line": 674,
+        "name": "list"
+      },
+      {
+        "line": 674,
+        "name": "iter_slices"
+      },
+      {
+        "line": 677,
+        "name": "parametrize"
+      },
+      {
+        "line": 697,
+        "name": "parse_header_links"
+      },
+      {
+        "line": 700,
+        "name": "parametrize"
+      },
+      {
+        "line": 714,
+        "name": "prepend_scheme_if_needed"
+      },
+      {
+        "line": 717,
+        "name": "parametrize"
+      },
+      {
+        "line": 726,
+        "name": "to_native_string"
+      },
+      {
+        "line": 729,
+        "name": "parametrize"
+      },
+      {
+        "line": 741,
+        "name": "urldefragauth"
+      },
+      {
+        "line": 744,
+        "name": "parametrize"
+      },
+      {
+        "line": 763,
+        "name": "setenv"
+      },
+      {
+        "line": 767,
+        "name": "setenv"
+      },
+      {
+        "line": 771,
+        "name": "should_bypass_proxies"
+      },
+      {
+        "line": 774,
+        "name": "parametrize"
+      },
+      {
+        "line": 791,
+        "name": "patch"
+      },
+      {
+        "line": 792,
+        "name": "should_bypass_proxies"
+      },
+      {
+        "line": 793,
+        "name": "assert_called_once_with"
+      },
+      {
+        "line": 796,
+        "name": "parametrize"
+      },
+      {
+        "line": 799,
+        "name": "CookieJar"
+      },
+      {
+        "line": 800,
+        "name": "RequestsCookieJar"
+      },
+      {
+        "line": 808,
+        "name": "add_dict_to_cookiejar"
+      },
+      {
+        "line": 813,
+        "name": "parametrize"
+      },
+      {
+        "line": 822,
+        "name": "unicode_is_ascii"
+      },
+      {
+        "line": 825,
+        "name": "parametrize"
+      },
+      {
+        "line": 844,
+        "name": "should_bypass_proxies"
+      },
+      {
+        "line": 847,
+        "name": "skipif"
+      },
+      {
+        "line": 848,
+        "name": "parametrize"
+      },
+      {
+        "line": 875,
+        "name": "RegHandle"
+      },
+      {
+        "line": 876,
+        "name": "deque"
+      },
+      {
+        "line": 885,
+        "name": "rotate"
+      },
+      {
+        "line": 890,
+        "name": "setenv"
+      },
+      {
+        "line": 891,
+        "name": "setenv"
+      },
+      {
+        "line": 892,
+        "name": "setenv"
+      },
+      {
+        "line": 893,
+        "name": "setenv"
+      },
+      {
+        "line": 894,
+        "name": "setenv"
+      },
+      {
+        "line": 895,
+        "name": "setattr"
+      },
+      {
+        "line": 896,
+        "name": "setattr"
+      },
+      {
+        "line": 897,
+        "name": "should_bypass_proxies"
+      },
+      {
+        "line": 900,
+        "name": "skipif"
+      },
+      {
+        "line": 911,
+        "name": "RegHandle"
+      },
+      {
+        "line": 924,
+        "name": "setenv"
+      },
+      {
+        "line": 925,
+        "name": "setenv"
+      },
+      {
+        "line": 926,
+        "name": "setenv"
+      },
+      {
+        "line": 927,
+        "name": "setenv"
+      },
+      {
+        "line": 928,
+        "name": "setattr"
+      },
+      {
+        "line": 929,
+        "name": "setattr"
+      },
+      {
+        "line": 930,
+        "name": "should_bypass_proxies"
+      },
+      {
+        "line": 933,
+        "name": "parametrize"
+      },
+      {
+        "line": 944,
+        "name": "deepcopy"
+      },
+      {
+        "line": 945,
+        "name": "set_environ"
+      },
+      {
+        "line": 946,
+        "name": "get"
+      },
+      {
+        "line": 954,
+        "name": "raises"
+      },
+      {
+        "line": 955,
+        "name": "set_environ"
+      },
+      {
+        "line": 956,
+        "name": "Exception"
+      },
+      {
+        "line": 958,
+        "name": "str"
+      },
+      {
+        "line": 961,
+        "name": "skipif"
+      },
+      {
+        "line": 972,
+        "name": "RegHandle"
+      },
+      {
+        "line": 986,
+        "name": "setenv"
+      },
+      {
+        "line": 987,
+        "name": "setenv"
+      },
+      {
+        "line": 988,
+        "name": "setattr"
+      },
+      {
+        "line": 989,
+        "name": "setattr"
+      },
+      {
+        "line": 990,
+        "name": "should_bypass_proxies"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "class",
+        "line": 50,
+        "name": "TestSuperLen",
+        "signature": "TestSuperLen"
+      },
+      {
+        "kind": "function",
+        "line": 61,
+        "name": "test_io_streams",
+        "signature": "test_io_streams(self, stream, value)"
+      },
+      {
+        "kind": "function",
+        "line": 66,
+        "name": "test_super_len_correctly_calculates_len_of_partially_read_file",
+        "signature": "test_super_len_correctly_calculates_len_of_partially_read_file(self)"
+      },
+      {
+        "kind": "function",
+        "line": 73,
+        "name": "test_super_len_handles_files_raising_weird_errors_in_tell",
+        "signature": "test_super_len_handles_files_raising_weird_errors_in_tell(self, error)"
+      },
+      {
+        "kind": "class",
+        "line": 76,
+        "name": "BoomFile",
+        "signature": "BoomFile"
+      },
+      {
+        "kind": "function",
+        "line": 77,
+        "name": "__len__",
+        "signature": "__len__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 80,
+        "name": "tell",
+        "signature": "tell(self)"
+      },
+      {
+        "kind": "function",
+        "line": 86,
+        "name": "test_super_len_tell_ioerror",
+        "signature": "test_super_len_tell_ioerror(self, error)"
+      },
+      {
+        "kind": "class",
+        "line": 89,
+        "name": "NoLenBoomFile",
+        "signature": "NoLenBoomFile"
+      },
+      {
+        "kind": "function",
+        "line": 90,
+        "name": "tell",
+        "signature": "tell(self)"
+      },
+      {
+        "kind": "function",
+        "line": 93,
+        "name": "seek",
+        "signature": "seek(self, offset, whence)"
+      },
+      {
+        "kind": "function",
+        "line": 98,
+        "name": "test_string",
+        "signature": "test_string(self)"
+      },
+      {
+        "kind": "function",
+        "line": 108,
+        "name": "test_file",
+        "signature": "test_file(self, tmpdir, mode, warnings_num, recwarn)"
+      },
+      {
+        "kind": "function",
+        "line": 115,
+        "name": "test_tarfile_member",
+        "signature": "test_tarfile_member(self, tmpdir)"
+      },
+      {
+        "kind": "function",
+        "line": 127,
+        "name": "test_super_len_with__len__",
+        "signature": "test_super_len_with__len__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 132,
+        "name": "test_super_len_with_no__len__",
+        "signature": "test_super_len_with_no__len__(self)"
+      },
+      {
+        "kind": "class",
+        "line": 133,
+        "name": "LenFile",
+        "signature": "LenFile"
+      },
+      {
+        "kind": "function",
+        "line": 134,
+        "name": "__init__",
+        "signature": "__init__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 139,
+        "name": "test_super_len_with_tell",
+        "signature": "test_super_len_with_tell(self)"
+      },
+      {
+        "kind": "function",
+        "line": 145,
+        "name": "test_super_len_with_fileno",
+        "signature": "test_super_len_with_fileno(self)"
+      },
+      {
+        "kind": "function",
+        "line": 151,
+        "name": "test_super_len_with_no_matches",
+        "signature": "test_super_len_with_no_matches(self)"
+      },
+      {
+        "kind": "class",
+        "line": 156,
+        "name": "TestGetNetrcAuth",
+        "signature": "TestGetNetrcAuth"
+      },
+      {
+        "kind": "function",
+        "line": 157,
+        "name": "test_works",
+        "signature": "test_works(self, tmp_path, monkeypatch)"
+      },
+      {
+        "kind": "function",
+        "line": 165,
+        "name": "test_not_vulnerable_to_bad_url_parsing",
+        "signature": "test_not_vulnerable_to_bad_url_parsing(self, tmp_path, monkeypatch)"
+      },
+      {
+        "kind": "function",
+        "line": 173,
+        "name": "test_empty_default_credentials_ignored",
+        "signature": "test_empty_default_credentials_ignored(self, tmp_path, monkeypatch)"
+      },
+      {
+        "kind": "class",
+        "line": 184,
+        "name": "TestToKeyValList",
+        "signature": "TestToKeyValList"
+      },
+      {
+        "kind": "function",
+        "line": 194,
+        "name": "test_valid",
+        "signature": "test_valid(self, value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 197,
+        "name": "test_invalid",
+        "signature": "test_invalid(self)"
+      },
+      {
+        "kind": "class",
+        "line": 202,
+        "name": "TestUnquoteHeaderValue",
+        "signature": "TestUnquoteHeaderValue"
+      },
+      {
+        "kind": "function",
+        "line": 213,
+        "name": "test_valid",
+        "signature": "test_valid(self, value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 216,
+        "name": "test_is_filename",
+        "signature": "test_is_filename(self)"
+      },
+      {
+        "kind": "class",
+        "line": 220,
+        "name": "TestGetEnvironProxies",
+        "signature": "TestGetEnvironProxies"
+      },
+      {
+        "kind": "function",
+        "line": 226,
+        "name": "no_proxy",
+        "signature": "no_proxy(self, request, monkeypatch)"
+      },
+      {
+        "kind": "function",
+        "line": 241,
+        "name": "test_bypass",
+        "signature": "test_bypass(self, url)"
+      },
+      {
+        "kind": "function",
+        "line": 252,
+        "name": "test_not_bypass",
+        "signature": "test_not_bypass(self, url)"
+      },
+      {
+        "kind": "function",
+        "line": 263,
+        "name": "test_bypass_no_proxy_keyword",
+        "signature": "test_bypass_no_proxy_keyword(self, url)"
+      },
+      {
+        "kind": "function",
+        "line": 277,
+        "name": "test_not_bypass_no_proxy_keyword",
+        "signature": "test_not_bypass_no_proxy_keyword(self, url, monkeypatch)"
+      },
+      {
+        "kind": "class",
+        "line": 285,
+        "name": "TestIsIPv4Address",
+        "signature": "TestIsIPv4Address"
+      },
+      {
+        "kind": "function",
+        "line": 286,
+        "name": "test_valid",
+        "signature": "test_valid(self)"
+      },
+      {
+        "kind": "function",
+        "line": 290,
+        "name": "test_invalid",
+        "signature": "test_invalid(self, value)"
+      },
+      {
+        "kind": "class",
+        "line": 294,
+        "name": "TestIsValidCIDR",
+        "signature": "TestIsValidCIDR"
+      },
+      {
+        "kind": "function",
+        "line": 295,
+        "name": "test_valid",
+        "signature": "test_valid(self)"
+      },
+      {
+        "kind": "function",
+        "line": 308,
+        "name": "test_invalid",
+        "signature": "test_invalid(self, value)"
+      },
+      {
+        "kind": "class",
+        "line": 312,
+        "name": "TestAddressInNetwork",
+        "signature": "TestAddressInNetwork"
+      },
+      {
+        "kind": "function",
+        "line": 313,
+        "name": "test_valid",
+        "signature": "test_valid(self)"
+      },
+      {
+        "kind": "function",
+        "line": 316,
+        "name": "test_invalid",
+        "signature": "test_invalid(self)"
+      },
+      {
+        "kind": "class",
+        "line": 320,
+        "name": "TestGuessFilename",
+        "signature": "TestGuessFilename"
+      },
+      {
+        "kind": "function",
+        "line": 325,
+        "name": "test_guess_filename_invalid",
+        "signature": "test_guess_filename_invalid(self, value)"
+      },
+      {
+        "kind": "function",
+        "line": 335,
+        "name": "test_guess_filename_valid",
+        "signature": "test_guess_filename_valid(self, value, expected_type)"
+      },
+      {
+        "kind": "class",
+        "line": 342,
+        "name": "TestExtractZippedPaths",
+        "signature": "TestExtractZippedPaths"
+      },
+      {
+        "kind": "function",
+        "line": 352,
+        "name": "test_unzipped_paths_unchanged",
+        "signature": "test_unzipped_paths_unchanged(self, path)"
+      },
+      {
+        "kind": "function",
+        "line": 355,
+        "name": "test_zipped_paths_extracted",
+        "signature": "test_zipped_paths_extracted(self, tmpdir)"
+      },
+      {
+        "kind": "function",
+        "line": 371,
+        "name": "test_invalid_unc_path",
+        "signature": "test_invalid_unc_path(self)"
+      },
+      {
+        "kind": "class",
+        "line": 376,
+        "name": "TestContentEncodingDetection",
+        "signature": "TestContentEncodingDetection"
+      },
+      {
+        "kind": "function",
+        "line": 377,
+        "name": "test_none",
+        "signature": "test_none(self)"
+      },
+      {
+        "kind": "function",
+        "line": 394,
+        "name": "test_pragmas",
+        "signature": "test_pragmas(self, content)"
+      },
+      {
+        "kind": "function",
+        "line": 399,
+        "name": "test_precedence",
+        "signature": "test_precedence(self)"
+      },
+      {
+        "kind": "class",
+        "line": 408,
+        "name": "TestGuessJSONUTF",
+        "signature": "TestGuessJSONUTF"
+      },
+      {
+        "kind": "function",
+        "line": 422,
+        "name": "test_encoded",
+        "signature": "test_encoded(self, encoding)"
+      },
+      {
+        "kind": "function",
+        "line": 426,
+        "name": "test_bad_utf_like_encoding",
+        "signature": "test_bad_utf_like_encoding(self)"
+      },
+      {
+        "kind": "function",
+        "line": 438,
+        "name": "test_guess_by_bom",
+        "signature": "test_guess_by_bom(self, encoding, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 472,
+        "name": "test_get_auth_from_url",
+        "signature": "test_get_auth_from_url(url, auth)"
+      },
+      {
+        "kind": "function",
+        "line": 491,
+        "name": "test_requote_uri_with_unquoted_percents",
+        "signature": "test_requote_uri_with_unquoted_percents(uri, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 511,
+        "name": "test_unquote_unreserved",
+        "signature": "test_unquote_unreserved(uri, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 523,
+        "name": "test_dotted_netmask",
+        "signature": "test_dotted_netmask(mask, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 563,
+        "name": "test_select_proxies",
+        "signature": "test_select_proxies(url, expected, proxies)"
+      },
+      {
+        "kind": "function",
+        "line": 575,
+        "name": "test_parse_dict_header",
+        "signature": "test_parse_dict_header(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 635,
+        "name": "test__parse_content_type_header",
+        "signature": "test__parse_content_type_header(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 654,
+        "name": "test_get_encoding_from_headers",
+        "signature": "test_get_encoding_from_headers(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 669,
+        "name": "test_iter_slices",
+        "signature": "test_iter_slices(value, length)"
+      },
+      {
+        "kind": "function",
+        "line": 696,
+        "name": "test_parse_header_links",
+        "signature": "test_parse_header_links(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 713,
+        "name": "test_prepend_scheme_if_needed",
+        "signature": "test_prepend_scheme_if_needed(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 725,
+        "name": "test_to_native_string",
+        "signature": "test_to_native_string(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 740,
+        "name": "test_urldefragauth",
+        "signature": "test_urldefragauth(url, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 759,
+        "name": "test_should_bypass_proxies",
+        "signature": "test_should_bypass_proxies(url, expected, monkeypatch)"
+      },
+      {
+        "kind": "function",
+        "line": 787,
+        "name": "test_should_bypass_proxies_pass_only_hostname",
+        "signature": "test_should_bypass_proxies_pass_only_hostname(url, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 803,
+        "name": "test_add_dict_to_cookiejar",
+        "signature": "test_add_dict_to_cookiejar(cookiejar)"
+      },
+      {
+        "kind": "function",
+        "line": 821,
+        "name": "test_unicode_is_ascii",
+        "signature": "test_unicode_is_ascii(value, expected)"
+      },
+      {
+        "kind": "function",
+        "line": 838,
+        "name": "test_should_bypass_proxies_no_proxy",
+        "signature": "test_should_bypass_proxies_no_proxy(url, expected, monkeypatch)"
+      },
+      {
+        "kind": "function",
+        "line": 863,
+        "name": "test_should_bypass_proxies_win_registry",
+        "signature": "test_should_bypass_proxies_win_registry(url, expected, override, monkeypatch)"
+      },
+      {
+        "kind": "class",
+        "line": 871,
+        "name": "RegHandle",
+        "signature": "RegHandle"
+      },
+      {
+        "kind": "function",
+        "line": 872,
+        "name": "Close",
+        "signature": "Close(self)"
+      },
+      {
+        "kind": "function",
+        "line": 878,
+        "name": "OpenKey",
+        "signature": "OpenKey(key, subkey)"
+      },
+      {
+        "kind": "function",
+        "line": 881,
+        "name": "QueryValueEx",
+        "signature": "QueryValueEx(key, value_name)"
+      },
+      {
+        "kind": "function",
+        "line": 901,
+        "name": "test_should_bypass_proxies_win_registry_bad_values",
+        "signature": "test_should_bypass_proxies_win_registry_bad_values(monkeypatch)"
+      },
+      {
+        "kind": "class",
+        "line": 907,
+        "name": "RegHandle",
+        "signature": "RegHandle"
+      },
+      {
+        "kind": "function",
+        "line": 908,
+        "name": "Close",
+        "signature": "Close(self)"
+      },
+      {
+        "kind": "function",
+        "line": 913,
+        "name": "OpenKey",
+        "signature": "OpenKey(key, subkey)"
+      },
+      {
+        "kind": "function",
+        "line": 916,
+        "name": "QueryValueEx",
+        "signature": "QueryValueEx(key, value_name)"
+      },
+      {
+        "kind": "function",
+        "line": 942,
+        "name": "test_set_environ",
+        "signature": "test_set_environ(env_name, value)"
+      },
+      {
+        "kind": "function",
+        "line": 951,
+        "name": "test_set_environ_raises_exception",
+        "signature": "test_set_environ_raises_exception()"
+      },
+      {
+        "kind": "function",
+        "line": 962,
+        "name": "test_should_bypass_proxies_win_registry_ProxyOverride_value",
+        "signature": "test_should_bypass_proxies_win_registry_ProxyOverride_value(monkeypatch)"
+      },
+      {
+        "kind": "class",
+        "line": 968,
+        "name": "RegHandle",
+        "signature": "RegHandle"
+      },
+      {
+        "kind": "function",
+        "line": 969,
+        "name": "Close",
+        "signature": "Close(self)"
+      },
+      {
+        "kind": "function",
+        "line": 974,
+        "name": "OpenKey",
+        "signature": "OpenKey(key, subkey)"
+      },
+      {
+        "kind": "function",
+        "line": 977,
+        "name": "QueryValueEx",
+        "signature": "QueryValueEx(key, value_name)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "copy"
+      },
+      {
+        "line": 2,
+        "module": "filecmp"
+      },
+      {
+        "line": 3,
+        "module": "os"
+      },
+      {
+        "line": 4,
+        "module": "tarfile"
+      },
+      {
+        "line": 5,
+        "module": "zipfile"
+      },
+      {
+        "line": 6,
+        "module": "collections"
+      },
+      {
+        "line": 7,
+        "module": "io"
+      },
+      {
+        "line": 8,
+        "module": "unittest"
+      },
+      {
+        "line": 10,
+        "module": "pytest"
+      },
+      {
+        "line": 12,
+        "module": "requests"
+      },
+      {
+        "line": 13,
+        "module": "requests._internal_utils"
+      },
+      {
+        "line": 14,
+        "module": "requests.cookies"
+      },
+      {
+        "line": 15,
+        "module": "requests.structures"
+      },
+      {
+        "line": 16,
+        "module": "requests.utils"
+      },
+      {
+        "line": 47,
+        "module": ".compat"
+      },
+      {
+        "line": 869,
+        "module": "winreg"
+      },
+      {
+        "line": 905,
+        "module": "winreg"
+      },
+      {
+        "line": 966,
+        "module": "winreg"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:16ab372c2a8d9613e6ac30a42725847c66c683a1240f33850861e87872175eb5"
+}

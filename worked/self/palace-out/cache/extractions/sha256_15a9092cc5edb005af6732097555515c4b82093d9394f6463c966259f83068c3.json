@@ -1,0 +1,312 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 12,
+        "name": "select"
+      },
+      {
+        "line": 16,
+        "name": "recv"
+      },
+      {
+        "line": 38,
+        "name": "__init__"
+      },
+      {
+        "line": 38,
+        "name": "super"
+      },
+      {
+        "line": 48,
+        "name": "Event"
+      },
+      {
+        "line": 49,
+        "name": "Event"
+      },
+      {
+        "line": 54,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 55,
+        "name": "send"
+      },
+      {
+        "line": 55,
+        "name": "encode"
+      },
+      {
+        "line": 59,
+        "name": "Server"
+      },
+      {
+        "line": 63,
+        "name": "text_response_server"
+      },
+      {
+        "line": 69,
+        "name": "_create_socket_and_bind"
+      },
+      {
+        "line": 71,
+        "name": "getsockname"
+      },
+      {
+        "line": 72,
+        "name": "set"
+      },
+      {
+        "line": 73,
+        "name": "_handle_requests"
+      },
+      {
+        "line": 76,
+        "name": "wait"
+      },
+      {
+        "line": 78,
+        "name": "set"
+      },
+      {
+        "line": 79,
+        "name": "_close_server_sock_ignore_errors"
+      },
+      {
+        "line": 80,
+        "name": "set"
+      },
+      {
+        "line": 83,
+        "name": "socket"
+      },
+      {
+        "line": 84,
+        "name": "bind"
+      },
+      {
+        "line": 85,
+        "name": "listen"
+      },
+      {
+        "line": 90,
+        "name": "close"
+      },
+      {
+        "line": 95,
+        "name": "range"
+      },
+      {
+        "line": 96,
+        "name": "_accept_connection"
+      },
+      {
+        "line": 100,
+        "name": "handler"
+      },
+      {
+        "line": 102,
+        "name": "append"
+      },
+      {
+        "line": 103,
+        "name": "close"
+      },
+      {
+        "line": 107,
+        "name": "select"
+      },
+      {
+        "line": 113,
+        "name": "accept"
+      },
+      {
+        "line": 118,
+        "name": "start"
+      },
+      {
+        "line": 119,
+        "name": "wait"
+      },
+      {
+        "line": 120,
+        "name": "RuntimeError"
+      },
+      {
+        "line": 125,
+        "name": "wait"
+      },
+      {
+        "line": 130,
+        "name": "set"
+      },
+      {
+        "line": 133,
+        "name": "_close_server_sock_ignore_errors"
+      },
+      {
+        "line": 134,
+        "name": "join"
+      },
+      {
+        "line": 152,
+        "name": "__init__"
+      },
+      {
+        "line": 152,
+        "name": "super"
+      },
+      {
+        "line": 161,
+        "name": "SSLContext"
+      },
+      {
+        "line": 162,
+        "name": "load_cert_chain"
+      },
+      {
+        "line": 169,
+        "name": "load_verify_locations"
+      },
+      {
+        "line": 172,
+        "name": "socket"
+      },
+      {
+        "line": 173,
+        "name": "wrap_socket"
+      },
+      {
+        "line": 174,
+        "name": "bind"
+      },
+      {
+        "line": 175,
+        "name": "listen"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 7,
+        "name": "consume_socket_content",
+        "signature": "consume_socket_content(sock, timeout=0.5)"
+      },
+      {
+        "kind": "class",
+        "line": 25,
+        "name": "Server",
+        "signature": "Server"
+      },
+      {
+        "kind": "function",
+        "line": 30,
+        "name": "__init__",
+        "signature": "__init__(\n        self,\n        handler=None,\n        host=\"localhost\",\n        port=0,\n        requests_to_handle=1,\n        wait_to_close_event=None,\n    )"
+      },
+      {
+        "kind": "function",
+        "line": 52,
+        "name": "text_response_server",
+        "signature": "text_response_server(cls, text, request_timeout=0.5, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 53,
+        "name": "text_response_handler",
+        "signature": "text_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 62,
+        "name": "basic_response_server",
+        "signature": "basic_response_server(cls, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 67,
+        "name": "run",
+        "signature": "run(self)"
+      },
+      {
+        "kind": "function",
+        "line": 82,
+        "name": "_create_socket_and_bind",
+        "signature": "_create_socket_and_bind(self)"
+      },
+      {
+        "kind": "function",
+        "line": 88,
+        "name": "_close_server_sock_ignore_errors",
+        "signature": "_close_server_sock_ignore_errors(self)"
+      },
+      {
+        "kind": "function",
+        "line": 94,
+        "name": "_handle_requests",
+        "signature": "_handle_requests(self)"
+      },
+      {
+        "kind": "function",
+        "line": 105,
+        "name": "_accept_connection",
+        "signature": "_accept_connection(self)"
+      },
+      {
+        "kind": "function",
+        "line": 117,
+        "name": "__enter__",
+        "signature": "__enter__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 123,
+        "name": "__exit__",
+        "signature": "__exit__(self, exc_type, exc_value, traceback)"
+      },
+      {
+        "kind": "class",
+        "line": 138,
+        "name": "TLSServer",
+        "signature": "TLSServer"
+      },
+      {
+        "kind": "function",
+        "line": 139,
+        "name": "__init__",
+        "signature": "__init__(\n        self,\n        *,\n        handler=None,\n        host=\"localhost\",\n        port=0,\n        requests_to_handle=1,\n        wait_to_close_event=None,\n        cert_chain=None,\n        keyfile=None,\n        mutual_tls=False,\n        cacert=None,\n    )"
+      },
+      {
+        "kind": "function",
+        "line": 171,
+        "name": "_create_socket_and_bind",
+        "signature": "_create_socket_and_bind(self)"
+      }
+    ],
+    "implements": [
+      "(threading.Thread)",
+      "(Server)"
+    ],
+    "imports": [
+      {
+        "line": 1,
+        "module": "select"
+      },
+      {
+        "line": 2,
+        "module": "socket"
+      },
+      {
+        "line": 3,
+        "module": "ssl"
+      },
+      {
+        "line": 4,
+        "module": "threading"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:15a9092cc5edb005af6732097555515c4b82093d9394f6463c966259f83068c3"
+}

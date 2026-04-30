@@ -1,0 +1,43 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 7,
+        "name": "dict"
+      },
+      {
+        "line": 8,
+        "name": "items"
+      },
+      {
+        "line": 16,
+        "name": "clear"
+      },
+      {
+        "line": 17,
+        "name": "update"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 6,
+        "name": "override_environ",
+        "signature": "override_environ(**kwargs)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "contextlib"
+      },
+      {
+        "line": 2,
+        "module": "os"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:cfaec86690eba62573c8c730a121332837809333fb2b1006a20e2e8f4d34d4de"
+}

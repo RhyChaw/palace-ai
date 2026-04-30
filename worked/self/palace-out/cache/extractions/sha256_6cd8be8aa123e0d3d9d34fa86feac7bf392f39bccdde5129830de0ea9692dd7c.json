@@ -1,0 +1,810 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 38,
+        "name": "urlparse"
+      },
+      {
+        "line": 44,
+        "name": "urlparse"
+      },
+      {
+        "line": 47,
+        "name": "get_host"
+      },
+      {
+        "line": 52,
+        "name": "get"
+      },
+      {
+        "line": 55,
+        "name": "to_native_string"
+      },
+      {
+        "line": 56,
+        "name": "urlparse"
+      },
+      {
+        "line": 58,
+        "name": "urlunparse"
+      },
+      {
+        "line": 76,
+        "name": "get"
+      },
+      {
+        "line": 76,
+        "name": "get"
+      },
+      {
+        "line": 80,
+        "name": "NotImplementedError"
+      },
+      {
+        "line": 92,
+        "name": "is_unverifiable"
+      },
+      {
+        "line": 96,
+        "name": "get_origin_req_host"
+      },
+      {
+        "line": 100,
+        "name": "get_host"
+      },
+      {
+        "line": 121,
+        "name": "getheaders"
+      },
+      {
+        "line": 131,
+        "name": "hasattr"
+      },
+      {
+        "line": 134,
+        "name": "MockRequest"
+      },
+      {
+        "line": 136,
+        "name": "MockResponse"
+      },
+      {
+        "line": 137,
+        "name": "extract_cookies"
+      },
+      {
+        "line": 146,
+        "name": "MockRequest"
+      },
+      {
+        "line": 147,
+        "name": "add_cookie_header"
+      },
+      {
+        "line": 148,
+        "name": "get"
+      },
+      {
+        "line": 148,
+        "name": "get_new_headers"
+      },
+      {
+        "line": 164,
+        "name": "append"
+      },
+      {
+        "line": 167,
+        "name": "clear"
+      },
+      {
+        "line": 202,
+        "name": "_find_no_duplicates"
+      },
+      {
+        "line": 213,
+        "name": "remove_cookie_by_name"
+      },
+      {
+        "line": 214,
+        "name": "get"
+      },
+      {
+        "line": 214,
+        "name": "get"
+      },
+      {
+        "line": 218,
+        "name": "isinstance"
+      },
+      {
+        "line": 219,
+        "name": "morsel_to_cookie"
+      },
+      {
+        "line": 221,
+        "name": "create_cookie"
+      },
+      {
+        "line": 222,
+        "name": "set_cookie"
+      },
+      {
+        "line": 231,
+        "name": "iter"
+      },
+      {
+        "line": 240,
+        "name": "list"
+      },
+      {
+        "line": 240,
+        "name": "iterkeys"
+      },
+      {
+        "line": 248,
+        "name": "iter"
+      },
+      {
+        "line": 257,
+        "name": "list"
+      },
+      {
+        "line": 257,
+        "name": "itervalues"
+      },
+      {
+        "line": 265,
+        "name": "iter"
+      },
+      {
+        "line": 275,
+        "name": "list"
+      },
+      {
+        "line": 275,
+        "name": "iteritems"
+      },
+      {
+        "line": 280,
+        "name": "iter"
+      },
+      {
+        "line": 282,
+        "name": "append"
+      },
+      {
+        "line": 288,
+        "name": "iter"
+      },
+      {
+        "line": 290,
+        "name": "append"
+      },
+      {
+        "line": 300,
+        "name": "iter"
+      },
+      {
+        "line": 303,
+        "name": "append"
+      },
+      {
+        "line": 314,
+        "name": "iter"
+      },
+      {
+        "line": 323,
+        "name": "__contains__"
+      },
+      {
+        "line": 323,
+        "name": "super"
+      },
+      {
+        "line": 334,
+        "name": "_find_no_duplicates"
+      },
+      {
+        "line": 341,
+        "name": "set"
+      },
+      {
+        "line": 347,
+        "name": "remove_cookie_by_name"
+      },
+      {
+        "line": 351,
+        "name": "hasattr"
+      },
+      {
+        "line": 352,
+        "name": "startswith"
+      },
+      {
+        "line": 353,
+        "name": "endswith"
+      },
+      {
+        "line": 355,
+        "name": "replace"
+      },
+      {
+        "line": 356,
+        "name": "set_cookie"
+      },
+      {
+        "line": 356,
+        "name": "super"
+      },
+      {
+        "line": 360,
+        "name": "isinstance"
+      },
+      {
+        "line": 362,
+        "name": "set_cookie"
+      },
+      {
+        "line": 362,
+        "name": "copy"
+      },
+      {
+        "line": 364,
+        "name": "update"
+      },
+      {
+        "line": 364,
+        "name": "super"
+      },
+      {
+        "line": 378,
+        "name": "iter"
+      },
+      {
+        "line": 384,
+        "name": "KeyError"
+      },
+      {
+        "line": 399,
+        "name": "iter"
+      },
+      {
+        "line": 405,
+        "name": "CookieConflictError"
+      },
+      {
+        "line": 413,
+        "name": "KeyError"
+      },
+      {
+        "line": 417,
+        "name": "copy"
+      },
+      {
+        "line": 419,
+        "name": "pop"
+      },
+      {
+        "line": 424,
+        "name": "update"
+      },
+      {
+        "line": 426,
+        "name": "RLock"
+      },
+      {
+        "line": 430,
+        "name": "RequestsCookieJar"
+      },
+      {
+        "line": 431,
+        "name": "set_policy"
+      },
+      {
+        "line": 431,
+        "name": "get_policy"
+      },
+      {
+        "line": 432,
+        "name": "update"
+      },
+      {
+        "line": 444,
+        "name": "hasattr"
+      },
+      {
+        "line": 446,
+        "name": "copy"
+      },
+      {
+        "line": 448,
+        "name": "copy"
+      },
+      {
+        "line": 449,
+        "name": "clear"
+      },
+      {
+        "line": 451,
+        "name": "set_cookie"
+      },
+      {
+        "line": 451,
+        "name": "copy"
+      },
+      {
+        "line": 477,
+        "name": "set"
+      },
+      {
+        "line": 477,
+        "name": "set"
+      },
+      {
+        "line": 479,
+        "name": "TypeError"
+      },
+      {
+        "line": 480,
+        "name": "list"
+      },
+      {
+        "line": 483,
+        "name": "update"
+      },
+      {
+        "line": 484,
+        "name": "bool"
+      },
+      {
+        "line": 485,
+        "name": "bool"
+      },
+      {
+        "line": 486,
+        "name": "startswith"
+      },
+      {
+        "line": 487,
+        "name": "bool"
+      },
+      {
+        "line": 489,
+        "name": "Cookie"
+      },
+      {
+        "line": 498,
+        "name": "int"
+      },
+      {
+        "line": 498,
+        "name": "time"
+      },
+      {
+        "line": 498,
+        "name": "int"
+      },
+      {
+        "line": 500,
+        "name": "TypeError"
+      },
+      {
+        "line": 503,
+        "name": "timegm"
+      },
+      {
+        "line": 503,
+        "name": "strptime"
+      },
+      {
+        "line": 504,
+        "name": "create_cookie"
+      },
+      {
+        "line": 506,
+        "name": "bool"
+      },
+      {
+        "line": 515,
+        "name": "bool"
+      },
+      {
+        "line": 531,
+        "name": "RequestsCookieJar"
+      },
+      {
+        "line": 537,
+        "name": "set_cookie"
+      },
+      {
+        "line": 537,
+        "name": "create_cookie"
+      },
+      {
+        "line": 549,
+        "name": "isinstance"
+      },
+      {
+        "line": 550,
+        "name": "ValueError"
+      },
+      {
+        "line": 552,
+        "name": "isinstance"
+      },
+      {
+        "line": 553,
+        "name": "cookiejar_from_dict"
+      },
+      {
+        "line": 554,
+        "name": "isinstance"
+      },
+      {
+        "line": 556,
+        "name": "update"
+      },
+      {
+        "line": 559,
+        "name": "set_cookie"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "class",
+        "line": 23,
+        "name": "MockRequest",
+        "signature": "MockRequest"
+      },
+      {
+        "kind": "function",
+        "line": 35,
+        "name": "__init__",
+        "signature": "__init__(self, request)"
+      },
+      {
+        "kind": "function",
+        "line": 40,
+        "name": "get_type",
+        "signature": "get_type(self)"
+      },
+      {
+        "kind": "function",
+        "line": 43,
+        "name": "get_host",
+        "signature": "get_host(self)"
+      },
+      {
+        "kind": "function",
+        "line": 46,
+        "name": "get_origin_req_host",
+        "signature": "get_origin_req_host(self)"
+      },
+      {
+        "kind": "function",
+        "line": 49,
+        "name": "get_full_url",
+        "signature": "get_full_url(self)"
+      },
+      {
+        "kind": "function",
+        "line": 69,
+        "name": "is_unverifiable",
+        "signature": "is_unverifiable(self)"
+      },
+      {
+        "kind": "function",
+        "line": 72,
+        "name": "has_header",
+        "signature": "has_header(self, name)"
+      },
+      {
+        "kind": "function",
+        "line": 75,
+        "name": "get_header",
+        "signature": "get_header(self, name, default=None)"
+      },
+      {
+        "kind": "function",
+        "line": 78,
+        "name": "add_header",
+        "signature": "add_header(self, key, val)"
+      },
+      {
+        "kind": "function",
+        "line": 84,
+        "name": "add_unredirected_header",
+        "signature": "add_unredirected_header(self, name, value)"
+      },
+      {
+        "kind": "function",
+        "line": 87,
+        "name": "get_new_headers",
+        "signature": "get_new_headers(self)"
+      },
+      {
+        "kind": "function",
+        "line": 91,
+        "name": "unverifiable",
+        "signature": "unverifiable(self)"
+      },
+      {
+        "kind": "function",
+        "line": 95,
+        "name": "origin_req_host",
+        "signature": "origin_req_host(self)"
+      },
+      {
+        "kind": "function",
+        "line": 99,
+        "name": "host",
+        "signature": "host(self)"
+      },
+      {
+        "kind": "class",
+        "line": 103,
+        "name": "MockResponse",
+        "signature": "MockResponse"
+      },
+      {
+        "kind": "function",
+        "line": 110,
+        "name": "__init__",
+        "signature": "__init__(self, headers)"
+      },
+      {
+        "kind": "function",
+        "line": 117,
+        "name": "info",
+        "signature": "info(self)"
+      },
+      {
+        "kind": "function",
+        "line": 120,
+        "name": "getheaders",
+        "signature": "getheaders(self, name)"
+      },
+      {
+        "kind": "function",
+        "line": 124,
+        "name": "extract_cookies_to_jar",
+        "signature": "extract_cookies_to_jar(jar, request, response)"
+      },
+      {
+        "kind": "function",
+        "line": 140,
+        "name": "get_cookie_header",
+        "signature": "get_cookie_header(jar, request)"
+      },
+      {
+        "kind": "function",
+        "line": 151,
+        "name": "remove_cookie_by_name",
+        "signature": "remove_cookie_by_name(cookiejar, name, domain=None, path=None)"
+      },
+      {
+        "kind": "class",
+        "line": 170,
+        "name": "CookieConflictError",
+        "signature": "CookieConflictError"
+      },
+      {
+        "kind": "class",
+        "line": 176,
+        "name": "RequestsCookieJar",
+        "signature": "RequestsCookieJar"
+      },
+      {
+        "kind": "function",
+        "line": 194,
+        "name": "get",
+        "signature": "get(self, name, default=None, domain=None, path=None)"
+      },
+      {
+        "kind": "function",
+        "line": 206,
+        "name": "set",
+        "signature": "set(self, name, value, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 225,
+        "name": "iterkeys",
+        "signature": "iterkeys(self)"
+      },
+      {
+        "kind": "function",
+        "line": 234,
+        "name": "keys",
+        "signature": "keys(self)"
+      },
+      {
+        "kind": "function",
+        "line": 242,
+        "name": "itervalues",
+        "signature": "itervalues(self)"
+      },
+      {
+        "kind": "function",
+        "line": 251,
+        "name": "values",
+        "signature": "values(self)"
+      },
+      {
+        "kind": "function",
+        "line": 259,
+        "name": "iteritems",
+        "signature": "iteritems(self)"
+      },
+      {
+        "kind": "function",
+        "line": 268,
+        "name": "items",
+        "signature": "items(self)"
+      },
+      {
+        "kind": "function",
+        "line": 277,
+        "name": "list_domains",
+        "signature": "list_domains(self)"
+      },
+      {
+        "kind": "function",
+        "line": 285,
+        "name": "list_paths",
+        "signature": "list_paths(self)"
+      },
+      {
+        "kind": "function",
+        "line": 293,
+        "name": "multiple_domains",
+        "signature": "multiple_domains(self)"
+      },
+      {
+        "kind": "function",
+        "line": 306,
+        "name": "get_dict",
+        "signature": "get_dict(self, domain=None, path=None)"
+      },
+      {
+        "kind": "function",
+        "line": 321,
+        "name": "__contains__",
+        "signature": "__contains__(self, name)"
+      },
+      {
+        "kind": "function",
+        "line": 327,
+        "name": "__getitem__",
+        "signature": "__getitem__(self, name)"
+      },
+      {
+        "kind": "function",
+        "line": 336,
+        "name": "__setitem__",
+        "signature": "__setitem__(self, name, value)"
+      },
+      {
+        "kind": "function",
+        "line": 343,
+        "name": "__delitem__",
+        "signature": "__delitem__(self, name)"
+      },
+      {
+        "kind": "function",
+        "line": 349,
+        "name": "set_cookie",
+        "signature": "set_cookie(self, cookie, *args, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 358,
+        "name": "update",
+        "signature": "update(self, other)"
+      },
+      {
+        "kind": "function",
+        "line": 366,
+        "name": "_find",
+        "signature": "_find(self, name, domain=None, path=None)"
+      },
+      {
+        "kind": "function",
+        "line": 386,
+        "name": "_find_no_duplicates",
+        "signature": "_find_no_duplicates(self, name, domain=None, path=None)"
+      },
+      {
+        "kind": "function",
+        "line": 415,
+        "name": "__getstate__",
+        "signature": "__getstate__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 422,
+        "name": "__setstate__",
+        "signature": "__setstate__(self, state)"
+      },
+      {
+        "kind": "function",
+        "line": 428,
+        "name": "copy",
+        "signature": "copy(self)"
+      },
+      {
+        "kind": "function",
+        "line": 435,
+        "name": "get_policy",
+        "signature": "get_policy(self)"
+      },
+      {
+        "kind": "function",
+        "line": 440,
+        "name": "_copy_cookie_jar",
+        "signature": "_copy_cookie_jar(jar)"
+      },
+      {
+        "kind": "function",
+        "line": 455,
+        "name": "create_cookie",
+        "signature": "create_cookie(name, value, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 492,
+        "name": "morsel_to_cookie",
+        "signature": "morsel_to_cookie(morsel)"
+      },
+      {
+        "kind": "function",
+        "line": 521,
+        "name": "cookiejar_from_dict",
+        "signature": "cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)"
+      },
+      {
+        "kind": "function",
+        "line": 542,
+        "name": "merge_cookies",
+        "signature": "merge_cookies(cookiejar, cookies)"
+      }
+    ],
+    "implements": [
+      "(RuntimeError)",
+      "(cookielib.CookieJar, MutableMapping)"
+    ],
+    "imports": [
+      {
+        "line": 10,
+        "module": "calendar"
+      },
+      {
+        "line": 11,
+        "module": "copy"
+      },
+      {
+        "line": 12,
+        "module": "time"
+      },
+      {
+        "line": 14,
+        "module": "._internal_utils"
+      },
+      {
+        "line": 15,
+        "module": ".compat"
+      },
+      {
+        "line": 18,
+        "module": "threading"
+      },
+      {
+        "line": 20,
+        "module": "dummy_threading"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:6cd8be8aa123e0d3d9d34fa86feac7bf392f39bccdde5129830de0ea9692dd7c"
+}

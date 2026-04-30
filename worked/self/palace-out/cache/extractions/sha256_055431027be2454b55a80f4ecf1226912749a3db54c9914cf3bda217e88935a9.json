@@ -1,0 +1,171 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 11,
+        "name": "sha256"
+      },
+      {
+        "line": 12,
+        "name": "update"
+      },
+      {
+        "line": 13,
+        "name": "hexdigest"
+      },
+      {
+        "line": 17,
+        "name": "sha256_bytes"
+      },
+      {
+        "line": 17,
+        "name": "encode"
+      },
+      {
+        "line": 20,
+        "name": "dataclass"
+      },
+      {
+        "line": 46,
+        "name": "mkdir"
+      },
+      {
+        "line": 47,
+        "name": "CachePaths"
+      },
+      {
+        "line": 48,
+        "name": "mkdir"
+      },
+      {
+        "line": 49,
+        "name": "mkdir"
+      },
+      {
+        "line": 50,
+        "name": "mkdir"
+      },
+      {
+        "line": 51,
+        "name": "mkdir"
+      },
+      {
+        "line": 56,
+        "name": "exists"
+      },
+      {
+        "line": 58,
+        "name": "loads"
+      },
+      {
+        "line": 58,
+        "name": "read_text"
+      },
+      {
+        "line": 62,
+        "name": "mkdir"
+      },
+      {
+        "line": 63,
+        "name": "write_text"
+      },
+      {
+        "line": 63,
+        "name": "dumps"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 10,
+        "name": "sha256_bytes",
+        "signature": "sha256_bytes(data: bytes)"
+      },
+      {
+        "kind": "function",
+        "line": 16,
+        "name": "sha256_text",
+        "signature": "sha256_text(text: str)"
+      },
+      {
+        "kind": "class",
+        "line": 21,
+        "name": "CachePaths",
+        "signature": "CachePaths"
+      },
+      {
+        "kind": "function",
+        "line": 25,
+        "name": "cache_dir",
+        "signature": "cache_dir(self)"
+      },
+      {
+        "kind": "function",
+        "line": 29,
+        "name": "rooms_dir",
+        "signature": "rooms_dir(self)"
+      },
+      {
+        "kind": "function",
+        "line": 33,
+        "name": "visualizer_dir",
+        "signature": "visualizer_dir(self)"
+      },
+      {
+        "kind": "function",
+        "line": 37,
+        "name": "manifest_path",
+        "signature": "manifest_path(self)"
+      },
+      {
+        "kind": "function",
+        "line": 41,
+        "name": "extractions_dir",
+        "signature": "extractions_dir(self)"
+      },
+      {
+        "kind": "function",
+        "line": 45,
+        "name": "ensure_output_dirs",
+        "signature": "ensure_output_dirs(palace_out: Path)"
+      },
+      {
+        "kind": "function",
+        "line": 55,
+        "name": "load_json",
+        "signature": "load_json(path: Path, default: Any)"
+      },
+      {
+        "kind": "function",
+        "line": 61,
+        "name": "write_json",
+        "signature": "write_json(path: Path, obj: Any)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 3,
+        "module": "hashlib"
+      },
+      {
+        "line": 4,
+        "module": "json"
+      },
+      {
+        "line": 5,
+        "module": "dataclasses"
+      },
+      {
+        "line": 6,
+        "module": "pathlib"
+      },
+      {
+        "line": 7,
+        "module": "typing"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:055431027be2454b55a80f4ecf1226912749a3db54c9914cf3bda217e88935a9"
+}

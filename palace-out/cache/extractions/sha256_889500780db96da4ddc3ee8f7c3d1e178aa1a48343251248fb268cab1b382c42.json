@@ -1,0 +1,73 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 106,
+        "name": "LookupDict"
+      },
+      {
+        "line": 110,
+        "name": "items"
+      },
+      {
+        "line": 112,
+        "name": "setattr"
+      },
+      {
+        "line": 113,
+        "name": "startswith"
+      },
+      {
+        "line": 114,
+        "name": "setattr"
+      },
+      {
+        "line": 114,
+        "name": "upper"
+      },
+      {
+        "line": 117,
+        "name": "join"
+      },
+      {
+        "line": 122,
+        "name": "join"
+      },
+      {
+        "line": 122,
+        "name": "doc"
+      },
+      {
+        "line": 122,
+        "name": "sorted"
+      },
+      {
+        "line": 128,
+        "name": "_init"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 109,
+        "name": "_init",
+        "signature": "_init()"
+      },
+      {
+        "kind": "function",
+        "line": 116,
+        "name": "doc",
+        "signature": "doc(code)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 21,
+        "module": ".structures"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:889500780db96da4ddc3ee8f7c3d1e178aa1a48343251248fb268cab1b382c42"
+}

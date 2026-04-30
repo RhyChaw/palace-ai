@@ -1,0 +1,115 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 10,
+        "name": "resolve"
+      },
+      {
+        "line": 13,
+        "name": "exists"
+      },
+      {
+        "line": 14,
+        "name": "SystemExit"
+      },
+      {
+        "line": 16,
+        "name": "loads"
+      },
+      {
+        "line": 16,
+        "name": "read_text"
+      },
+      {
+        "line": 17,
+        "name": "sum"
+      },
+      {
+        "line": 17,
+        "name": "int"
+      },
+      {
+        "line": 17,
+        "name": "get"
+      },
+      {
+        "line": 17,
+        "name": "get"
+      },
+      {
+        "line": 21,
+        "name": "exists"
+      },
+      {
+        "line": 22,
+        "name": "approx_token_count"
+      },
+      {
+        "line": 22,
+        "name": "read_text"
+      },
+      {
+        "line": 24,
+        "name": "exists"
+      },
+      {
+        "line": 25,
+        "name": "glob"
+      },
+      {
+        "line": 26,
+        "name": "approx_token_count"
+      },
+      {
+        "line": 26,
+        "name": "read_text"
+      },
+      {
+        "line": 29,
+        "name": "print"
+      },
+      {
+        "line": 30,
+        "name": "print"
+      },
+      {
+        "line": 34,
+        "name": "print"
+      },
+      {
+        "line": 35,
+        "name": "print"
+      },
+      {
+        "line": 36,
+        "name": "print"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 9,
+        "name": "show_stats",
+        "signature": "show_stats(repo_path: Path)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 3,
+        "module": "json"
+      },
+      {
+        "line": 4,
+        "module": "pathlib"
+      },
+      {
+        "line": 6,
+        "module": "palace.utils.token_counter"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:0cb3e0eb683c66e9795adbdfa1967cccf5d7fa38189c4d212c3165b56d0da8f0"
+}

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# palace-ai output cache: commit everything except manifest.json
+palace-out/cache/manifest.json
+**/palace-out/cache/manifest.json
+
+# benchmark repo checkouts (keep only palace-out copies under worked/)
+worked/repos/
+

@@ -1,0 +1,17 @@
+{
+  "ast": {
+    "calls": [],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 1,
+        "name": "add",
+        "signature": "add(a: int, b: int)"
+      }
+    ],
+    "implements": [],
+    "imports": [],
+    "language": "python"
+  },
+  "hash": "sha256:e8f385c7c3e7a60358a46788e109b7fbdf348da6e2cf60af95b8e33706e42849"
+}

@@ -1,0 +1,657 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 14,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 20,
+        "name": "len"
+      },
+      {
+        "line": 21,
+        "name": "send"
+      },
+      {
+        "line": 26,
+        "name": "Event"
+      },
+      {
+        "line": 27,
+        "name": "basic_response_server"
+      },
+      {
+        "line": 28,
+        "name": "iter"
+      },
+      {
+        "line": 32,
+        "name": "post"
+      },
+      {
+        "line": 33,
+        "name": "set"
+      },
+      {
+        "line": 43,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 46,
+        "name": "send"
+      },
+      {
+        "line": 53,
+        "name": "Event"
+      },
+      {
+        "line": 54,
+        "name": "Server"
+      },
+      {
+        "line": 58,
+        "name": "raises"
+      },
+      {
+        "line": 59,
+        "name": "get"
+      },
+      {
+        "line": 60,
+        "name": "set"
+      },
+      {
+        "line": 65,
+        "name": "Event"
+      },
+      {
+        "line": 66,
+        "name": "Server"
+      },
+      {
+        "line": 68,
+        "name": "iter"
+      },
+      {
+        "line": 73,
+        "name": "post"
+      },
+      {
+        "line": 74,
+        "name": "set"
+      },
+      {
+        "line": 76,
+        "name": "encode"
+      },
+      {
+        "line": 78,
+        "name": "count"
+      },
+      {
+        "line": 83,
+        "name": "Event"
+      },
+      {
+        "line": 84,
+        "name": "Server"
+      },
+      {
+        "line": 86,
+        "name": "iter"
+      },
+      {
+        "line": 91,
+        "name": "post"
+      },
+      {
+        "line": 92,
+        "name": "set"
+      },
+      {
+        "line": 94,
+        "name": "encode"
+      },
+      {
+        "line": 96,
+        "name": "count"
+      },
+      {
+        "line": 105,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 113,
+        "name": "send"
+      },
+      {
+        "line": 117,
+        "name": "Event"
+      },
+      {
+        "line": 118,
+        "name": "Server"
+      },
+      {
+        "line": 122,
+        "name": "raises"
+      },
+      {
+        "line": 123,
+        "name": "get"
+      },
+      {
+        "line": 124,
+        "name": "set"
+      },
+      {
+        "line": 150,
+        "name": "HTTPDigestAuth"
+      },
+      {
+        "line": 154,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 155,
+        "name": "startswith"
+      },
+      {
+        "line": 156,
+        "name": "send"
+      },
+      {
+        "line": 159,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 161,
+        "name": "send"
+      },
+      {
+        "line": 165,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 167,
+        "name": "send"
+      },
+      {
+        "line": 170,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 172,
+        "name": "send"
+      },
+      {
+        "line": 176,
+        "name": "Event"
+      },
+      {
+        "line": 177,
+        "name": "Server"
+      },
+      {
+        "line": 181,
+        "name": "get"
+      },
+      {
+        "line": 186,
+        "name": "startswith"
+      },
+      {
+        "line": 189,
+        "name": "set"
+      },
+      {
+        "line": 206,
+        "name": "HTTPDigestAuth"
+      },
+      {
+        "line": 210,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 211,
+        "name": "startswith"
+      },
+      {
+        "line": 212,
+        "name": "send"
+      },
+      {
+        "line": 216,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 218,
+        "name": "send"
+      },
+      {
+        "line": 221,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 226,
+        "name": "Event"
+      },
+      {
+        "line": 227,
+        "name": "Server"
+      },
+      {
+        "line": 231,
+        "name": "get"
+      },
+      {
+        "line": 235,
+        "name": "set"
+      },
+      {
+        "line": 249,
+        "name": "HTTPDigestAuth"
+      },
+      {
+        "line": 253,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 254,
+        "name": "startswith"
+      },
+      {
+        "line": 255,
+        "name": "send"
+      },
+      {
+        "line": 258,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 263,
+        "name": "Event"
+      },
+      {
+        "line": 264,
+        "name": "Server"
+      },
+      {
+        "line": 268,
+        "name": "get"
+      },
+      {
+        "line": 271,
+        "name": "len"
+      },
+      {
+        "line": 272,
+        "name": "set"
+      },
+      {
+        "line": 284,
+        "name": "append"
+      },
+      {
+        "line": 286,
+        "name": "upper"
+      },
+      {
+        "line": 289,
+        "name": "parametrize"
+      },
+      {
+        "line": 292,
+        "name": "Server"
+      },
+      {
+        "line": 296,
+        "name": "override_environ"
+      },
+      {
+        "line": 298,
+        "name": "raises"
+      },
+      {
+        "line": 299,
+        "name": "get"
+      },
+      {
+        "line": 302,
+        "name": "len"
+      },
+      {
+        "line": 305,
+        "name": "len"
+      },
+      {
+        "line": 314,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 316,
+        "name": "send"
+      },
+      {
+        "line": 322,
+        "name": "encode"
+      },
+      {
+        "line": 324,
+        "name": "append"
+      },
+      {
+        "line": 324,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 325,
+        "name": "send"
+      },
+      {
+        "line": 327,
+        "name": "Event"
+      },
+      {
+        "line": 328,
+        "name": "Server"
+      },
+      {
+        "line": 332,
+        "name": "get"
+      },
+      {
+        "line": 334,
+        "name": "len"
+      },
+      {
+        "line": 336,
+        "name": "startswith"
+      },
+      {
+        "line": 337,
+        "name": "format"
+      },
+      {
+        "line": 337,
+        "name": "decode"
+      },
+      {
+        "line": 339,
+        "name": "set"
+      },
+      {
+        "line": 344,
+        "name": "Event"
+      },
+      {
+        "line": 345,
+        "name": "Server"
+      },
+      {
+        "line": 349,
+        "name": "get"
+      },
+      {
+        "line": 353,
+        "name": "split"
+      },
+      {
+        "line": 354,
+        "name": "split"
+      },
+      {
+        "line": 361,
+        "name": "set"
+      },
+      {
+        "line": 371,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 372,
+        "name": "send"
+      },
+      {
+        "line": 377,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 378,
+        "name": "send"
+      },
+      {
+        "line": 383,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 384,
+        "name": "send"
+      },
+      {
+        "line": 388,
+        "name": "Event"
+      },
+      {
+        "line": 389,
+        "name": "Server"
+      },
+      {
+        "line": 393,
+        "name": "get"
+      },
+      {
+        "line": 396,
+        "name": "len"
+      },
+      {
+        "line": 404,
+        "name": "set"
+      },
+      {
+        "line": 410,
+        "name": "consume_socket_content"
+      },
+      {
+        "line": 411,
+        "name": "send"
+      },
+      {
+        "line": 417,
+        "name": "Event"
+      },
+      {
+        "line": 418,
+        "name": "Server"
+      },
+      {
+        "line": 422,
+        "name": "get"
+      },
+      {
+        "line": 424,
+        "name": "raises"
+      },
+      {
+        "line": 425,
+        "name": "json"
+      },
+      {
+        "line": 426,
+        "name": "isinstance"
+      },
+      {
+        "line": 427,
+        "name": "isinstance"
+      },
+      {
+        "line": 428,
+        "name": "str"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 12,
+        "name": "echo_response_handler",
+        "signature": "echo_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 24,
+        "name": "test_chunked_upload",
+        "signature": "test_chunked_upload()"
+      },
+      {
+        "kind": "function",
+        "line": 39,
+        "name": "test_chunked_encoding_error",
+        "signature": "test_chunked_encoding_error()"
+      },
+      {
+        "kind": "function",
+        "line": 42,
+        "name": "incomplete_chunked_response_handler",
+        "signature": "incomplete_chunked_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 63,
+        "name": "test_chunked_upload_uses_only_specified_host_header",
+        "signature": "test_chunked_upload_uses_only_specified_host_header()"
+      },
+      {
+        "kind": "function",
+        "line": 81,
+        "name": "test_chunked_upload_doesnt_skip_host_header",
+        "signature": "test_chunked_upload_doesnt_skip_host_header()"
+      },
+      {
+        "kind": "function",
+        "line": 99,
+        "name": "test_conflicting_content_lengths",
+        "signature": "test_conflicting_content_lengths()"
+      },
+      {
+        "kind": "function",
+        "line": 104,
+        "name": "multiple_content_length_response_handler",
+        "signature": "multiple_content_length_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 127,
+        "name": "test_digestauth_401_count_reset_on_redirect",
+        "signature": "test_digestauth_401_count_reset_on_redirect()"
+      },
+      {
+        "kind": "function",
+        "line": 152,
+        "name": "digest_response_handler",
+        "signature": "digest_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 192,
+        "name": "test_digestauth_401_only_sent_once",
+        "signature": "test_digestauth_401_only_sent_once()"
+      },
+      {
+        "kind": "function",
+        "line": 208,
+        "name": "digest_failed_response_handler",
+        "signature": "digest_failed_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 238,
+        "name": "test_digestauth_only_on_4xx",
+        "signature": "test_digestauth_only_on_4xx()"
+      },
+      {
+        "kind": "function",
+        "line": 251,
+        "name": "digest_response_handler",
+        "signature": "digest_response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 290,
+        "name": "test_use_proxy_from_environment",
+        "signature": "test_use_proxy_from_environment(httpbin, var, scheme)"
+      },
+      {
+        "kind": "function",
+        "line": 308,
+        "name": "test_redirect_rfc1808_to_non_ascii_location",
+        "signature": "test_redirect_rfc1808_to_non_ascii_location()"
+      },
+      {
+        "kind": "function",
+        "line": 313,
+        "name": "redirect_resp_handler",
+        "signature": "redirect_resp_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 342,
+        "name": "test_fragment_not_sent_with_request",
+        "signature": "test_fragment_not_sent_with_request()"
+      },
+      {
+        "kind": "function",
+        "line": 364,
+        "name": "test_fragment_update_on_redirect",
+        "signature": "test_fragment_update_on_redirect()"
+      },
+      {
+        "kind": "function",
+        "line": 370,
+        "name": "response_handler",
+        "signature": "response_handler(sock)"
+      },
+      {
+        "kind": "function",
+        "line": 407,
+        "name": "test_json_decode_compatibility_for_alt_utf_encodings",
+        "signature": "test_json_decode_compatibility_for_alt_utf_encodings()"
+      },
+      {
+        "kind": "function",
+        "line": 409,
+        "name": "response_handler",
+        "signature": "response_handler(sock)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "threading"
+      },
+      {
+        "line": 3,
+        "module": "pytest"
+      },
+      {
+        "line": 5,
+        "module": "requests"
+      },
+      {
+        "line": 6,
+        "module": "requests.compat"
+      },
+      {
+        "line": 7,
+        "module": "tests.testserver.server"
+      },
+      {
+        "line": 9,
+        "module": ".utils"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:db5fac7340c49c49551e3e41679a8ee6e385c56054f84073932354a8da87df65"
+}

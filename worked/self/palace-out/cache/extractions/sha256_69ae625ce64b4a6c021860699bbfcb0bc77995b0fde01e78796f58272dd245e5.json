@@ -1,0 +1,75 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 13,
+        "name": "resolve"
+      },
+      {
+        "line": 15,
+        "name": "build_visualizer"
+      },
+      {
+        "line": 19,
+        "name": "TCPServer"
+      },
+      {
+        "line": 24,
+        "name": "chdir"
+      },
+      {
+        "line": 26,
+        "name": "open"
+      },
+      {
+        "line": 27,
+        "name": "print"
+      },
+      {
+        "line": 29,
+        "name": "serve_forever"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 12,
+        "name": "serve_visualizer",
+        "signature": "serve_visualizer(repo_path: Path, *, port: int = 8765)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 3,
+        "module": "http.server"
+      },
+      {
+        "line": 4,
+        "module": "socketserver"
+      },
+      {
+        "line": 5,
+        "module": "threading"
+      },
+      {
+        "line": 6,
+        "module": "webbrowser"
+      },
+      {
+        "line": 7,
+        "module": "pathlib"
+      },
+      {
+        "line": 9,
+        "module": "palace.visualizer.builder"
+      },
+      {
+        "line": 22,
+        "module": "os"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:69ae625ce64b4a6c021860699bbfcb0bc77995b0fde01e78796f58272dd245e5"
+}

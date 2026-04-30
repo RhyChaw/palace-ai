@@ -1,0 +1,75 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 8,
+        "name": "info"
+      },
+      {
+        "line": 20,
+        "name": "patch"
+      },
+      {
+        "line": 21,
+        "name": "info"
+      },
+      {
+        "line": 26,
+        "name": "patch"
+      },
+      {
+        "line": 26,
+        "name": "VersionedPackage"
+      },
+      {
+        "line": 27,
+        "name": "info"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 6,
+        "name": "test_system_ssl",
+        "signature": "test_system_ssl()"
+      },
+      {
+        "kind": "class",
+        "line": 11,
+        "name": "VersionedPackage",
+        "signature": "VersionedPackage"
+      },
+      {
+        "kind": "function",
+        "line": 12,
+        "name": "__init__",
+        "signature": "__init__(self, version)"
+      },
+      {
+        "kind": "function",
+        "line": 16,
+        "name": "test_idna_without_version_attribute",
+        "signature": "test_idna_without_version_attribute()"
+      },
+      {
+        "kind": "function",
+        "line": 24,
+        "name": "test_idna_with_version_attribute",
+        "signature": "test_idna_with_version_attribute()"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "unittest"
+      },
+      {
+        "line": 3,
+        "module": "requests.help"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:1c2ac8ca9f4986429717791df766122b23e1fe90aa621318380ccf1f8e83d0f6"
+}

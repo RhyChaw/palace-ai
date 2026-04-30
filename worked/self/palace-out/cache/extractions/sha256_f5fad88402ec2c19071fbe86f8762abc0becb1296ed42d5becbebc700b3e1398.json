@@ -1,0 +1,36 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 26,
+        "name": "get"
+      },
+      {
+        "line": 28,
+        "name": "hasattr"
+      },
+      {
+        "line": 31,
+        "name": "hook"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 16,
+        "name": "default_hooks",
+        "signature": "default_hooks()"
+      },
+      {
+        "kind": "function",
+        "line": 23,
+        "name": "dispatch_hook",
+        "signature": "dispatch_hook(key, hooks, hook_data, **kwargs)"
+      }
+    ],
+    "implements": [],
+    "imports": [],
+    "language": "python"
+  },
+  "hash": "sha256:f5fad88402ec2c19071fbe86f8762abc0becb1296ed42d5becbebc700b3e1398"
+}

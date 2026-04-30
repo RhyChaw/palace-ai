@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling>=1.24.2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "palace-ai"
+version = "0.1.0"
+description = "Turn any code repository into a navigable memory palace for AI agents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "palace-ai" }]
+dependencies = [
+  "anthropic>=0.36.0",
+  "GitPython>=3.1.43",
+  "networkx>=3.3",
+  "tree-sitter>=0.22.3",
+  "tree-sitter-javascript>=0.25.0",
+  "tree-sitter-python>=0.25.0",
+  "tree-sitter-typescript>=0.23.2",
+]
+
+[project.scripts]
+palace = "palace.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["palace"]
+

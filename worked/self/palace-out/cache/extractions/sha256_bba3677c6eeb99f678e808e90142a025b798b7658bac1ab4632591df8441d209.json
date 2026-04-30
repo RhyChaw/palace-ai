@@ -1,0 +1,28 @@
+{
+  "ast": {
+    "calls": [],
+    "exports": [
+      {
+        "kind": "class",
+        "line": 7,
+        "name": "FlaskyStyle",
+        "signature": "FlaskyStyle"
+      }
+    ],
+    "implements": [
+      "(Style)"
+    ],
+    "imports": [
+      {
+        "line": 2,
+        "module": "pygments.style"
+      },
+      {
+        "line": 3,
+        "module": "pygments.token"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:bba3677c6eeb99f678e808e90142a025b798b7658bac1ab4632591df8441d209"
+}

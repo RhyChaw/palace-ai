@@ -1,0 +1,17 @@
+{
+  "ast": {
+    "calls": [],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 1,
+        "name": "greet",
+        "signature": "greet(name)"
+      }
+    ],
+    "implements": [],
+    "imports": [],
+    "language": "javascript"
+  },
+  "hash": "sha256:332b9e8ed623f6bb533555d12f540372dd175a4297ba1f483ca1ab124ecad6c3"
+}

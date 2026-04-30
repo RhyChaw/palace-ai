@@ -1,0 +1,51 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 10,
+        "name": "parametrize"
+      },
+      {
+        "line": 18,
+        "name": "dispatch_hook"
+      },
+      {
+        "line": 22,
+        "name": "default_hooks"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 6,
+        "name": "hook",
+        "signature": "hook(value)"
+      },
+      {
+        "kind": "function",
+        "line": 17,
+        "name": "test_hooks",
+        "signature": "test_hooks(hooks_list, result)"
+      },
+      {
+        "kind": "function",
+        "line": 21,
+        "name": "test_default_hooks",
+        "signature": "test_default_hooks()"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "pytest"
+      },
+      {
+        "line": 3,
+        "module": "requests"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:a9e5163f538543a660be3b06650cd0b803ff0c503f5948f66b6fc50ede38109c"
+}

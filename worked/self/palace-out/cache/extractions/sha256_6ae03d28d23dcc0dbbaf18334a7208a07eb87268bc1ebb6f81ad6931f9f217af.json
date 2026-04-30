@@ -1,0 +1,40 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 24,
+        "name": "insert"
+      },
+      {
+        "line": 24,
+        "name": "abspath"
+      },
+      {
+        "line": 25,
+        "name": "insert"
+      },
+      {
+        "line": 25,
+        "name": "abspath"
+      }
+    ],
+    "exports": [],
+    "implements": [],
+    "imports": [
+      {
+        "line": 15,
+        "module": "sys"
+      },
+      {
+        "line": 16,
+        "module": "os"
+      },
+      {
+        "line": 27,
+        "module": "requests"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:6ae03d28d23dcc0dbbaf18334a7208a07eb87268bc1ebb6f81ad6931f9f217af"
+}

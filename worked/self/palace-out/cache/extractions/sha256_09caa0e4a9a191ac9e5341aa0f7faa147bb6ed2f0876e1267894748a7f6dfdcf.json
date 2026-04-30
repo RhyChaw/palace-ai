@@ -1,0 +1,57 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 7,
+        "name": "dataclass"
+      },
+      {
+        "line": 13,
+        "name": "LanguageInfo"
+      },
+      {
+        "line": 14,
+        "name": "LanguageInfo"
+      },
+      {
+        "line": 15,
+        "name": "LanguageInfo"
+      },
+      {
+        "line": 22,
+        "name": "Path"
+      },
+      {
+        "line": 23,
+        "name": "lower"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "class",
+        "line": 8,
+        "name": "LanguageInfo",
+        "signature": "LanguageInfo"
+      },
+      {
+        "kind": "function",
+        "line": 21,
+        "name": "detect_language",
+        "signature": "detect_language(path: str | Path)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 3,
+        "module": "dataclasses"
+      },
+      {
+        "line": 4,
+        "module": "pathlib"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:09caa0e4a9a191ac9e5341aa0f7faa147bb6ed2f0876e1267894748a7f6dfdcf"
+}

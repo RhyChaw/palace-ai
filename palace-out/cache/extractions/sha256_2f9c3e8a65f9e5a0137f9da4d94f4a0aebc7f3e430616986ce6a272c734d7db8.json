@@ -1,0 +1,1114 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 93,
+        "name": "urlsplit"
+      },
+      {
+        "line": 99,
+        "name": "append"
+      },
+      {
+        "line": 103,
+        "name": "append"
+      },
+      {
+        "line": 104,
+        "name": "append"
+      },
+      {
+        "line": 106,
+        "name": "join"
+      },
+      {
+        "line": 117,
+        "name": "isinstance"
+      },
+      {
+        "line": 119,
+        "name": "hasattr"
+      },
+      {
+        "line": 121,
+        "name": "hasattr"
+      },
+      {
+        "line": 123,
+        "name": "to_key_val_list"
+      },
+      {
+        "line": 124,
+        "name": "isinstance"
+      },
+      {
+        "line": 124,
+        "name": "hasattr"
+      },
+      {
+        "line": 128,
+        "name": "append"
+      },
+      {
+        "line": 130,
+        "name": "encode"
+      },
+      {
+        "line": 130,
+        "name": "isinstance"
+      },
+      {
+        "line": 131,
+        "name": "encode"
+      },
+      {
+        "line": 131,
+        "name": "isinstance"
+      },
+      {
+        "line": 134,
+        "name": "urlencode"
+      },
+      {
+        "line": 149,
+        "name": "ValueError"
+      },
+      {
+        "line": 150,
+        "name": "isinstance"
+      },
+      {
+        "line": 151,
+        "name": "ValueError"
+      },
+      {
+        "line": 154,
+        "name": "to_key_val_list"
+      },
+      {
+        "line": 155,
+        "name": "to_key_val_list"
+      },
+      {
+        "line": 158,
+        "name": "isinstance"
+      },
+      {
+        "line": 158,
+        "name": "hasattr"
+      },
+      {
+        "line": 163,
+        "name": "isinstance"
+      },
+      {
+        "line": 164,
+        "name": "str"
+      },
+      {
+        "line": 166,
+        "name": "append"
+      },
+      {
+        "line": 168,
+        "name": "decode"
+      },
+      {
+        "line": 169,
+        "name": "isinstance"
+      },
+      {
+        "line": 171,
+        "name": "encode"
+      },
+      {
+        "line": 171,
+        "name": "isinstance"
+      },
+      {
+        "line": 179,
+        "name": "isinstance"
+      },
+      {
+        "line": 180,
+        "name": "len"
+      },
+      {
+        "line": 182,
+        "name": "len"
+      },
+      {
+        "line": 187,
+        "name": "guess_filename"
+      },
+      {
+        "line": 190,
+        "name": "isinstance"
+      },
+      {
+        "line": 192,
+        "name": "hasattr"
+      },
+      {
+        "line": 193,
+        "name": "read"
+      },
+      {
+        "line": 199,
+        "name": "RequestField"
+      },
+      {
+        "line": 200,
+        "name": "make_multipart"
+      },
+      {
+        "line": 201,
+        "name": "append"
+      },
+      {
+        "line": 203,
+        "name": "encode_multipart_formdata"
+      },
+      {
+        "line": 213,
+        "name": "ValueError"
+      },
+      {
+        "line": 215,
+        "name": "isinstance"
+      },
+      {
+        "line": 216,
+        "name": "append"
+      },
+      {
+        "line": 217,
+        "name": "hasattr"
+      },
+      {
+        "line": 218,
+        "name": "extend"
+      },
+      {
+        "line": 218,
+        "name": "isinstance"
+      },
+      {
+        "line": 226,
+        "name": "remove"
+      },
+      {
+        "line": 280,
+        "name": "default_hooks"
+      },
+      {
+        "line": 281,
+        "name": "list"
+      },
+      {
+        "line": 281,
+        "name": "items"
+      },
+      {
+        "line": 282,
+        "name": "register_hook"
+      },
+      {
+        "line": 299,
+        "name": "PreparedRequest"
+      },
+      {
+        "line": 300,
+        "name": "prepare"
+      },
+      {
+        "line": 349,
+        "name": "default_hooks"
+      },
+      {
+        "line": 368,
+        "name": "prepare_method"
+      },
+      {
+        "line": 369,
+        "name": "prepare_url"
+      },
+      {
+        "line": 370,
+        "name": "prepare_headers"
+      },
+      {
+        "line": 371,
+        "name": "prepare_cookies"
+      },
+      {
+        "line": 372,
+        "name": "prepare_body"
+      },
+      {
+        "line": 373,
+        "name": "prepare_auth"
+      },
+      {
+        "line": 379,
+        "name": "prepare_hooks"
+      },
+      {
+        "line": 385,
+        "name": "PreparedRequest"
+      },
+      {
+        "line": 388,
+        "name": "copy"
+      },
+      {
+        "line": 389,
+        "name": "_copy_cookie_jar"
+      },
+      {
+        "line": 399,
+        "name": "to_native_string"
+      },
+      {
+        "line": 399,
+        "name": "upper"
+      },
+      {
+        "line": 406,
+        "name": "decode"
+      },
+      {
+        "line": 406,
+        "name": "encode"
+      },
+      {
+        "line": 418,
+        "name": "isinstance"
+      },
+      {
+        "line": 419,
+        "name": "decode"
+      },
+      {
+        "line": 421,
+        "name": "str"
+      },
+      {
+        "line": 424,
+        "name": "lstrip"
+      },
+      {
+        "line": 429,
+        "name": "startswith"
+      },
+      {
+        "line": 429,
+        "name": "lower"
+      },
+      {
+        "line": 435,
+        "name": "parse_url"
+      },
+      {
+        "line": 437,
+        "name": "InvalidURL"
+      },
+      {
+        "line": 440,
+        "name": "MissingSchema"
+      },
+      {
+        "line": 446,
+        "name": "InvalidURL"
+      },
+      {
+        "line": 452,
+        "name": "unicode_is_ascii"
+      },
+      {
+        "line": 454,
+        "name": "_get_idna_encoded_host"
+      },
+      {
+        "line": 456,
+        "name": "InvalidURL"
+      },
+      {
+        "line": 457,
+        "name": "startswith"
+      },
+      {
+        "line": 458,
+        "name": "InvalidURL"
+      },
+      {
+        "line": 472,
+        "name": "isinstance"
+      },
+      {
+        "line": 473,
+        "name": "to_native_string"
+      },
+      {
+        "line": 475,
+        "name": "_encode_params"
+      },
+      {
+        "line": 482,
+        "name": "requote_uri"
+      },
+      {
+        "line": 482,
+        "name": "urlunparse"
+      },
+      {
+        "line": 488,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 490,
+        "name": "items"
+      },
+      {
+        "line": 492,
+        "name": "check_header_validity"
+      },
+      {
+        "line": 494,
+        "name": "to_native_string"
+      },
+      {
+        "line": 512,
+        "name": "dumps"
+      },
+      {
+        "line": 514,
+        "name": "InvalidJSONError"
+      },
+      {
+        "line": 516,
+        "name": "isinstance"
+      },
+      {
+        "line": 517,
+        "name": "encode"
+      },
+      {
+        "line": 519,
+        "name": "all"
+      },
+      {
+        "line": 521,
+        "name": "hasattr"
+      },
+      {
+        "line": 522,
+        "name": "isinstance"
+      },
+      {
+        "line": 528,
+        "name": "super_len"
+      },
+      {
+        "line": 534,
+        "name": "getattr"
+      },
+      {
+        "line": 539,
+        "name": "tell"
+      },
+      {
+        "line": 543,
+        "name": "object"
+      },
+      {
+        "line": 546,
+        "name": "NotImplementedError"
+      },
+      {
+        "line": 551,
+        "name": "builtin_str"
+      },
+      {
+        "line": 557,
+        "name": "_encode_files"
+      },
+      {
+        "line": 560,
+        "name": "_encode_params"
+      },
+      {
+        "line": 561,
+        "name": "isinstance"
+      },
+      {
+        "line": 561,
+        "name": "hasattr"
+      },
+      {
+        "line": 566,
+        "name": "prepare_content_length"
+      },
+      {
+        "line": 577,
+        "name": "super_len"
+      },
+      {
+        "line": 581,
+        "name": "builtin_str"
+      },
+      {
+        "line": 584,
+        "name": "get"
+      },
+      {
+        "line": 595,
+        "name": "get_auth_from_url"
+      },
+      {
+        "line": 596,
+        "name": "any"
+      },
+      {
+        "line": 599,
+        "name": "isinstance"
+      },
+      {
+        "line": 599,
+        "name": "len"
+      },
+      {
+        "line": 601,
+        "name": "HTTPBasicAuth"
+      },
+      {
+        "line": 604,
+        "name": "auth"
+      },
+      {
+        "line": 607,
+        "name": "update"
+      },
+      {
+        "line": 610,
+        "name": "prepare_content_length"
+      },
+      {
+        "line": 623,
+        "name": "isinstance"
+      },
+      {
+        "line": 626,
+        "name": "cookiejar_from_dict"
+      },
+      {
+        "line": 628,
+        "name": "get_cookie_header"
+      },
+      {
+        "line": 639,
+        "name": "register_hook"
+      },
+      {
+        "line": 671,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 693,
+        "name": "cookiejar_from_dict"
+      },
+      {
+        "line": 701,
+        "name": "timedelta"
+      },
+      {
+        "line": 711,
+        "name": "close"
+      },
+      {
+        "line": 719,
+        "name": "getattr"
+      },
+      {
+        "line": 722,
+        "name": "items"
+      },
+      {
+        "line": 723,
+        "name": "setattr"
+      },
+      {
+        "line": 726,
+        "name": "setattr"
+      },
+      {
+        "line": 727,
+        "name": "setattr"
+      },
+      {
+        "line": 754,
+        "name": "iter_content"
+      },
+      {
+        "line": 766,
+        "name": "raise_for_status"
+      },
+      {
+        "line": 795,
+        "name": "detect"
+      },
+      {
+        "line": 822,
+        "name": "hasattr"
+      },
+      {
+        "line": 824,
+        "name": "stream"
+      },
+      {
+        "line": 826,
+        "name": "ChunkedEncodingError"
+      },
+      {
+        "line": 828,
+        "name": "ContentDecodingError"
+      },
+      {
+        "line": 830,
+        "name": "ConnectionError"
+      },
+      {
+        "line": 832,
+        "name": "RequestsSSLError"
+      },
+      {
+        "line": 836,
+        "name": "read"
+      },
+      {
+        "line": 843,
+        "name": "isinstance"
+      },
+      {
+        "line": 844,
+        "name": "StreamConsumedError"
+      },
+      {
+        "line": 845,
+        "name": "isinstance"
+      },
+      {
+        "line": 846,
+        "name": "TypeError"
+      },
+      {
+        "line": 847,
+        "name": "type"
+      },
+      {
+        "line": 850,
+        "name": "iter_slices"
+      },
+      {
+        "line": 852,
+        "name": "generate"
+      },
+      {
+        "line": 857,
+        "name": "stream_decode_response_unicode"
+      },
+      {
+        "line": 876,
+        "name": "iter_content"
+      },
+      {
+        "line": 883,
+        "name": "split"
+      },
+      {
+        "line": 885,
+        "name": "splitlines"
+      },
+      {
+        "line": 888,
+        "name": "pop"
+      },
+      {
+        "line": 904,
+        "name": "RuntimeError"
+      },
+      {
+        "line": 909,
+        "name": "join"
+      },
+      {
+        "line": 909,
+        "name": "iter_content"
+      },
+      {
+        "line": 942,
+        "name": "str"
+      },
+      {
+        "line": 950,
+        "name": "str"
+      },
+      {
+        "line": 964,
+        "name": "len"
+      },
+      {
+        "line": 969,
+        "name": "guess_json_utf"
+      },
+      {
+        "line": 972,
+        "name": "loads"
+      },
+      {
+        "line": 972,
+        "name": "decode"
+      },
+      {
+        "line": 980,
+        "name": "RequestsJSONDecodeError"
+      },
+      {
+        "line": 983,
+        "name": "loads"
+      },
+      {
+        "line": 987,
+        "name": "RequestsJSONDecodeError"
+      },
+      {
+        "line": 993,
+        "name": "get"
+      },
+      {
+        "line": 998,
+        "name": "parse_header_links"
+      },
+      {
+        "line": 1001,
+        "name": "get"
+      },
+      {
+        "line": 1001,
+        "name": "get"
+      },
+      {
+        "line": 1010,
+        "name": "isinstance"
+      },
+      {
+        "line": 1016,
+        "name": "decode"
+      },
+      {
+        "line": 1018,
+        "name": "decode"
+      },
+      {
+        "line": 1033,
+        "name": "HTTPError"
+      },
+      {
+        "line": 1042,
+        "name": "close"
+      },
+      {
+        "line": 1044,
+        "name": "getattr"
+      },
+      {
+        "line": 1046,
+        "name": "release_conn"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "class",
+        "line": 86,
+        "name": "RequestEncodingMixin",
+        "signature": "RequestEncodingMixin"
+      },
+      {
+        "kind": "function",
+        "line": 88,
+        "name": "path_url",
+        "signature": "path_url(self)"
+      },
+      {
+        "kind": "function",
+        "line": 109,
+        "name": "_encode_params",
+        "signature": "_encode_params(data)"
+      },
+      {
+        "kind": "function",
+        "line": 139,
+        "name": "_encode_files",
+        "signature": "_encode_files(files, data)"
+      },
+      {
+        "kind": "class",
+        "line": 208,
+        "name": "RequestHooksMixin",
+        "signature": "RequestHooksMixin"
+      },
+      {
+        "kind": "function",
+        "line": 209,
+        "name": "register_hook",
+        "signature": "register_hook(self, event, hook)"
+      },
+      {
+        "kind": "function",
+        "line": 220,
+        "name": "deregister_hook",
+        "signature": "deregister_hook(self, event, hook)"
+      },
+      {
+        "kind": "class",
+        "line": 232,
+        "name": "Request",
+        "signature": "Request"
+      },
+      {
+        "kind": "function",
+        "line": 260,
+        "name": "__init__",
+        "signature": "__init__(\n        self,\n        method=None,\n        url=None,\n        headers=None,\n        files=None,\n        data=None,\n        params=None,\n        auth=None,\n        cookies=None,\n        hooks=None,\n        json=None,\n    )"
+      },
+      {
+        "kind": "function",
+        "line": 294,
+        "name": "__repr__",
+        "signature": "__repr__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 297,
+        "name": "prepare",
+        "signature": "prepare(self)"
+      },
+      {
+        "kind": "class",
+        "line": 315,
+        "name": "PreparedRequest",
+        "signature": "PreparedRequest"
+      },
+      {
+        "kind": "function",
+        "line": 336,
+        "name": "__init__",
+        "signature": "__init__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 353,
+        "name": "prepare",
+        "signature": "prepare(\n        self,\n        method=None,\n        url=None,\n        headers=None,\n        files=None,\n        data=None,\n        params=None,\n        auth=None,\n        cookies=None,\n        hooks=None,\n        json=None,\n    )"
+      },
+      {
+        "kind": "function",
+        "line": 381,
+        "name": "__repr__",
+        "signature": "__repr__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 384,
+        "name": "copy",
+        "signature": "copy(self)"
+      },
+      {
+        "kind": "function",
+        "line": 395,
+        "name": "prepare_method",
+        "signature": "prepare_method(self, method)"
+      },
+      {
+        "kind": "function",
+        "line": 402,
+        "name": "_get_idna_encoded_host",
+        "signature": "_get_idna_encoded_host(host)"
+      },
+      {
+        "kind": "function",
+        "line": 411,
+        "name": "prepare_url",
+        "signature": "prepare_url(self, url, params)"
+      },
+      {
+        "kind": "function",
+        "line": 485,
+        "name": "prepare_headers",
+        "signature": "prepare_headers(self, headers)"
+      },
+      {
+        "kind": "function",
+        "line": 496,
+        "name": "prepare_body",
+        "signature": "prepare_body(self, data, files, json=None)"
+      },
+      {
+        "kind": "function",
+        "line": 574,
+        "name": "prepare_content_length",
+        "signature": "prepare_content_length(self, body)"
+      },
+      {
+        "kind": "function",
+        "line": 590,
+        "name": "prepare_auth",
+        "signature": "prepare_auth(self, auth, url=\"\")"
+      },
+      {
+        "kind": "function",
+        "line": 612,
+        "name": "prepare_cookies",
+        "signature": "prepare_cookies(self, cookies)"
+      },
+      {
+        "kind": "function",
+        "line": 632,
+        "name": "prepare_hooks",
+        "signature": "prepare_hooks(self, hooks)"
+      },
+      {
+        "kind": "class",
+        "line": 642,
+        "name": "Response",
+        "signature": "Response"
+      },
+      {
+        "kind": "function",
+        "line": 660,
+        "name": "__init__",
+        "signature": "__init__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 707,
+        "name": "__enter__",
+        "signature": "__enter__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 710,
+        "name": "__exit__",
+        "signature": "__exit__(self, *args)"
+      },
+      {
+        "kind": "function",
+        "line": 713,
+        "name": "__getstate__",
+        "signature": "__getstate__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 721,
+        "name": "__setstate__",
+        "signature": "__setstate__(self, state)"
+      },
+      {
+        "kind": "function",
+        "line": 729,
+        "name": "__repr__",
+        "signature": "__repr__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 732,
+        "name": "__bool__",
+        "signature": "__bool__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 742,
+        "name": "__nonzero__",
+        "signature": "__nonzero__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 752,
+        "name": "__iter__",
+        "signature": "__iter__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 757,
+        "name": "ok",
+        "signature": "ok(self)"
+      },
+      {
+        "kind": "function",
+        "line": 772,
+        "name": "is_redirect",
+        "signature": "is_redirect(self)"
+      },
+      {
+        "kind": "function",
+        "line": 779,
+        "name": "is_permanent_redirect",
+        "signature": "is_permanent_redirect(self)"
+      },
+      {
+        "kind": "function",
+        "line": 787,
+        "name": "next",
+        "signature": "next(self)"
+      },
+      {
+        "kind": "function",
+        "line": 792,
+        "name": "apparent_encoding",
+        "signature": "apparent_encoding(self)"
+      },
+      {
+        "kind": "function",
+        "line": 801,
+        "name": "iter_content",
+        "signature": "iter_content(self, chunk_size=1, decode_unicode=False)"
+      },
+      {
+        "kind": "function",
+        "line": 820,
+        "name": "generate",
+        "signature": "generate()"
+      },
+      {
+        "kind": "function",
+        "line": 861,
+        "name": "iter_lines",
+        "signature": "iter_lines(\n        self, chunk_size=ITER_CHUNK_SIZE, decode_unicode=False, delimiter=None\n    )"
+      },
+      {
+        "kind": "function",
+        "line": 898,
+        "name": "content",
+        "signature": "content(self)"
+      },
+      {
+        "kind": "function",
+        "line": 917,
+        "name": "text",
+        "signature": "text(self)"
+      },
+      {
+        "kind": "function",
+        "line": 954,
+        "name": "json",
+        "signature": "json(self, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 990,
+        "name": "links",
+        "signature": "links(self)"
+      },
+      {
+        "kind": "function",
+        "line": 1006,
+        "name": "raise_for_status",
+        "signature": "raise_for_status(self)"
+      },
+      {
+        "kind": "function",
+        "line": 1035,
+        "name": "close",
+        "signature": "close(self)"
+      }
+    ],
+    "implements": [
+      "(RequestHooksMixin)",
+      "(RequestEncodingMixin, RequestHooksMixin)"
+    ],
+    "imports": [
+      {
+        "line": 8,
+        "module": "datetime"
+      },
+      {
+        "line": 13,
+        "module": "encodings.idna"
+      },
+      {
+        "line": 14,
+        "module": "io"
+      },
+      {
+        "line": 16,
+        "module": "urllib3.exceptions"
+      },
+      {
+        "line": 23,
+        "module": "urllib3.fields"
+      },
+      {
+        "line": 24,
+        "module": "urllib3.filepost"
+      },
+      {
+        "line": 25,
+        "module": "urllib3.util"
+      },
+      {
+        "line": 27,
+        "module": "._internal_utils"
+      },
+      {
+        "line": 28,
+        "module": ".auth"
+      },
+      {
+        "line": 29,
+        "module": ".compat"
+      },
+      {
+        "line": 41,
+        "module": ".compat"
+      },
+      {
+        "line": 42,
+        "module": ".cookies"
+      },
+      {
+        "line": 43,
+        "module": ".exceptions"
+      },
+      {
+        "line": 53,
+        "module": ".exceptions"
+      },
+      {
+        "line": 54,
+        "module": ".exceptions"
+      },
+      {
+        "line": 55,
+        "module": ".hooks"
+      },
+      {
+        "line": 56,
+        "module": ".status_codes"
+      },
+      {
+        "line": 57,
+        "module": ".structures"
+      },
+      {
+        "line": 58,
+        "module": ".utils"
+      },
+      {
+        "line": 403,
+        "module": "idna"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:2f9c3e8a65f9e5a0137f9da4d94f4a0aebc7f3e430616986ce6a272c734d7db8"
+}

@@ -1,0 +1,27 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 5,
+        "name": "add"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 4,
+        "name": "main",
+        "signature": "main()"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "py_b"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:9277814b084dc578dca13f3805c2a6a67b1fcf3c5270ceb65d3dec980a6184a9"
+}

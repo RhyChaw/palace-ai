@@ -1,0 +1,212 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 41,
+        "name": "OrderedDict"
+      },
+      {
+        "line": 44,
+        "name": "update"
+      },
+      {
+        "line": 49,
+        "name": "lower"
+      },
+      {
+        "line": 52,
+        "name": "lower"
+      },
+      {
+        "line": 55,
+        "name": "lower"
+      },
+      {
+        "line": 58,
+        "name": "values"
+      },
+      {
+        "line": 61,
+        "name": "len"
+      },
+      {
+        "line": 65,
+        "name": "items"
+      },
+      {
+        "line": 68,
+        "name": "isinstance"
+      },
+      {
+        "line": 69,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 73,
+        "name": "dict"
+      },
+      {
+        "line": 73,
+        "name": "lower_items"
+      },
+      {
+        "line": 73,
+        "name": "dict"
+      },
+      {
+        "line": 73,
+        "name": "lower_items"
+      },
+      {
+        "line": 77,
+        "name": "CaseInsensitiveDict"
+      },
+      {
+        "line": 77,
+        "name": "values"
+      },
+      {
+        "line": 80,
+        "name": "str"
+      },
+      {
+        "line": 80,
+        "name": "dict"
+      },
+      {
+        "line": 80,
+        "name": "items"
+      },
+      {
+        "line": 88,
+        "name": "__init__"
+      },
+      {
+        "line": 88,
+        "name": "super"
+      },
+      {
+        "line": 96,
+        "name": "get"
+      },
+      {
+        "line": 99,
+        "name": "get"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "class",
+        "line": 13,
+        "name": "CaseInsensitiveDict",
+        "signature": "CaseInsensitiveDict"
+      },
+      {
+        "kind": "function",
+        "line": 40,
+        "name": "__init__",
+        "signature": "__init__(self, data=None, **kwargs)"
+      },
+      {
+        "kind": "function",
+        "line": 46,
+        "name": "__setitem__",
+        "signature": "__setitem__(self, key, value)"
+      },
+      {
+        "kind": "function",
+        "line": 51,
+        "name": "__getitem__",
+        "signature": "__getitem__(self, key)"
+      },
+      {
+        "kind": "function",
+        "line": 54,
+        "name": "__delitem__",
+        "signature": "__delitem__(self, key)"
+      },
+      {
+        "kind": "function",
+        "line": 57,
+        "name": "__iter__",
+        "signature": "__iter__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 60,
+        "name": "__len__",
+        "signature": "__len__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 63,
+        "name": "lower_items",
+        "signature": "lower_items(self)"
+      },
+      {
+        "kind": "function",
+        "line": 67,
+        "name": "__eq__",
+        "signature": "__eq__(self, other)"
+      },
+      {
+        "kind": "function",
+        "line": 76,
+        "name": "copy",
+        "signature": "copy(self)"
+      },
+      {
+        "kind": "function",
+        "line": 79,
+        "name": "__repr__",
+        "signature": "__repr__(self)"
+      },
+      {
+        "kind": "class",
+        "line": 83,
+        "name": "LookupDict",
+        "signature": "LookupDict"
+      },
+      {
+        "kind": "function",
+        "line": 86,
+        "name": "__init__",
+        "signature": "__init__(self, name=None)"
+      },
+      {
+        "kind": "function",
+        "line": 90,
+        "name": "__repr__",
+        "signature": "__repr__(self)"
+      },
+      {
+        "kind": "function",
+        "line": 93,
+        "name": "__getitem__",
+        "signature": "__getitem__(self, key)"
+      },
+      {
+        "kind": "function",
+        "line": 98,
+        "name": "get",
+        "signature": "get(self, key, default=None)"
+      }
+    ],
+    "implements": [
+      "(MutableMapping)",
+      "(dict)"
+    ],
+    "imports": [
+      {
+        "line": 8,
+        "module": "collections"
+      },
+      {
+        "line": 10,
+        "module": ".compat"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:f886e6855cf4e92fb968f499b94b6167afba0fd5ce8d1b935c739a6d8d38d573"
+}

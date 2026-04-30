@@ -1,0 +1,48 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 9,
+        "name": "locals"
+      },
+      {
+        "line": 9,
+        "name": "__import__"
+      },
+      {
+        "line": 12,
+        "name": "list"
+      },
+      {
+        "line": 13,
+        "name": "startswith"
+      },
+      {
+        "line": 18,
+        "name": "list"
+      },
+      {
+        "line": 19,
+        "name": "startswith"
+      },
+      {
+        "line": 22,
+        "name": "replace"
+      }
+    ],
+    "exports": [],
+    "implements": [],
+    "imports": [
+      {
+        "line": 1,
+        "module": "sys"
+      },
+      {
+        "line": 3,
+        "module": ".compat"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:fe0d2067af355320252874631fa91a9db6a8c71d9e01beaacdc5e2383c932287"
+}

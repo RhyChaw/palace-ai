@@ -1,0 +1,147 @@
+{
+  "ast": {
+    "calls": [
+      {
+        "line": 17,
+        "name": "rstrip"
+      },
+      {
+        "line": 20,
+        "name": "urljoin"
+      },
+      {
+        "line": 20,
+        "name": "join"
+      },
+      {
+        "line": 27,
+        "name": "prepare_url"
+      },
+      {
+        "line": 32,
+        "name": "prepare_url"
+      },
+      {
+        "line": 41,
+        "name": "mktemp"
+      },
+      {
+        "line": 42,
+        "name": "CA"
+      },
+      {
+        "line": 44,
+        "name": "issue_cert"
+      },
+      {
+        "line": 45,
+        "name": "str"
+      },
+      {
+        "line": 46,
+        "name": "write_to_path"
+      },
+      {
+        "line": 48,
+        "name": "create_default_context"
+      },
+      {
+        "line": 49,
+        "name": "configure_cert"
+      },
+      {
+        "line": 50,
+        "name": "HTTPServer"
+      },
+      {
+        "line": 51,
+        "name": "wrap_socket"
+      },
+      {
+        "line": 52,
+        "name": "Thread"
+      },
+      {
+        "line": 53,
+        "name": "start"
+      },
+      {
+        "line": 57,
+        "name": "shutdown"
+      },
+      {
+        "line": 58,
+        "name": "join"
+      }
+    ],
+    "exports": [
+      {
+        "kind": "function",
+        "line": 15,
+        "name": "prepare_url",
+        "signature": "prepare_url(value)"
+      },
+      {
+        "kind": "function",
+        "line": 19,
+        "name": "inner",
+        "signature": "inner(*suffix)"
+      },
+      {
+        "kind": "function",
+        "line": 26,
+        "name": "httpbin",
+        "signature": "httpbin(httpbin)"
+      },
+      {
+        "kind": "function",
+        "line": 31,
+        "name": "httpbin_secure",
+        "signature": "httpbin_secure(httpbin_secure)"
+      },
+      {
+        "kind": "function",
+        "line": 36,
+        "name": "nosan_server",
+        "signature": "nosan_server(tmp_path_factory)"
+      }
+    ],
+    "implements": [],
+    "imports": [
+      {
+        "line": 2,
+        "module": "http.server"
+      },
+      {
+        "line": 4,
+        "module": "BaseHTTPServer"
+      },
+      {
+        "line": 5,
+        "module": "SimpleHTTPServer"
+      },
+      {
+        "line": 7,
+        "module": "ssl"
+      },
+      {
+        "line": 8,
+        "module": "threading"
+      },
+      {
+        "line": 10,
+        "module": "pytest"
+      },
+      {
+        "line": 12,
+        "module": "requests.compat"
+      },
+      {
+        "line": 39,
+        "module": "trustme"
+      }
+    ],
+    "language": "python"
+  },
+  "hash": "sha256:c31d83bf96fbf585c0d497fbf21a39b2e69411948ddb947e5ad51e5857976c5c"
+}

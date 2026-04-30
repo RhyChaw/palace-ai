@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>palace-ai visualizer</title>
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background: #0b0e14; color: #e6e6e6; }
+      #app { display: grid; grid-template-columns: 340px 1fr; height: 100%; }
+      #sidebar { border-right: 1px solid #1f2533; padding: 14px 14px 10px; overflow: auto; }
+      #graph { position: relative; }
+      #graph svg { width: 100%; height: 100%; display: block; }
+      .title { font-weight: 700; letter-spacing: 0.2px; }
+      .muted { color: #a8b3cf; font-size: 12px; line-height: 1.4; }
+      .row { margin: 10px 0; }
+      input[type="text"] { width: 100%; box-sizing: border-box; padding: 10px 10px; border-radius: 8px; border: 1px solid #2a3347; background: #101521; color: #e6e6e6; }
+      .controls label { display: block; font-size: 12px; color: #a8b3cf; margin: 10px 0 6px; }
+      input[type="range"] { width: 100%; }
+      .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+      .chip { font-size: 12px; padding: 6px 8px; border-radius: 999px; border: 1px solid #2a3347; background: #0f1420; cursor: pointer; user-select: none; }
+      .chip.active { border-color: #6aa3ff; box-shadow: 0 0 0 2px rgba(106,163,255,.18) inset; }
+      .tooltip { position: absolute; pointer-events: none; background: rgba(16,21,33,0.96); border: 1px solid #2a3347; border-radius: 10px; padding: 10px 12px; max-width: 360px; font-size: 12px; line-height: 1.45; display: none; }
+      .legend { display: grid; grid-template-columns: 14px 1fr; gap: 8px; align-items: center; font-size: 12px; color: #a8b3cf; }
+      .swatch { width: 12px; height: 12px; border-radius: 3px; }
+    </style>
+    <!-- Single HTML file: D3 loaded from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="sidebar">
+        <div class="title">palace-ai visualizer</div>
+        <div class="muted">Nodes are files. Edges are typed relationships. Click a node (or search) to watch activation spread.</div>
+
+        <div class="row">
+          <input id="search" type="text" placeholder='Search (runs activation), e.g. "auth flow"' />
+        </div>
+
+        <div class="row controls">
+          <label>Edge threshold: <span id="thLabel">0.20</span></label>
+          <input id="threshold" type="range" min="0" max="1" step="0.01" value="0.20" />
+        </div>
+
+        <div class="row">
+          <div class="muted">Edge types</div>
+          <div id="edgeFilters" class="chips"></div>
+        </div>
+
+        <div class="row">
+          <div class="muted">Rooms</div>
+          <div id="roomFilters" class="chips"></div>
+        </div>
+
+        <div class="row">
+          <div class="muted">Edge colors</div>
+          <div class="legend" id="legend"></div>
+        </div>
+      </div>
+
+      <div id="graph">
+        <div id="tooltip" class="tooltip"></div>
+        <svg></svg>
+      </div>
+    </div>
+
+    <script>
+      // Injected by builder.py
+      const NETWORK = __NETWORK_JSON__;
+    </script>
+
+    <script>
+      const EDGE_COLORS = {
+        "imports": "#8a5cf6",
+        "calls": "#23c55e",
+        "implements": "#2dd4bf",
+        "configures": "#60a5fa",
+        "test-of": "#9ca3af",
+        "error-path": "#fb7185",
+        "co-changes": "#f59e0b",
+        "shares-schema": "#f472b6",
+        "spawns": "#f59e0b",
+        "inferred": "#94a3b8",
+      };
+      const TYPE_MULT = {
+        "imports": 1.0, "calls": 1.0, "implements": 1.0,
+        "co-changes": 0.75, "shares-schema": 0.75, "configures": 0.75,
+        "error-path": 0.5, "spawns": 0.5, "test-of": 0.5, "inferred": 0.5,
+      };
+      const DECAY = [1.0, 0.55, 0.25];
+
+      const svg = d3.select("svg");
+      const width = () => document.querySelector("#graph").clientWidth;
+      const height = () => document.querySelector("#graph").clientHeight;
+      const tooltip = document.querySelector("#tooltip");
+
+      const rooms = (NETWORK.rooms || []).map(r => ({...r}));
+      const roomById = Object.fromEntries(rooms.map(r => [r.id, r]));
+      const nodes = (NETWORK.nodes || []).map(n => ({...n, room_id: n.room_id || "other"}));
+      const edgesAll = (NETWORK.edges || []).map(e => ({...e, from: e.from, to: e.to, weight: +e.weight}));
+
+      // degree for sizing
+      const degree = new Map(nodes.map(n => [n.id, 0]));
+      edgesAll.forEach(e => {
+        if (degree.has(e.from)) degree.set(e.from, degree.get(e.from) + 1);
+        if (degree.has(e.to)) degree.set(e.to, degree.get(e.to) + 1);
+      });
+      nodes.forEach(n => n.degree = degree.get(n.id) || 0);
+
+      const roomIds = Array.from(new Set(nodes.map(n => n.room_id))).sort();
+      if (!roomById["other"]) roomById["other"] = { id: "other", label: "Other", color: "#7A7A7A" };
+
+      const edgeTypes = Array.from(new Set(edgesAll.map(e => e.type))).sort();
+      let enabledEdgeTypes = new Set(edgeTypes);
+      let enabledRooms = new Set(roomIds);
+      let threshold = 0.20;
+
+      // chips
+      const edgeFilters = document.querySelector("#edgeFilters");
+      edgeTypes.forEach(t => {
+        const el = document.createElement("div");
+        el.className = "chip active";
+        el.textContent = t;
+        el.onclick = () => {
+          if (enabledEdgeTypes.has(t)) { enabledEdgeTypes.delete(t); el.classList.remove("active"); }
+          else { enabledEdgeTypes.add(t); el.classList.add("active"); }
+          render();
+        };
+        edgeFilters.appendChild(el);
+      });
+
+      const roomFilters = document.querySelector("#roomFilters");
+      roomIds.forEach(rid => {
+        const el = document.createElement("div");
+        el.className = "chip active";
+        el.textContent = rid;
+        el.style.borderColor = roomById[rid]?.color || "#2a3347";
+        el.onclick = () => {
+          if (enabledRooms.has(rid)) { enabledRooms.delete(rid); el.classList.remove("active"); }
+          else { enabledRooms.add(rid); el.classList.add("active"); }
+          render();
+        };
+        roomFilters.appendChild(el);
+      });
+
+      // legend
+      const legend = document.querySelector("#legend");
+      Object.entries(EDGE_COLORS).forEach(([t, c]) => {
+        const sw = document.createElement("div");
+        sw.className = "swatch"; sw.style.background = c;
+        const lb = document.createElement("div");
+        lb.textContent = t;
+        legend.appendChild(sw); legend.appendChild(lb);
+      });
+
+      function seedScore(query, node) {
+        const q = (query || "").toLowerCase();
+        const toks = q.replace(/[^a-z0-9]+/g, " ").trim().split(/\s+/).filter(Boolean);
+        if (!toks.length) return 0;
+        const label = (node.label || "").toLowerCase();
+        const summary = (node.summary || "").toLowerCase();
+        const symbols = (node.symbols || []).map(s => String(s).toLowerCase());
+        let s = 0;
+        toks.forEach(t => {
+          if (t === label) s += 1.0;
+          else if (label.includes(t)) s += 0.6;
+          if (summary.includes(t)) s += 0.35;
+          if (symbols.some(x => x.includes(t))) s += 0.5;
+        });
+        return 1 - Math.exp(-s);
+      }
+
+      function spreadActivation(queryOrNodeId) {
+        const acts = new Map(nodes.map(n => [n.id, 0]));
+        if (queryOrNodeId && queryOrNodeId.kind === "node") {
+          acts.set(queryOrNodeId.id, 1.0);
+        } else {
+          nodes.forEach(n => acts.set(n.id, seedScore(queryOrNodeId, n)));
+        }
+
+        for (let hop = 0; hop < 3; hop++) {
+          const next = new Map(acts);
+          edgesAll.forEach(e => {
+            if (!enabledEdgeTypes.has(e.type)) return;
+            if (!enabledRooms.has(nodeRoom(e.from)) || !enabledRooms.has(nodeRoom(e.to))) return;
+            const a = acts.get(e.from) || 0;
+            if (a < 0.05) return;
+            const mult = TYPE_MULT[e.type] ?? 0.75;
+            const spread = a * e.weight * mult * DECAY[hop];
+            if (spread > (next.get(e.to) || 0)) next.set(e.to, spread);
+          });
+          next.forEach((v, k) => acts.set(k, v));
+        }
+        return acts;
+      }
+
+      function nodeRoom(nodeId) {
+        const n = nodesById.get(nodeId);
+        return n?.room_id || "other";
+      }
+
+      const nodesById = new Map(nodes.map(n => [n.id, n]));
+
+      const gLinks = svg.append("g");
+      const gNodes = svg.append("g");
+      let sim;
+
+      function showTooltip(html, x, y) {
+        tooltip.style.display = "block";
+        tooltip.innerHTML = html;
+        tooltip.style.left = (x + 14) + "px";
+        tooltip.style.top = (y + 14) + "px";
+      }
+      function hideTooltip() { tooltip.style.display = "none"; }
+
+      function render() {
+        svg.attr("viewBox", `0 0 ${width()} ${height()}`);
+
+        const edges = edgesAll.filter(e => (e.weight >= threshold) && enabledEdgeTypes.has(e.type));
+        const visibleNodeIds = new Set(nodes.filter(n => enabledRooms.has(n.room_id)).map(n => n.id));
+        const edgesFiltered = edges.filter(e => visibleNodeIds.has(e.from) && visibleNodeIds.has(e.to));
+
+        const nodesFiltered = nodes.filter(n => enabledRooms.has(n.room_id));
+
+        gLinks.selectAll("*").remove();
+        gNodes.selectAll("*").remove();
+
+        const link = gLinks.selectAll("line")
+          .data(edgesFiltered, d => `${d.from}::${d.to}::${d.type}`)
+          .join("line")
+          .attr("stroke", d => EDGE_COLORS[d.type] || "#64748b")
+          .attr("stroke-opacity", d => Math.max(0.08, Math.min(1.0, d.weight)))
+          .attr("stroke-width", d => 1 + (d.weight * 2.2));
+
+        const rScale = d3.scaleSqrt()
+          .domain([0, d3.max(nodesFiltered, d => d.degree) || 1])
+          .range([4, 18]);
+
+        const node = gNodes.selectAll("circle")
+          .data(nodesFiltered, d => d.id)
+          .join("circle")
+          .attr("r", d => rScale(d.degree))
+          .attr("fill", d => roomById[d.room_id]?.color || "#7A7A7A")
+          .attr("stroke", "#0b0e14")
+          .attr("stroke-width", 1.5)
+          .call(d3.drag()
+            .on("start", (event, d) => { if (!event.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+            .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
+            .on("end", (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+          );
+
+        node.on("mousemove", (event, d) => {
+          const topEdges = edgesAll.filter(e => e.from === d.id).sort((a,b) => b.weight - a.weight).slice(0, 3);
+          const html = `
+            <div><b>${d.id}</b></div>
+            <div class="muted">${roomById[d.room_id]?.label || d.room_id}</div>
+            <div style="margin-top:6px">${d.summary ? d.summary : "<span class='muted'>(no summary)</span>"}</div>
+            <div style="margin-top:8px" class="muted">Top edges:</div>
+            <div>${topEdges.map(e => `${e.type} → ${e.to} <span class="muted">(${e.weight.toFixed(2)})</span>`).join("<br/>")}</div>
+          `;
+          showTooltip(html, event.clientX, event.clientY);
+        }).on("mouseleave", hideTooltip);
+
+        link.on("mousemove", (event, d) => {
+          const html = `
+            <div><b>${d.type}</b> <span class="muted">${d.weight.toFixed(2)}</span></div>
+            <div class="muted">${d.from} → ${d.to}</div>
+            <div style="margin-top:6px">${d.evidence || ""}</div>
+          `;
+          showTooltip(html, event.clientX, event.clientY);
+        }).on("mouseleave", hideTooltip);
+
+        node.on("click", (event, d) => {
+          const acts = spreadActivation({kind:"node", id: d.id});
+          node.attr("opacity", x => Math.max(0.12, Math.min(1.0, acts.get(x.id) || 0)));
+          link.attr("opacity", e => {
+            const a = acts.get(e.from) || 0;
+            return Math.max(0.04, Math.min(1.0, a));
+          });
+        });
+
+        // room clustering: simple centroid placement in grid
+        const centroids = {};
+        const cols = Math.ceil(Math.sqrt(roomIds.length || 1));
+        roomIds.forEach((rid, i) => {
+          const col = i % cols;
+          const row = Math.floor(i / cols);
+          centroids[rid] = { x: (width() * (col + 0.5) / cols), y: (height() * (row + 0.5) / Math.ceil(roomIds.length / cols)) };
+        });
+
+        sim = d3.forceSimulation(nodesFiltered)
+          .force("link", d3.forceLink(edgesFiltered).id(d => d.id).strength(d => d.weight * 0.3))
+          .force("charge", d3.forceManyBody().strength(-120))
+          .force("roomX", d3.forceX(d => (centroids[d.room_id]?.x || width()/2)).strength(0.08))
+          .force("roomY", d3.forceY(d => (centroids[d.room_id]?.y || height()/2)).strength(0.08))
+          .force("collision", d3.forceCollide(d => rScale(d.degree) + 4))
+          .on("tick", () => {
+            link
+              .attr("x1", d => d.source.x)
+              .attr("y1", d => d.source.y)
+              .attr("x2", d => d.target.x)
+              .attr("y2", d => d.target.y);
+            node
+              .attr("cx", d => d.x)
+              .attr("cy", d => d.y);
+          });
+      }
+
+      document.querySelector("#threshold").addEventListener("input", (e) => {
+        threshold = +e.target.value;
+        document.querySelector("#thLabel").textContent = threshold.toFixed(2);
+        render();
+      });
+
+      document.querySelector("#search").addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        const q = e.target.value;
+        const acts = spreadActivation(q);
+        gNodes.selectAll("circle").attr("opacity", d => Math.max(0.12, Math.min(1.0, acts.get(d.id) || 0)));
+        gLinks.selectAll("line").attr("opacity", d => Math.max(0.04, Math.min(1.0, acts.get(d.from) || 0)));
+      });
+
+      window.addEventListener("resize", () => render());
+      render();
+    </script>
+  </body>
+</html>
+
