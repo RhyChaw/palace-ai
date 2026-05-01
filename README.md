@@ -2,7 +2,7 @@
 
 > AI agents navigate code the way humans remember — by association, not search.
 
-![visualizer](worked/requests/palace-out/visualizer/screenshot.png)
+<img width="1512" height="827" alt="Screenshot 2026-05-01 at 1 59 18 PM" src="https://github.com/user-attachments/assets/bc764e78-b8d3-44a6-96a3-52482fc94829" />
 
 ```bash
 pip install palace-ai
