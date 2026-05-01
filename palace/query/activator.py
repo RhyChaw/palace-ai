@@ -38,12 +38,16 @@ def _score_node(query: str, node: dict) -> float:
     toks = _tokenize(query)
     if not toks:
         return 0.0
+    node_id = (node.get("id") or "").lower()
     label = (node.get("label") or "").lower()
     summary = (node.get("summary") or "").lower()
     symbols = [str(s).lower() for s in (node.get("symbols") or [])]
 
     score = 0.0
     for t in toks:
+        # Path match is very informative in codebases (fastapi/security/*, auth/*, etc.)
+        if t in node_id:
+            score += 0.5
         if t == label:
             score += 1.0
         elif t in label:

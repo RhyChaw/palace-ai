@@ -93,10 +93,23 @@
       const height = () => document.querySelector("#graph").clientHeight;
       const tooltip = document.querySelector("#tooltip");
 
+      // Pan/zoom container
+      const gRoot = svg.append("g");
+
       const rooms = (NETWORK.rooms || []).map(r => ({...r}));
       const roomById = Object.fromEntries(rooms.map(r => [r.id, r]));
       const nodes = (NETWORK.nodes || []).map(n => ({...n, room_id: n.room_id || "other"}));
-      const edgesAll = (NETWORK.edges || []).map(e => ({...e, from: e.from, to: e.to, weight: +e.weight}));
+      // IMPORTANT: network.json edges include a "source" field ("ast"/"llm"/"git").
+      // D3 forceLink uses "source"/"target" for link endpoints, so we must remap.
+      const edgesAll = (NETWORK.edges || []).map(e => ({
+        ...e,
+        from: e.from,
+        to: e.to,
+        edge_source: e.source,
+        source: e.from,
+        target: e.to,
+        weight: +e.weight
+      }));
 
       // degree for sizing
       const degree = new Map(nodes.map(n => [n.id, 0]));
@@ -110,7 +123,8 @@
       if (!roomById["other"]) roomById["other"] = { id: "other", label: "Other", color: "#7A7A7A" };
 
       const edgeTypes = Array.from(new Set(edgesAll.map(e => e.type))).sort();
-      let enabledEdgeTypes = new Set(edgeTypes);
+      // Default view: show structural edges first; co-changes can overwhelm color variety.
+      let enabledEdgeTypes = new Set(edgeTypes.filter(t => t !== "co-changes"));
       let enabledRooms = new Set(roomIds);
       let threshold = 0.20;
 
@@ -118,7 +132,7 @@
       const edgeFilters = document.querySelector("#edgeFilters");
       edgeTypes.forEach(t => {
         const el = document.createElement("div");
-        el.className = "chip active";
+        el.className = enabledEdgeTypes.has(t) ? "chip active" : "chip";
         el.textContent = t;
         el.onclick = () => {
           if (enabledEdgeTypes.has(t)) { enabledEdgeTypes.delete(t); el.classList.remove("active"); }
@@ -156,11 +170,13 @@
         const q = (query || "").toLowerCase();
         const toks = q.replace(/[^a-z0-9]+/g, " ").trim().split(/\s+/).filter(Boolean);
         if (!toks.length) return 0;
+        const nodeId = String(node.id || "").toLowerCase();
         const label = (node.label || "").toLowerCase();
         const summary = (node.summary || "").toLowerCase();
         const symbols = (node.symbols || []).map(s => String(s).toLowerCase());
         let s = 0;
         toks.forEach(t => {
+          if (nodeId.includes(t)) s += 0.5;
           if (t === label) s += 1.0;
           else if (label.includes(t)) s += 0.6;
           if (summary.includes(t)) s += 0.35;
@@ -200,9 +216,17 @@
 
       const nodesById = new Map(nodes.map(n => [n.id, n]));
 
-      const gLinks = svg.append("g");
-      const gNodes = svg.append("g");
+      const gLinks = gRoot.append("g");
+      const gNodes = gRoot.append("g");
       let sim;
+
+      // Pan + zoom (drag background to pan, wheel to zoom)
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 3])
+        .on("zoom", (event) => {
+          gRoot.attr("transform", event.transform);
+        });
+      svg.call(zoom);
 
       function showTooltip(html, x, y) {
         tooltip.style.display = "block";
@@ -214,12 +238,19 @@
 
       function render() {
         svg.attr("viewBox", `0 0 ${width()} ${height()}`);
+        // Ensure pan/zoom keeps working after re-render
+        svg.call(zoom);
 
         const edges = edgesAll.filter(e => (e.weight >= threshold) && enabledEdgeTypes.has(e.type));
         const visibleNodeIds = new Set(nodes.filter(n => enabledRooms.has(n.room_id)).map(n => n.id));
         const edgesFiltered = edges.filter(e => visibleNodeIds.has(e.from) && visibleNodeIds.has(e.to));
 
-        const nodesFiltered = nodes.filter(n => enabledRooms.has(n.room_id));
+        // Hide isolated nodes: only keep nodes that have >=1 visible edge.
+        const connected = new Set();
+        edgesFiltered.forEach(e => { connected.add(e.from); connected.add(e.to); });
+        const nodesFiltered = nodes
+          .filter(n => enabledRooms.has(n.room_id))
+          .filter(n => connected.has(n.id));
 
         gLinks.selectAll("*").remove();
         gNodes.selectAll("*").remove();
@@ -228,6 +259,7 @@
           .data(edgesFiltered, d => `${d.from}::${d.to}::${d.type}`)
           .join("line")
           .attr("stroke", d => EDGE_COLORS[d.type] || "#64748b")
+          .attr("stroke-dasharray", d => (d.type === "inferred" ? "4 4" : null))
           .attr("stroke-opacity", d => Math.max(0.08, Math.min(1.0, d.weight)))
           .attr("stroke-width", d => 1 + (d.weight * 2.2));
 
@@ -247,6 +279,22 @@
             .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
             .on("end", (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
           );
+
+        // Node labels (filename only), truncated for readability
+        const labelText = (d) => {
+          const base = String(d.id || "").split("/").pop() || String(d.id || "");
+          return base.length > 14 ? (base.slice(0, 11) + "…") : base;
+        };
+        const labels = gNodes.selectAll("text")
+          .data(nodesFiltered, d => d.id)
+          .join("text")
+          .text(labelText)
+          .attr("fill", "#cbd5e1")
+          .attr("font-size", 10)
+          .attr("text-anchor", "middle")
+          .attr("opacity", 0.9)
+          .style("user-select", "none")
+          .style("pointer-events", "none");
 
         node.on("mousemove", (event, d) => {
           const topEdges = edgesAll.filter(e => e.from === d.id).sort((a,b) => b.weight - a.weight).slice(0, 3);
@@ -272,6 +320,7 @@
         node.on("click", (event, d) => {
           const acts = spreadActivation({kind:"node", id: d.id});
           node.attr("opacity", x => Math.max(0.12, Math.min(1.0, acts.get(x.id) || 0)));
+          labels.attr("opacity", x => Math.max(0.15, Math.min(1.0, acts.get(x.id) || 0)));
           link.attr("opacity", e => {
             const a = acts.get(e.from) || 0;
             return Math.max(0.04, Math.min(1.0, a));
@@ -288,8 +337,13 @@
         });
 
         sim = d3.forceSimulation(nodesFiltered)
-          .force("link", d3.forceLink(edgesFiltered).id(d => d.id).strength(d => d.weight * 0.3))
-          .force("charge", d3.forceManyBody().strength(-120))
+          .force("link",
+            d3.forceLink(edgesFiltered)
+              .id(d => d.id)
+              .distance(d => 80 + (1 - d.weight) * 40)
+              .strength(d => Math.min(0.12, d.weight * 0.12))
+          )
+          .force("charge", d3.forceManyBody().strength(-260))
           .force("roomX", d3.forceX(d => (centroids[d.room_id]?.x || width()/2)).strength(0.08))
           .force("roomY", d3.forceY(d => (centroids[d.room_id]?.y || height()/2)).strength(0.08))
           .force("collision", d3.forceCollide(d => rScale(d.degree) + 4))
@@ -302,6 +356,9 @@
             node
               .attr("cx", d => d.x)
               .attr("cy", d => d.y);
+            labels
+              .attr("x", d => d.x)
+              .attr("y", d => d.y + (rScale(d.degree) + 12));
           });
       }
 
@@ -316,6 +373,7 @@
         const q = e.target.value;
         const acts = spreadActivation(q);
         gNodes.selectAll("circle").attr("opacity", d => Math.max(0.12, Math.min(1.0, acts.get(d.id) || 0)));
+        gNodes.selectAll("text").attr("opacity", d => Math.max(0.15, Math.min(1.0, acts.get(d.id) || 0)));
         gLinks.selectAll("line").attr("opacity", d => Math.max(0.04, Math.min(1.0, acts.get(d.from) || 0)));
       });
 

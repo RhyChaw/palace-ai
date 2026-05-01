@@ -4,6 +4,7 @@ import asyncio
 import json
 import os
 import re
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -12,7 +13,12 @@ import networkx as nx
 from anthropic import AsyncAnthropic
 
 
-DEFAULT_MODEL = "claude-sonnet-4-20250514"
+DEFAULT_MODEL = "claude-sonnet-4-6"
+
+
+def _env_model() -> str | None:
+    m = (os.environ.get("PALACE_MODEL") or "").strip()
+    return m or None
 
 
 PALETTE = [
@@ -73,25 +79,47 @@ def _slug(s: str) -> str:
     return s or "room"
 
 
-def _room_name_from_paths(paths: list[str]) -> tuple[str, str]:
-    # Pick a stable prefix-based identifier for a community
-    if not paths:
-        return "other", "Other"
-    parts = [p.split("/") for p in paths if p]
-    # choose most common first segment, then second
-    first = {}
-    second = {}
-    for segs in parts:
-        if segs:
-            first[segs[0]] = first.get(segs[0], 0) + 1
-        if len(segs) > 1:
-            second[segs[1]] = second.get(segs[1], 0) + 1
-    top1 = max(first.items(), key=lambda kv: kv[1])[0] if first else "other"
-    top2 = max(second.items(), key=lambda kv: kv[1])[0] if second else ""
-    base = top1 if not top2 else f"{top1}-{top2}"
-    rid = _slug(base)
-    label = base.replace("-", " ").title()
-    return rid, label
+ARCH_PATTERNS: dict[str, list[str]] = {
+    "auth": ["auth", "jwt", "oauth", "session", "permission", "login", "credential"],
+    "api": ["route", "router", "endpoint", "handler", "controller", "view", "api", "rest"],
+    "data": ["model", "schema", "db", "database", "migrate", "orm", "query", "store", "repo"],
+    "config": ["config", "setting", "env", "constant", "conf"],
+    "utils": ["util", "helper", "common", "shared", "mixin", "lib", "tool"],
+    "visualizer": ["visual", "render", "graph", "chart", "html", "template", "ui"],
+    "build": ["cli", "build", "install", "setup", "main", "index", "init", "__init__"],
+    "jobs": ["job", "task", "worker", "queue", "scheduler", "cron", "async"],
+}
+
+
+def _arch_room(paths: list[str], symbols: list[str]) -> str | None:
+    """Return the best architectural room id for a community, or None."""
+    scores: dict[str, int] = {}
+    for room, keywords in ARCH_PATTERNS.items():
+        path_score = 0
+        sym_score = 0
+        for p in paths:
+            parts = [part.lower() for part in Path(p).parts]
+            path_score += sum(any(kw in part for part in parts) for kw in keywords)
+        sym_score = sum(any(kw in str(s).lower() for s in symbols) for kw in keywords)
+        scores[room] = (path_score * 3) + sym_score
+
+    best, count = max(scores.items(), key=lambda x: x[1])
+    return best if count > 0 else None
+
+
+def _summarise_community(files: list[dict[str, Any]]) -> str:
+    """Build a deterministic summary from AST data alone."""
+    all_symbols: list[str] = []
+    for f in files:
+        all_symbols += list(f.get("symbols", []) or [])
+
+    counts = Counter(all_symbols)
+    top = [s for s, _ in counts.most_common(6) if not str(s).startswith("_")][:5]
+
+    langs = list({f.get("language", "") for f in files if f.get("language")})
+    lang_str = langs[0] if len(langs) == 1 else ", ".join(sorted(langs))
+    sym_str = f"exports: {', '.join(top)}" if top else "no public symbols detected"
+    return f"{len(files)} file{'s' if len(files) != 1 else ''} · {lang_str} · {sym_str}"
 
 
 def _palette_color(idx: int) -> str:
@@ -122,7 +150,7 @@ async def classify_rooms_llm(
     if not api_key:
         raise RuntimeError("ANTHROPIC_API_KEY is not set")
     client = AsyncAnthropic(api_key=api_key)
-    m = model or DEFAULT_MODEL
+    m = model or _env_model() or DEFAULT_MODEL
 
     # keep prompt compact: only id + room suggestions + imports graph
     files = []
@@ -228,9 +256,10 @@ def classify_rooms(
             print(f"Room classifier LLM skipped: {e}")
 
     # Heuristic fallback: partition import/call graph into communities (keeps rooms small)
-    all_files = sorted(set(file_ids))
-    tests = [f for f in all_files if _is_test_file(f)]
-    non_tests = [f for f in all_files if f not in set(tests)]
+    node_by_id: dict[str, dict[str, Any]] = {n["id"]: n for n in nodes if n.get("id")}
+    all_ids = sorted(set(file_ids))
+    test_files = sorted([f for f in all_ids if _is_test_file(f)])
+    non_tests = [f for f in all_ids if f not in set(test_files)]
 
     g = nx.Graph()
     g.add_nodes_from(non_tests)
@@ -258,60 +287,98 @@ def classify_rooms(
         small = communities.pop()  # smallest
         communities[-1].update(small)
 
-    file_to_room: dict[str, str] = {}
-    rooms: list[ClassifiedRoom] = []
-    used_ids: set[str] = set()
-    for idx, comm in enumerate(communities):
+    # Step E — name communities architecturally
+    rooms_acc: dict[str, dict[str, Any]] = {}
+    unmatched: list[tuple[list[str], list[dict[str, Any]]]] = []
+
+    for comm in communities:
         paths = sorted(comm)
-        rid, label = _room_name_from_paths(paths)
-        if rid in used_ids:
-            rid = f"{rid}-{idx+1}"
-        used_ids.add(rid)
-        for f in paths:
-            file_to_room[f] = rid
-        subtrees = _subtrees_by_connectivity(paths, [(a, b) for a, b in import_edges if a and b])
-        rooms.append(
+        file_nodes = [node_by_id[fid] for fid in paths if fid in node_by_id]
+        symbols = [s for f in file_nodes for s in (f.get("symbols", []) or [])]
+
+        rid = _arch_room(paths, symbols)
+        if rid is None:
+            unmatched.append((paths, file_nodes))
+            continue
+
+        rooms_acc.setdefault(rid, {"files": [], "file_nodes": []})
+        rooms_acc[rid]["files"] += paths
+        rooms_acc[rid]["file_nodes"] += file_nodes
+
+    # Step F — merge unmatched communities into utils (not numbered suffixes)
+    for paths, file_nodes in unmatched:
+        rooms_acc.setdefault("utils", {"files": [], "file_nodes": []})
+        rooms_acc["utils"]["files"] += paths
+        rooms_acc["utils"]["file_nodes"] += file_nodes
+
+    # Step G — build final room objects with summaries
+    LABELS = {
+        "auth": "Authentication",
+        "api": "API Layer",
+        "data": "Data Layer",
+        "config": "Configuration",
+        "utils": "Utilities",
+        "visualizer": "Visualizer",
+        "build": "Build & CLI",
+        "jobs": "Background Jobs",
+        "tests": "Tests",
+    }
+    COLORS = {
+        "auth": "#7F77DD",
+        "api": "#1D9E75",
+        "data": "#378ADD",
+        "config": "#EF9F27",
+        "utils": "#888",
+        "visualizer": "#D4537E",
+        "build": "#534AB7",
+        "jobs": "#D85A30",
+        "tests": "#999",
+    }
+
+    final_rooms: list[ClassifiedRoom] = []
+    file_to_room: dict[str, str] = {}
+
+    for rid, data in rooms_acc.items():
+        files = sorted(set(data["files"]))
+        for fid in files:
+            file_to_room[fid] = rid
+
+        subtrees = _subtrees_by_connectivity(files, [(a, b) for a, b in import_edges if a and b])
+        summary = _summarise_community(list(data["file_nodes"]))
+        final_rooms.append(
             ClassifiedRoom(
                 id=rid,
-                label=label,
-                color=_palette_color(idx),
-                files=paths,
+                label=LABELS.get(rid, rid.replace("-", " ").title()),
+                color=COLORS.get(rid, "#888"),
+                files=files,
                 subtrees=subtrees,
-                summary=None,
+                summary=summary,
                 cross_room_refs=[],
             )
         )
 
-    if tests:
+    # always add tests room if it exists
+    if test_files:
         rid = "tests"
-        file_to_room.update({f: rid for f in tests})
-        rooms.append(
+        for fid in test_files:
+            file_to_room[fid] = rid
+        test_nodes = [node_by_id[fid] for fid in test_files if fid in node_by_id]
+        final_rooms.append(
             ClassifiedRoom(
                 id=rid,
                 label="Tests",
-                color=_palette_color(len(rooms)),
-                files=sorted(tests),
-                subtrees=_subtrees_by_connectivity(sorted(tests), [(a, b) for a, b in import_edges if a and b]),
-                summary=None,
+                color=COLORS["tests"],
+                files=test_files,
+                subtrees=_subtrees_by_connectivity(test_files, [(a, b) for a, b in import_edges if a and b]),
+                summary=_summarise_community(test_nodes),
                 cross_room_refs=[],
             )
         )
 
-    # Backfill any stragglers
-    for fid in all_files:
-        file_to_room.setdefault(fid, "other")
-    if "other" in file_to_room.values() and all_files:
-        rooms.append(
-            ClassifiedRoom(
-                id="other",
-                label="Other",
-                color=_palette_color(len(rooms)),
-                files=sorted([f for f, r in file_to_room.items() if r == "other"]),
-                subtrees={},
-                summary=None,
-                cross_room_refs=[],
-            )
-        )
+    # Backfill any stragglers (should be none, but keep stable behavior)
+    for fid in all_ids:
+        file_to_room.setdefault(fid, "utils")
 
-    return file_to_room, rooms
+    final_rooms.sort(key=lambda r: (r.id != "build", r.id != "auth", r.id))
+    return file_to_room, final_rooms
 
