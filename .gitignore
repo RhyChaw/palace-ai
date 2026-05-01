@@ -8,6 +8,15 @@ __pycache__/
 palace-out/
 **/palace-out/
 
+# …but keep README screenshot assets
+!worked/
+!worked/**/
+!worked/**/palace-out/
+!worked/**/palace-out/visualizer/
+!worked/**/palace-out/visualizer/screenshot.png
+worked/**/palace-out/cache/
+worked/**/palace-out/cache/**
+
 # benchmark repo checkouts (keep only palace-out copies under worked/)
 worked/repos/
 

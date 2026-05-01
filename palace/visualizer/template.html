@@ -126,7 +126,22 @@
       // Default view: show structural edges first; co-changes can overwhelm color variety.
       let enabledEdgeTypes = new Set(edgeTypes.filter(t => t !== "co-changes"));
       let enabledRooms = new Set(roomIds);
-      let threshold = 0.20;
+      function initialThreshold() {
+        try {
+          const sp = new URLSearchParams(window.location.search || "");
+          const t = sp.get("t");
+          if (!t) return 0.20;
+          const v = Number(t);
+          if (Number.isFinite(v)) return Math.max(0, Math.min(1, v));
+          return 0.20;
+        } catch (e) {
+          return 0.20;
+        }
+      }
+
+      let threshold = initialThreshold();
+      document.querySelector("#threshold").value = String(threshold);
+      document.querySelector("#thLabel").textContent = threshold.toFixed(2);
 
       // chips
       const edgeFilters = document.querySelector("#edgeFilters");
