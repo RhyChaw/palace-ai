@@ -29,10 +29,23 @@ DEFAULT_IGNORES = {
     ".cache",
 }
 
+EXCLUDE_PATTERNS = (
+    "docs_src/",
+    "docs/",
+    "examples/",
+    "cookbook/",
+    ".github/",
+)
+
 
 def _is_ignored(path: Path) -> bool:
     parts = set(path.parts)
     return any(p in parts for p in DEFAULT_IGNORES)
+
+
+def _is_documentation_file(rel_id: str) -> bool:
+    rid = rel_id.replace(os.sep, "/")
+    return any(pat in rid for pat in EXCLUDE_PATTERNS)
 
 
 def _iter_source_files(root: Path) -> list[Path]:
@@ -41,6 +54,13 @@ def _iter_source_files(root: Path) -> list[Path]:
         if p.is_dir():
             continue
         if _is_ignored(p):
+            continue
+        # Skip docs/examples-heavy trees (FastAPI has hundreds of docs_src fixtures)
+        try:
+            rel = str(p.relative_to(root)).replace(os.sep, "/")
+        except Exception:
+            rel = str(p).replace(os.sep, "/")
+        if _is_documentation_file(rel):
             continue
         lang = detect_language(p)
         if lang is None:
@@ -193,7 +213,8 @@ def build_palace(repo_path: Path, *, use_git: bool, use_llm: bool, model: str | 
 
         if to_extract:
             try:
-                llm_results = extract_semantics(files=to_extract, model=model, max_concurrency=10)
+                max_conc = int(os.environ.get("PALACE_LLM_CONCURRENCY", "1"))
+                llm_results = extract_semantics(files=to_extract, model=model, max_concurrency=max_conc)
             except Exception as e:
                 print(f"LLM extraction skipped: {e}")
                 llm_results = {}
@@ -339,12 +360,33 @@ def build_palace(repo_path: Path, *, use_git: bool, use_llm: bool, model: str | 
             print(f"Git analysis skipped: {e}")
 
     # Final edge weights per spec (Phase 6). Keep weak edges in network.json; visualizer filters by threshold.
+    # Degree penalty: edges touching hub ("god") files are discounted to avoid weight clustering.
+    deg_counts: dict[str, int] = {fid: 0 for fid in file_ids}
+    out_deg_counts: dict[str, int] = {fid: 0 for fid in file_ids}
+    for e in edges:
+        if e.from_ in deg_counts:
+            deg_counts[e.from_] += 1
+            out_deg_counts[e.from_] += 1
+        if e.to in deg_counts:
+            deg_counts[e.to] += 1
+    max_degree = max(deg_counts.values()) if deg_counts else 1
+    max_out_degree = max(out_deg_counts.values()) if out_deg_counts else 1
+
     weighted_edges: list[Edge] = []
     for e in edges:
         raw = None
         if e.type == "co-changes":
             raw = e.weight
-        w = final_weight(edge_type=e.type, source=e.source, raw=raw)
+        w = final_weight(
+            edge_type=e.type,
+            source=e.source,
+            from_degree=deg_counts.get(e.from_, 0),
+            to_degree=deg_counts.get(e.to, 0),
+            max_degree=max_degree,
+            from_out_degree=out_deg_counts.get(e.from_, 0),
+            max_out_degree=max_out_degree,
+            raw=raw,
+        )
         weighted_edges.append(
             Edge(
                 from_=e.from_,
@@ -370,6 +412,7 @@ def build_palace(repo_path: Path, *, use_git: bool, use_llm: bool, model: str | 
                 "id": n.id,
                 "language": n.language,
                 "summary": n.summary,
+                "symbols": list(n.symbols or []),
                 "room_id": "other",
                 "room_suggestion": room_suggestion,
             }

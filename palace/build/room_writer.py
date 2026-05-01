@@ -12,7 +12,30 @@ from anthropic import AsyncAnthropic
 from palace.utils.token_counter import approx_token_count
 
 
-DEFAULT_MODEL = "claude-sonnet-4-20250514"
+DEFAULT_MODEL = "claude-sonnet-4-6"
+
+
+def _env_model() -> str | None:
+    m = (os.environ.get("PALACE_MODEL") or "").strip()
+    return m or None
+
+
+async def _llm_with_retry(fn, *, max_attempts: int = 10, base_delay_s: float = 2.0):
+    delay = base_delay_s
+    last = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return await fn()
+        except Exception as e:
+            last = e
+            msg = str(e)
+            # Retry rate limits and transient transport issues
+            if "rate_limit" in msg.lower() or "429" in msg or "connection" in msg.lower():
+                await asyncio.sleep(delay)
+                delay = min(delay * 2, 60.0)
+                continue
+            raise
+    raise last  # type: ignore[misc]
 
 
 def _md_link(file_id: str, line: int) -> str:
@@ -39,7 +62,7 @@ async def _write_room_llm(
     model: str,
     room_id: str,
     room_label: str,
-    covers: list[str],
+    covers_display: str,
     files_payload: list[dict[str, Any]],
     incoming_edges: list[dict[str, Any]],
 ) -> str:
@@ -50,7 +73,7 @@ async def _write_room_llm(
 
     prompt = f"""Write a Room file for the memory palace. This room covers the following files:
 
-{", ".join(covers)}
+{covers_display}
 
 For each file you have: path, summary, exported symbols (exact signatures), and call sites (file:line).
 
@@ -119,6 +142,7 @@ def _room_md_fallback(
     covers: list[str],
     functions: list[dict[str, Any]],
     incoming_edges: list[dict[str, Any]],
+    overflow: list[str] | None = None,
 ) -> str:
     # Deterministic, AST-only fallback that still respects the contract.
     if len(covers) <= 12:
@@ -154,7 +178,10 @@ def _room_md_fallback(
     lines.append(overview + "\n")
     lines.append("## Functions\n")
     for fn in functions:
-        sig = fn["signature"]
+        sig = str(fn.get("signature") or "")
+        sig = sig.splitlines()[0].strip()
+        if len(sig) > 180:
+            sig = sig[:177] + "..."
         lines.append(f"### `{sig}`")
         desc = fn.get("desc") or "Defined in this room."
         lines.append(desc)
@@ -178,6 +205,11 @@ def _room_md_fallback(
         lines.append(f"| {e.get('from')} | {e.get('type')} | {float(e.get('weight') or 0):.2f} |")
     if not incoming_edges:
         lines.append("| (none) | (none) | 0.00 |")
+
+    if overflow:
+        lines.append("\n## Also in this room\n")
+        for p in overflow:
+            lines.append(f"- `{p}`")
 
     md = "\n".join(lines).rstrip() + "\n"
     # backfill token count and ensure it's not wildly over budget
@@ -237,23 +269,46 @@ def write_rooms_and_palace(
         incoming_by_room[rid].sort(key=lambda x: float(x.get("weight") or 0), reverse=True)
 
     async def _llm_all() -> dict[str, str]:
-        m = model or DEFAULT_MODEL
+        m = model or _env_model() or DEFAULT_MODEL
         outs: dict[str, str] = {}
         for r in rooms:
             rid = r["id"]
-            covers = r.get("files") or []
+            covers = list(r.get("files") or [])
+
+            # Hard cap to keep rooms within the markdown/token contract.
+            MAX_FILES_IN_ROOM_FILE = 10
+            # Sort by incoming edge weight into the file (proxy for centrality/importance)
+            incoming = incoming_by_room.get(rid, [])
+            score: dict[str, float] = {f: 0.0 for f in covers}
+            for e in incoming:
+                to = e.get("to")
+                if to in score:
+                    score[to] += float(e.get("weight") or 0.0)
+            covers_sorted = sorted(covers, key=lambda f: score.get(f, 0.0), reverse=True)
+            featured = covers_sorted[:MAX_FILES_IN_ROOM_FILE]
+            overflow = covers_sorted[MAX_FILES_IN_ROOM_FILE:]
+
+            if len(covers) <= 20:
+                covers_display = ", ".join(covers_sorted)
+            else:
+                covers_display = ", ".join(featured) + f", … (+{len(covers_sorted) - len(featured)} more)"
+
             files_payload: list[dict[str, Any]] = []
-            for fid in covers:
+            for fid in featured:
                 n = nodes_by_id.get(fid, {})
                 exports = _read_ast_exports(palace_out, str(n.get("hash") or ""))
                 # attach call sites to each exported symbol
                 exports_with_calls = []
-                for ex in exports:
+                for ex in exports[:8]:
                     name = ex.get("name")
+                    sig = str(ex.get("signature") or "")
+                    sig = sig.splitlines()[0].strip()
+                    if len(sig) > 180:
+                        sig = sig[:177] + "..."
                     exports_with_calls.append(
                         {
                             "name": name,
-                            "signature": ex.get("signature"),
+                            "signature": sig,
                             "line": ex.get("line"),
                             "called_from": callsites.get(str(name), []),
                         }
@@ -265,14 +320,20 @@ def write_rooms_and_palace(
                         "exports": exports_with_calls,
                     }
                 )
-            outs[rid] = await _write_room_llm(
-                model=m,
-                room_id=rid,
-                room_label=str(r.get("label") or rid),
-                covers=covers,
-                files_payload=files_payload,
-                incoming_edges=incoming_by_room.get(rid, [])[:10],
-            )
+            async def _call():
+                return await _write_room_llm(
+                    model=m,
+                    room_id=rid,
+                    room_label=str(r.get("label") or rid),
+                    covers_display=covers_display,
+                    files_payload=files_payload,
+                    incoming_edges=incoming_by_room.get(rid, [])[:10],
+                )
+
+            md = await _llm_with_retry(_call)
+            if overflow:
+                md = md.rstrip() + "\n\n## Also in this room\n\n" + "\n".join([f"- `{p}`" for p in overflow]) + "\n"
+            outs[rid] = md
         return outs
 
     room_md_by_id: dict[str, str] = {}
@@ -288,9 +349,27 @@ def write_rooms_and_palace(
         rid = r["id"]
         covers = list(r.get("files") or [])
 
+        # Hard cap room detail to avoid huge markdown files.
+        # If the room is large, only fully-detail the top files by incoming edge weight.
+        MAX_FILES_IN_ROOM_FILE = 10
+        CAP_THRESHOLD = 15
+        incoming = incoming_by_room.get(rid, [])
+        score: dict[str, float] = {f: 0.0 for f in covers}
+        for e in incoming:
+            to = e.get("to")
+            if to in score:
+                score[to] += float(e.get("weight") or 0.0)
+        covers_sorted = sorted(covers, key=lambda f: score.get(f, 0.0), reverse=True)
+        if len(covers_sorted) > CAP_THRESHOLD:
+            featured = covers_sorted[:MAX_FILES_IN_ROOM_FILE]
+            overflow = covers_sorted[MAX_FILES_IN_ROOM_FILE:]
+        else:
+            featured = covers_sorted
+            overflow = []
+
         # fallback function list based on AST exports cache (exact signatures)
         functions = []
-        for fid in covers:
+        for fid in featured:
             n = nodes_by_id.get(fid, {})
             exports = _read_ast_exports(palace_out, str(n.get("hash") or ""))
             for ex in exports:
@@ -307,6 +386,7 @@ def write_rooms_and_palace(
                 covers=covers,
                 functions=functions,
                 incoming_edges=incoming_by_room.get(rid, [])[:3],
+                overflow=overflow,
             )
 
         room_path = rooms_dir / f"{rid}.md"

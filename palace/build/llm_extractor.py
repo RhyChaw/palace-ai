@@ -5,13 +5,28 @@ import json
 import os
 import re
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any
 
 from anthropic import AsyncAnthropic
 
 
-DEFAULT_MODEL = "claude-sonnet-4-20250514"
+DEFAULT_MODEL = "claude-sonnet-4-6"
+
+
+def _env_model() -> str | None:
+    m = (os.environ.get("PALACE_MODEL") or "").strip()
+    return m or None
+
+
+def _env_concurrency(default: int) -> int:
+    raw = (os.environ.get("PALACE_LLM_CONCURRENCY") or "").strip()
+    if not raw:
+        return default
+    try:
+        v = int(raw)
+    except ValueError:
+        return default
+    return max(1, min(25, v))
 
 
 @dataclass(frozen=True)
@@ -49,6 +64,11 @@ async def _extract_one(
     content: str,
     semaphore: asyncio.Semaphore,
 ) -> tuple[str, dict[str, Any]]:
+    # Keep prompts bounded; huge files can blow rate limits and latency.
+    # (We only need a coarse summary + a few semantic edges.)
+    if len(content) > 20_000:
+        content = content[:20_000] + "\n\n…(truncated)\n"
+
     prompt = f"""You are analyzing a source file for a memory palace index.
 
 File: {path}
@@ -65,12 +85,27 @@ Return JSON only:
 }}
 """
     async with semaphore:
-        msg = await client.messages.create(
-            model=model,
-            max_tokens=600,
-            temperature=0.2,
-            messages=[{"role": "user", "content": prompt}],
-        )
+        delay = 2.0
+        last: Exception | None = None
+        for _attempt in range(1, 11):
+            try:
+                msg = await client.messages.create(
+                    model=model,
+                    max_tokens=600,
+                    temperature=0.2,
+                    messages=[{"role": "user", "content": prompt}],
+                )
+                break
+            except Exception as e:
+                last = e
+                msg_text = str(e).lower()
+                if "rate_limit" in msg_text or "429" in msg_text or "overloaded" in msg_text:
+                    await asyncio.sleep(delay)
+                    delay = min(delay * 2, 60.0)
+                    continue
+                raise
+        else:
+            raise last  # type: ignore[misc]
 
     # anthropic message content can be list of blocks
     out = ""
@@ -95,14 +130,21 @@ async def extract_semantics_parallel(
         raise RuntimeError("ANTHROPIC_API_KEY is not set")
 
     client = AsyncAnthropic(api_key=api_key)
+    max_concurrency = _env_concurrency(max_concurrency)
     semaphore = asyncio.Semaphore(max_concurrency)
-    m = model or DEFAULT_MODEL
+    m = model or _env_model() or DEFAULT_MODEL
 
     tasks = [
         _extract_one(client, model=m, path=path, content=content, semaphore=semaphore) for path, content in files
     ]
-    results = await asyncio.gather(*tasks)
-    return {path: obj for path, obj in results}
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    out: dict[str, dict[str, Any]] = {}
+    for r in results:
+        if isinstance(r, Exception):
+            continue
+        path, obj = r
+        out[path] = obj
+    return out
 
 
 def extract_semantics(
