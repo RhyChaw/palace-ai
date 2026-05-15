@@ -19,13 +19,19 @@ def main(argv: list[str] | None = None) -> None:
     p_build.add_argument("path", nargs="?", default=".", help="Repo path (default: .)")
     p_build.add_argument("--rooms", default="auto", help="auto or an integer (future)")
     p_build.add_argument("--no-git", action="store_true", help="Skip git co-change analysis")
-    p_build.add_argument("--no-llm", action="store_true", help="AST-only mode (no LLM calls)")
+    p_build.add_argument(
+        "--no-llm",
+        action="store_true",
+        help="AST-only mode, no LLM calls (default; flag kept for explicitness)",
+    )
+    p_build.add_argument("--llm", action="store_true", help="Enable LLM enrichment (requires ANTHROPIC_API_KEY)")
     p_build.add_argument("--model", default=None, help="Anthropic model name")
 
     p_update = sub.add_parser("update", help="Incremental rebuild (same as build, uses cache)")
     p_update.add_argument("path", nargs="?", default=".", help="Repo path (default: .)")
     p_update.add_argument("--no-git", action="store_true")
-    p_update.add_argument("--no-llm", action="store_true")
+    p_update.add_argument("--no-llm", action="store_true", help="AST-only mode (default)")
+    p_update.add_argument("--llm", action="store_true", help="Enable LLM enrichment")
     p_update.add_argument("--model", default=None)
 
     p_query = sub.add_parser("query", help="Query the palace network")
@@ -46,16 +52,19 @@ def main(argv: list[str] | None = None) -> None:
 
     p_install = sub.add_parser("install", help="Install agent integrations")
     p_install_sub = p_install.add_subparsers(dest="install_target", required=True)
-    p_install_claude = p_install_sub.add_parser("claude", help="Write CLAUDE.md section + hook")
+    p_install_claude = p_install_sub.add_parser("claude", help="Write CLAUDE.md + Claude Code PreToolUse hook")
     p_install_claude.add_argument("--path", default=".", help="Repo path (default: .)")
 
     args = parser.parse_args(argv)
 
     if args.cmd in {"build", "update"}:
+        if args.llm and args.no_llm:
+            raise SystemExit("Use only one of --llm or --no-llm.")
+        use_llm = bool(args.llm)
         build_palace(
             Path(args.path),
             use_git=not args.no_git,
-            use_llm=not args.no_llm,
+            use_llm=use_llm,
             model=args.model,
         )
         return
@@ -89,4 +98,3 @@ def main(argv: list[str] | None = None) -> None:
 
 if __name__ == "__main__":
     main()
-

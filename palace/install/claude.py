@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 
@@ -17,17 +18,74 @@ Navigation:
 Never grep through raw source files when the palace exists.
 """
 
-
-HOOK_SH = """#!/usr/bin/env bash
+HOOK_SH = r"""#!/usr/bin/env bash
+# palace-ai PreToolUse hook — remind Claude to use the memory palace before Grep/Glob.
 set -euo pipefail
 
-echo "palace-ai: Memory palace exists. Read palace-out/PALACE.md before searching raw files."
-echo "Relevant rooms for your current task can be found with: palace query \\"$1\\""
+if [[ ! -f palace-out/PALACE.md ]]; then
+  exit 0
+fi
+
+INPUT=$(cat)
+python3 - "$INPUT" <<'PY'
+import json
+import sys
+
+payload = json.loads(sys.argv[1])
+tool = payload.get("tool_name") or ""
+
+if tool not in {"Grep", "Glob"}:
+    sys.exit(0)
+
+reason = (
+    "palace-out exists. Read palace-out/PALACE.md, then run "
+    '`palace query "<your task>"` to find relevant rooms before searching raw files.'
+)
+
+print(
+    json.dumps(
+        {
+            "hookSpecificOutput": {
+                "hookEventName": "PreToolUse",
+                "permissionDecision": "deny",
+                "permissionDecisionReason": reason,
+            }
+        }
+    )
+)
+PY
 """
+
+PALACE_HOOK_MATCHER = "Grep|Glob"
+PALACE_HOOK_COMMAND = "${CLAUDE_PROJECT_DIR}/.claude/hooks/palace-pretooluse.sh"
+PALACE_HOOK_MARKER = "palace-pretooluse.sh"
+
+
+def _palace_hook_entry() -> dict:
+    return {
+        "matcher": PALACE_HOOK_MATCHER,
+        "hooks": [{"type": "command", "command": PALACE_HOOK_COMMAND}],
+    }
+
+
+def _merge_settings(existing: dict) -> dict:
+    hooks = dict(existing.get("hooks") or {})
+    pretool = list(hooks.get("PreToolUse") or [])
+    if not any(
+        PALACE_HOOK_MARKER in str(h.get("hooks"))
+        for entry in pretool
+        for h in (entry.get("hooks") or [])
+    ):
+        pretool.append(_palace_hook_entry())
+    hooks["PreToolUse"] = pretool
+    merged = dict(existing)
+    merged["hooks"] = hooks
+    return merged
 
 
 def install_claude(repo_path: Path) -> None:
     repo_path = repo_path.resolve()
+    repo_path.mkdir(parents=True, exist_ok=True)
 
     claude_md = repo_path / "CLAUDE.md"
     existing = claude_md.read_text("utf-8") if claude_md.exists() else ""
@@ -35,15 +93,28 @@ def install_claude(repo_path: Path) -> None:
         updated = (existing.rstrip() + "\n\n" + CLAUDE_SECTION).lstrip("\n") + "\n"
         claude_md.write_text(updated, "utf-8")
 
-    hook_path = repo_path / ".claude" / "hooks" / "pre-tool-use.sh"
+    hook_path = repo_path / ".claude" / "hooks" / "palace-pretooluse.sh"
     hook_path.parent.mkdir(parents=True, exist_ok=True)
     hook_path.write_text(HOOK_SH, "utf-8")
     try:
         hook_path.chmod(0o755)
-    except Exception:
+    except OSError:
         pass
 
-    print("Installed Claude integration:")
+    settings_path = repo_path / ".claude" / "settings.json"
+    settings_path.parent.mkdir(parents=True, exist_ok=True)
+    if settings_path.exists():
+        try:
+            current = json.loads(settings_path.read_text("utf-8"))
+            if not isinstance(current, dict):
+                current = {}
+        except json.JSONDecodeError:
+            current = {}
+    else:
+        current = {}
+    settings_path.write_text(json.dumps(_merge_settings(current), indent=2) + "\n", "utf-8")
+
+    print("Installed Claude Code integration:")
     print(f"- Updated {claude_md}")
     print(f"- Wrote {hook_path}")
-
+    print(f"- Registered PreToolUse hook in {settings_path}")

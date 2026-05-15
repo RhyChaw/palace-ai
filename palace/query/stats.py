@@ -33,5 +33,10 @@ def show_stats(repo_path: Path) -> None:
     ratio = (raw_tokens / palace_tokens) if palace_tokens else 0.0
     print(f"Raw repo tokens (approx): {raw_tokens}")
     print(f"Palace navigation tokens (PALACE.md + rooms): {palace_tokens}")
-    print(f"Token reduction ratio: {ratio:.1f}x")
-
+    if ratio >= 1.0:
+        print(f"Token reduction ratio: {ratio:.1f}x")
+    else:
+        print(
+            "Token reduction ratio: n/a on this repo size "
+            "(palace overhead exceeds raw source). Try a larger codebase."
+        )

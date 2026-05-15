@@ -2,38 +2,30 @@
 
 > AI agents navigate code the way humans remember — by association, not search.
 
-<img width="1512" height="827" alt="Screenshot 2026-05-01 at 1 59 18 PM" src="https://github.com/user-attachments/assets/bc764e78-b8d3-44a6-96a3-52482fc94829" />
+<img width="1512" height="827" alt="palace-ai visualizer" src="https://github.com/user-attachments/assets/bc764e78-b8d3-44a6-96a3-52482fc94829" />
 
 ```bash
 pip install palace-ai
 palace build .
-palace serve
+palace query "auth flow"
 ```
 
-**42x token reduction.** Zero API key required.
+**Build a traversable memory palace for any repository.**  
+palace-ai turns a codebase into rooms and typed relationships so agents orient **before** opening raw files.
+
+**AST-only by default** — no API key. Use `--llm` plus `ANTHROPIC_API_KEY` for richer room summaries.
 
 ---
 
 ## What it does
 
-palace-ai turns any repo into a memory palace — a navigable network of rooms an
-agent can traverse to find exactly what it needs without reading raw source files.
+Instead of dumping tens of thousands of tokens of source into context, an agent can read:
 
-Instead of loading 50,000 tokens of source code, an agent reads:
-1. `PALACE.md` — all rooms, 200 tokens
-2. The relevant room file — architecture + function signatures + call sites, ~400 tokens
-3. Only the specific source file it needs to edit
+1. **`palace-out/PALACE.md`** — map of rooms
+2. **One room file** — structure, exports, call hints
+3. **Only the source files it actually needs**
 
-**Result: 10-42x fewer tokens. Faster agents. Less hallucination.**
-
----
-
-## How it works
-
-Every file is a node. Every relationship is a typed, weighted edge.
-When an agent queries the palace, activation spreads through the network —
-the same way "rajma chawal" floods your mind with culture, comfort, ingredients, season.
-The rooms that light up are the ones worth reading.
+On medium-to-large repos, navigation via the palace is often **10–42× smaller** in tokens than reading the full tree (run `palace stats` after a build).
 
 ---
 
@@ -41,20 +33,59 @@ The rooms that light up are the ones worth reading.
 
 ```bash
 pip install palace-ai
-palace build .           # builds the palace (AST-only, no API key)
-palace serve             # opens the visualizer
-palace query "auth flow" # finds relevant rooms
-palace install claude    # hooks into Claude Code
+palace build .
+palace query "your topic"
+palace serve                    # optional: graph visualizer
+palace install claude           # Claude Code: CLAUDE.md + PreToolUse hook
 ```
 
-## LLM mode (semantic room files)
+**Explicit AST-only** (same as default):
+
+```bash
+palace build . --no-llm
+```
+
+**LLM-enriched rooms:**
 
 ```bash
 export ANTHROPIC_API_KEY=sk-...
-palace build .           # adds architectural overviews to room files
+palace build . --llm
 ```
 
 ---
 
-*Built for agents. Inspired by how humans actually remember things.*
+## Repo layout
 
+| Path | Purpose |
+|------|---------|
+| `palace/` | Python package |
+| `palace-out/` | **Small checked-in sample** (from `tests/fixture`) |
+| `examples/worked/` | Larger pre-built palaces (e.g. requests) for demos |
+| `tests/fixture/` | Tiny JS/Python fixtures for local builds |
+
+---
+
+## 2-minute demo
+
+**After clone** — sample palace is at `./palace-out/`:
+
+```bash
+pip install palace-ai
+git clone https://github.com/RhyChaw/palace-ai.git && cd palace-ai
+palace query "build" --threshold 0.05
+palace serve
+```
+
+**Larger graph** — pre-built **requests** palace:
+
+```bash
+git clone https://github.com/RhyChaw/palace-ai.git && cd palace-ai
+palace query "auth flow" --path examples/worked/requests
+palace serve --path examples/worked/requests
+```
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).

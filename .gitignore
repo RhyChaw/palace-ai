@@ -3,20 +3,17 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+dist/
+*.egg-info/
 
-# palace-ai generated outputs (do not commit)
-palace-out/
-**/palace-out/
+# Root sample palace: commit PALACE.md, rooms, visualizer — not extraction cache
+palace-out/cache/
 
-# …but keep README screenshot assets
-!worked/
-!worked/**/
-!worked/**/palace-out/
-!worked/**/palace-out/visualizer/
-!worked/**/palace-out/visualizer/screenshot.png
-worked/**/palace-out/cache/
-worked/**/palace-out/cache/**
+# Test fixture outputs (regenerate: palace build tests/fixture --no-git)
+tests/fixture/palace-out/
 
-# benchmark repo checkouts (keep only palace-out copies under worked/)
-worked/repos/
+# Optional: large benchmark checkouts
+examples/worked/repos/
 
+# Extractions cache under example palaces
+examples/worked/**/palace-out/cache/

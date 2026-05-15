@@ -513,7 +513,13 @@ def build_palace(repo_path: Path, *, use_git: bool, use_llm: bool, model: str | 
                 palace_tokens += approx_token_count(p.read_text("utf-8"))
         if palace_tokens > 0:
             ratio = raw_tokens / palace_tokens
-            print(f"Token reduction ratio: {ratio:.1f}x (raw {raw_tokens} vs palace {palace_tokens})")
+            if ratio >= 1.0:
+                print(f"Token reduction ratio: {ratio:.1f}x (raw {raw_tokens} vs palace {palace_tokens})")
+            else:
+                print(
+                    f"Palace size: {palace_tokens} tokens vs {raw_tokens} raw source tokens. "
+                    "Try a larger repo for meaningful reduction (often 10–42× on medium codebases)."
+                )
     except Exception:
         pass
 
