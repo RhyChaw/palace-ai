@@ -1,0 +1,38 @@
+# Publish to PyPI via Trusted Publishing (OIDC).
+# Matches PyPI → Manage publishers → pending publisher:
+#   workflow: workflow.yml, environment: pypi
+# Repo: create GitHub Environment "pypi" under Settings → Environments.
+# First successful run creates the palace-ai project on PyPI.
+
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build frontend
+        run: pip install --upgrade build
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
