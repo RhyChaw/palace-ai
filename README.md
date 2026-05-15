@@ -72,7 +72,7 @@ palace build . --llm
 ```bash
 pip install palace-ai
 git clone https://github.com/RhyChaw/palace-ai.git && cd palace-ai
-palace query "build" --threshold 0.05
+palace query "main" --threshold 0.05
 palace serve
 ```
 
