@@ -5,6 +5,8 @@ import math
 from dataclasses import dataclass
 from pathlib import Path
 
+from palace.memory.query_context import format_memory_context
+
 
 TYPE_MULTIPLIER: dict[str, float] = {
     "imports": 1.0,
@@ -112,28 +114,30 @@ def run_query(repo_path: Path, query: str, *, threshold: float = 0.15, depth: in
     print(f"Activated rooms (above threshold {threshold:.2f}):\n")
     if not room_act:
         print("  (none)\n")
-        return
+    else:
+        ranked_rooms = sorted(room_act.items(), key=lambda kv: kv[1], reverse=True)
+        for room_id, act in ranked_rooms:
+            room = rooms_by_id.get(room_id, {"id": room_id, "file": f"palace-out/rooms/{room_id}.md"})
+            print(f"  [{act:.2f}] {room_id:<12} {room.get('file')}")
 
-    ranked_rooms = sorted(room_act.items(), key=lambda kv: kv[1], reverse=True)
-    for room_id, act in ranked_rooms:
-        room = rooms_by_id.get(room_id, {"id": room_id, "file": f"palace-out/rooms/{room_id}.md"})
-        print(f"  [{act:.2f}] {room_id:<12} {room.get('file')}")
+            node_items = []
+            for n in network.get("nodes", []):
+                if (n.get("room_id") or "other") != room_id:
+                    continue
+                nid = n.get("id")
+                if nid in node_act:
+                    node_items.append((nid, node_act[nid]))
+            node_items.sort(key=lambda kv: kv[1], reverse=True)
+            top = ", ".join([f"{nid} ({a:.2f})" for nid, a in node_items[:2]])
+            if top:
+                print(f"         Top nodes: {top}")
+            print()
 
-        # top nodes in this room
-        node_items = []
-        for n in network.get("nodes", []):
-            if (n.get("room_id") or "other") != room_id:
-                continue
-            nid = n.get("id")
-            if nid in node_act:
-                node_items.append((nid, node_act[nid]))
-        node_items.sort(key=lambda kv: kv[1], reverse=True)
-        top = ", ".join([f"{nid} ({a:.2f})" for nid, a in node_items[:2]])
-        if top:
-            print(f"         Top nodes: {top}")
-        print()
+        top2 = [r for r, _ in ranked_rooms[:2]]
+        if top2:
+            print(f"Suggested: read {', '.join([f'{r}.md' for r in top2])} first.")
 
-    top2 = [r for r, _ in ranked_rooms[:2]]
-    if top2:
-        print(f"Suggested: read {', '.join([f'{r}.md' for r in top2])} first.")
+    memory_ctx = format_memory_context(repo_path, query)
+    if memory_ctx:
+        print(memory_ctx)
 

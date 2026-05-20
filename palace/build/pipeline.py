@@ -11,6 +11,8 @@ from palace.build.llm_extractor import extract_semantics
 from palace.build.network_serializer import Edge, Node, Room, build_network_json
 from palace.build.room_classifier import classify_rooms
 from palace.build.room_writer import write_rooms_and_palace
+from palace.memory.init import ensure_memory
+from palace.memory.palace_md import regenerate_palace_md
 from palace.utils.cache import ensure_output_dirs, load_json, sha256_bytes, write_json
 from palace.utils.language_detect import detect_language
 from palace.utils.token_counter import approx_token_count
@@ -144,6 +146,7 @@ def build_palace(repo_path: Path, *, use_git: bool, use_llm: bool, model: str | 
     repo_path = repo_path.resolve()
     palace_out = repo_path / "palace-out"
     cp = ensure_output_dirs(palace_out)
+    ensure_memory(palace_out)
 
     manifest = load_json(cp.manifest_path, default={"files": {}})
     prev_files: dict[str, str] = manifest.get("files", {})
@@ -488,6 +491,8 @@ def build_palace(repo_path: Path, *, use_git: bool, use_llm: bool, model: str | 
     network["surprising_edges"] = surprising[:8]
 
     write_json(palace_out / "network.json", network)
+
+    regenerate_palace_md(repo_path)
 
     # update manifest last
     manifest["files"] = {fid: nodes[fid].hash for fid in file_ids if nodes[fid].hash}

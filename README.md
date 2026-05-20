@@ -8,6 +8,7 @@
 pip install palace-ai
 palace build .
 palace query "auth flow"
+palace learn --task "..." --outcome success   # v2: record what worked
 ```
 
 **Build a traversable memory palace for any repository.**  
@@ -27,6 +28,8 @@ Instead of dumping tens of thousands of tokens of source into context, an agent 
 
 On medium-to-large repos, navigation via the palace is often **10–42× smaller** in tokens than reading the full tree (run `palace stats` after a build).
 
+**v2 — institutional memory:** After tasks, run `palace learn` so the palace remembers patterns, failures, and codebase “game state.” New sessions read an enriched `PALACE.md` (what works, what to avoid, what’s incomplete). Use `palace reflect` periodically to re-derive patterns from the append-only attempt log.
+
 ---
 
 ## Quick start
@@ -37,6 +40,9 @@ palace build .
 palace query "your topic"
 palace serve                    # optional: graph visualizer
 palace install claude           # Claude Code: CLAUDE.md + PreToolUse hook
+palace learn --task "..." --outcome success --notes "..."   # v2 memory
+palace reflect                  # v2: re-analyze all attempts
+palace status                   # v2: game state summary
 ```
 
 **Explicit AST-only** (same as default):

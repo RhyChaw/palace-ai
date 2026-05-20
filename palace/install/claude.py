@@ -16,6 +16,9 @@ Navigation:
 4. Only then open source files — and only the specific ones linked in the room file
 
 Never grep through raw source files when the palace exists.
+
+After completing a task (success or failure), run `palace learn` so the palace
+accumulates institutional memory for the next session.
 """
 
 HOOK_SH = r"""#!/usr/bin/env bash
@@ -39,7 +42,8 @@ if tool not in {"Grep", "Glob"}:
 
 reason = (
     "palace-out exists. Read palace-out/PALACE.md, then run "
-    '`palace query "<your task>"` to find relevant rooms before searching raw files.'
+    '`palace query "<your task>"` to find relevant rooms before searching raw files. '
+    "After finishing a task, run `palace learn` to record what worked or failed."
 )
 
 print(
