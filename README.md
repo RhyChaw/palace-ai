@@ -8,8 +8,21 @@
 pip install palace-ai
 palace build .
 palace query "auth flow"
-palace learn --task "..." --outcome success   # v2: record what worked
 ```
+
+## v2: Self-Improving Memory (new)
+
+palace-ai now learns from agent attempts.
+
+```bash
+palace learn --task "implement auth" --outcome success --files-modified auth.py
+palace reflect   # extract patterns across all attempts
+palace status    # see what palace knows about your codebase
+```
+
+After each task, `palace learn` appends to an immutable attempt log and updates patterns, failure modes, and codebase “game state.” New agent sessions read an enriched `palace-out/PALACE.md` — what works, what to avoid, and what’s still incomplete. Run `palace reflect` periodically to re-derive insights from all attempts.
+
+---
 
 **Build a traversable memory palace for any repository.**  
 palace-ai turns a codebase into rooms and typed relationships so agents orient **before** opening raw files.
@@ -27,8 +40,6 @@ Instead of dumping tens of thousands of tokens of source into context, an agent 
 3. **Only the source files it actually needs**
 
 On medium-to-large repos, navigation via the palace is often **10–42× smaller** in tokens than reading the full tree (run `palace stats` after a build).
-
-**v2 — institutional memory:** After tasks, run `palace learn` so the palace remembers patterns, failures, and codebase “game state.” New sessions read an enriched `PALACE.md` (what works, what to avoid, what’s incomplete). Use `palace reflect` periodically to re-derive patterns from the append-only attempt log.
 
 ---
 
