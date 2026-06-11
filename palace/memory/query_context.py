@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from palace.memory.init import load_failures, load_patterns, load_state, memory_exists
+from palace.memory.paths import memory_paths
 
 
 def _tokenize(q: str) -> set[str]:
@@ -19,13 +20,13 @@ def _relevance_score(query: str, text: str) -> float:
 
 
 def format_memory_context(repo_path: Path, query: str, *, max_patterns: int = 3, max_failures: int = 2) -> str:
-    palace_out = repo_path.resolve() / "palace-out"
-    if not memory_exists(palace_out):
+    mp = memory_paths(repo_path.resolve() / "palace-out")
+    if not memory_exists(mp):
         return ""
 
-    patterns = load_patterns(palace_out).get("patterns") or []
-    failures = load_failures(palace_out).get("failures") or []
-    state = load_state(palace_out)
+    patterns = load_patterns(mp).get("patterns") or []
+    failures = load_failures(mp).get("failures") or []
+    state = load_state(mp)
 
     scored_patterns = []
     for p in patterns:

@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from palace.memory.init import load_attempts, load_failures, load_patterns, load_state, memory_exists
+from palace.memory.paths import memory_paths
 from palace.memory.schemas import utc_now_iso
 
 
@@ -99,17 +100,18 @@ def regenerate_palace_md(repo_path: Path) -> str:
     if network_path.exists():
         network = json.loads(network_path.read_text("utf-8"))
 
+    mp = memory_paths(palace_out)
     repo_name = network.get("repo") or repo_path.name
-    attempts_n = len(load_attempts(palace_out)) if memory_exists(palace_out) else 0
+    attempts_n = len(load_attempts(mp)) if memory_exists(mp) else 0
     patterns_n = 0
     patterns: list[dict] = []
     failures: list[dict] = []
     state: dict = {}
-    if memory_exists(palace_out):
-        patterns = load_patterns(palace_out).get("patterns") or []
+    if memory_exists(mp):
+        patterns = load_patterns(mp).get("patterns") or []
         patterns_n = len(patterns)
-        failures = load_failures(palace_out).get("failures") or []
-        state = load_state(palace_out)
+        failures = load_failures(mp).get("failures") or []
+        state = load_state(mp)
 
     generated = state.get("last_updated") or utc_now_iso()
     lines: list[str] = [
@@ -121,7 +123,7 @@ def regenerate_palace_md(repo_path: Path) -> str:
         "",
     ]
 
-    if memory_exists(palace_out):
+    if memory_exists(mp):
         lines.extend(
             [
                 "## Game State",

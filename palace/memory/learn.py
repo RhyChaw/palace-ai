@@ -17,6 +17,7 @@ from palace.memory.init import (
 )
 from palace.memory.llm import extract_failure_from_attempt, extract_pattern_from_attempt, slug_id
 from palace.memory.palace_md import regenerate_palace_md
+from palace.memory.paths import MemoryPaths, memory_paths, resolve_memory_paths
 from palace.memory.schemas import VALID_OUTCOMES, utc_now_iso
 
 
@@ -70,8 +71,8 @@ def _merge_pattern(existing: dict[str, Any], extracted: dict[str, Any], *, now: 
     return merged
 
 
-def _upsert_pattern(palace_out: Path, extracted: dict[str, Any], *, now: str) -> str:
-    data = load_patterns(palace_out)
+def _upsert_pattern(mp: MemoryPaths, extracted: dict[str, Any], *, now: str) -> str:
+    data = load_patterns(mp)
     patterns: list[dict] = list(data.get("patterns") or [])
     pid = str(extracted.get("id") or slug_id(str(extracted.get("name") or "pattern")))
     found = False
@@ -92,12 +93,12 @@ def _upsert_pattern(palace_out: Path, extracted: dict[str, Any], *, now: str) ->
         )
         patterns.append(new_p)
     data["patterns"] = patterns
-    save_patterns(palace_out, data)
+    save_patterns(mp, data)
     return pid
 
 
-def _upsert_failure(palace_out: Path, extracted: dict[str, Any], *, now: str) -> str:
-    data = load_failures(palace_out)
+def _upsert_failure(mp: MemoryPaths, extracted: dict[str, Any], *, now: str) -> str:
+    data = load_failures(mp)
     failures: list[dict] = list(data.get("failures") or [])
     key = (
         str(extracted.get("task_type") or ""),
@@ -132,7 +133,7 @@ def _upsert_failure(palace_out: Path, extracted: dict[str, Any], *, now: str) ->
             }
         )
     data["failures"] = failures
-    save_failures(palace_out, data)
+    save_failures(mp, data)
     return fid
 
 
@@ -154,14 +155,14 @@ def _heuristic_pattern(task: str, notes: str, files_modified: list[str], *, now:
     }
 
 
-def _touch_state(palace_out: Path, *, now: str, task: str, outcome: str) -> None:
-    state = load_state(palace_out)
+def _touch_state(mp: MemoryPaths, *, now: str, task: str, outcome: str) -> None:
+    state = load_state(mp)
     state["last_updated"] = now
     if outcome == "success" and task:
         debt = state.get("known_tech_debt")
         if isinstance(debt, list) and f"Completed: {task}" not in debt:
             pass
-    save_state(palace_out, state)
+    save_state(mp, state)
 
 
 def _interactive_learn(repo_path: Path) -> dict[str, Any]:
@@ -197,6 +198,7 @@ def _interactive_learn(repo_path: Path) -> dict[str, Any]:
 def run_learn(
     repo_path: Path,
     *,
+    root: Path | None = None,
     task: str | None = None,
     outcome: str | None = None,
     files_modified: list[str] | None = None,
@@ -212,11 +214,16 @@ def run_learn(
     model: str | None = None,
 ) -> None:
     repo_path = repo_path.resolve()
-    palace_out = repo_path / "palace-out"
-    if not palace_out.is_dir():
-        raise SystemExit(f"No palace at {palace_out}. Run `palace build` first.")
+    standalone = root is not None
+    if standalone:
+        mp = resolve_memory_paths(root=root)
+    else:
+        palace_out = repo_path / "palace-out"
+        if not palace_out.is_dir():
+            raise SystemExit(f"No palace at {palace_out}. Run `palace build` first.")
+        mp = memory_paths(palace_out)
 
-    ensure_memory(palace_out)
+    ensure_memory(mp)
 
     if interactive or not task:
         params = _interactive_learn(repo_path)
@@ -250,7 +257,7 @@ def run_learn(
         "session_id": session_id or "",
         "token_cost": token_cost,
     }
-    append_attempt(palace_out, entry)
+    append_attempt(mp, entry)
 
     if outcome == "success":
         if use_llm:
@@ -262,15 +269,15 @@ def run_learn(
                     approach=approach or "",
                     model=model,
                 )
-                pid = _upsert_pattern(palace_out, extracted, now=now)
+                pid = _upsert_pattern(mp, extracted, now=now)
                 pattern_ids.append(pid)
                 print(f"Learned pattern: {pid}")
             except Exception as e:
                 print(f"LLM pattern extraction skipped: {e}")
-                pid = _upsert_pattern(palace_out, _heuristic_pattern(task, notes or "", files_modified, now=now), now=now)
+                pid = _upsert_pattern(mp, _heuristic_pattern(task, notes or "", files_modified, now=now), now=now)
                 pattern_ids.append(pid)
         else:
-            pid = _upsert_pattern(palace_out, _heuristic_pattern(task, notes or "", files_modified, now=now), now=now)
+            pid = _upsert_pattern(mp, _heuristic_pattern(task, notes or "", files_modified, now=now), now=now)
             pattern_ids.append(pid)
             print(f"Recorded pattern (heuristic): {pid}")
 
@@ -301,9 +308,12 @@ def run_learn(
                 "failure_reason": failure_reason or notes or "unknown",
                 "resolution": "",
             }
-        fid = _upsert_failure(palace_out, extracted, now=now)
+        fid = _upsert_failure(mp, extracted, now=now)
         print(f"Recorded failure mode: {fid}")
 
-    _touch_state(palace_out, now=now, task=task, outcome=outcome)
-    regenerate_palace_md(repo_path)
-    print(f"Logged attempt ({outcome}). Updated PALACE.md.")
+    _touch_state(mp, now=now, task=task, outcome=outcome)
+    if not standalone:
+        regenerate_palace_md(repo_path)
+        print(f"Logged attempt ({outcome}). Updated PALACE.md.")
+    else:
+        print(f"Logged attempt ({outcome}).")

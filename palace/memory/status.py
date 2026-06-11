@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from palace.memory.init import ensure_memory, load_attempts, load_failures, load_patterns, load_state, memory_exists
+from palace.memory.paths import memory_paths, resolve_memory_paths
 
 
 def _format_ago(iso: str | None) -> str:
@@ -27,24 +28,34 @@ def _format_ago(iso: str | None) -> str:
         return iso
 
 
-def show_status(repo_path: Path) -> None:
-    repo_path = repo_path.resolve()
-    palace_out = repo_path / "palace-out"
-    if not palace_out.is_dir():
-        raise SystemExit(f"No palace at {palace_out}. Run `palace build` first.")
+def show_status(repo_path: Path, *, root: Path | None = None) -> None:
+    if root is not None:
+        mp = resolve_memory_paths(root=root)
+        palace_label = str(mp.memory_dir)
+    else:
+        repo_path = repo_path.resolve()
+        palace_out = repo_path / "palace-out"
+        if not palace_out.is_dir():
+            raise SystemExit(f"No palace at {palace_out}. Run `palace build` first.")
+        mp = memory_paths(palace_out)
+        palace_label = str(palace_out)
 
-    if not memory_exists(palace_out):
+    if not memory_exists(mp):
+        if root is not None:
+            print(f"No memory at {mp.memory_dir}.")
+            return
         print("Palace v1 (no memory/). Run `palace build` to scaffold v2 memory.")
         return
 
-    ensure_memory(palace_out)
-    attempts = load_attempts(palace_out)
-    patterns = load_patterns(palace_out).get("patterns") or []
-    failures = load_failures(palace_out).get("failures") or []
-    state = load_state(palace_out)
+    ensure_memory(mp)
+    attempts = load_attempts(mp)
+    patterns = load_patterns(mp).get("patterns") or []
+    failures = load_failures(mp).get("failures") or []
+    state = load_state(mp)
 
     print("Palace v2 Status")
     print("────────────────")
+    print(f"Memory: {palace_label}")
     print(f"Attempts logged: {len(attempts)}")
     print(f"Patterns learned: {len(patterns)}")
     print(f"Known failure modes: {len(failures)}")

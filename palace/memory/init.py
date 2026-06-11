@@ -1,16 +1,14 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
-from palace.memory.paths import memory_paths
+from palace.memory.paths import MemoryPaths
 from palace.memory.schemas import empty_failures, empty_patterns, empty_state
 from palace.utils.cache import load_json, write_json
 
 
-def ensure_memory(palace_out: Path) -> None:
+def ensure_memory(mp: MemoryPaths) -> None:
     """Create v2 memory scaffolding (empty derived files + attempts log)."""
-    mp = memory_paths(palace_out)
     mp.memory_dir.mkdir(parents=True, exist_ok=True)
     mp.snapshots_dir.mkdir(parents=True, exist_ok=True)
 
@@ -25,39 +23,35 @@ def ensure_memory(palace_out: Path) -> None:
         write_json(mp.state_path, empty_state())
 
 
-def memory_exists(palace_out: Path) -> bool:
-    return memory_paths(palace_out).memory_dir.is_dir()
+def memory_exists(mp: MemoryPaths) -> bool:
+    return mp.memory_dir.is_dir()
 
 
-def load_patterns(palace_out: Path) -> dict:
-    mp = memory_paths(palace_out)
+def load_patterns(mp: MemoryPaths) -> dict:
     return load_json(mp.patterns_path, default=empty_patterns())
 
 
-def load_failures(palace_out: Path) -> dict:
-    mp = memory_paths(palace_out)
+def load_failures(mp: MemoryPaths) -> dict:
     return load_json(mp.failures_path, default=empty_failures())
 
 
-def load_state(palace_out: Path) -> dict:
-    mp = memory_paths(palace_out)
+def load_state(mp: MemoryPaths) -> dict:
     return load_json(mp.state_path, default=empty_state())
 
 
-def save_patterns(palace_out: Path, obj: dict) -> None:
-    write_json(memory_paths(palace_out).patterns_path, obj)
+def save_patterns(mp: MemoryPaths, obj: dict) -> None:
+    write_json(mp.patterns_path, obj)
 
 
-def save_failures(palace_out: Path, obj: dict) -> None:
-    write_json(memory_paths(palace_out).failures_path, obj)
+def save_failures(mp: MemoryPaths, obj: dict) -> None:
+    write_json(mp.failures_path, obj)
 
 
-def save_state(palace_out: Path, obj: dict) -> None:
-    write_json(memory_paths(palace_out).state_path, obj)
+def save_state(mp: MemoryPaths, obj: dict) -> None:
+    write_json(mp.state_path, obj)
 
 
-def load_attempts(palace_out: Path) -> list[dict]:
-    mp = memory_paths(palace_out)
+def load_attempts(mp: MemoryPaths) -> list[dict]:
     if not mp.attempts_path.exists():
         return []
     entries: list[dict] = []
@@ -72,8 +66,8 @@ def load_attempts(palace_out: Path) -> list[dict]:
     return entries
 
 
-def append_attempt(palace_out: Path, entry: dict) -> None:
-    mp = memory_paths(palace_out)
+def append_attempt(mp: MemoryPaths, entry: dict) -> None:
     mp.memory_dir.mkdir(parents=True, exist_ok=True)
     with mp.attempts_path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(entry, sort_keys=True) + "\n")
+
