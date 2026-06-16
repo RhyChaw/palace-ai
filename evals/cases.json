@@ -1,0 +1,52 @@
+[
+  {
+    "_why": "activate + score_node + decay are all symbols in activator.py; non-obvious because 'decay' also names memory/decay.py",
+    "query": "how does activate compute node scores with hop decay",
+    "expected": ["palace/query/activator.py"]
+  },
+  {
+    "_why": "approx_token_count is the sole exported symbol; naive would also hit stats.py and cli.py which both reference tokens",
+    "query": "where is approx_token_count defined",
+    "expected": ["palace/utils/token_counter.py"]
+  },
+  {
+    "_why": "recall_memory + _score_event + _score_pattern + _score_failure are all in recall.py; 'patterns' appears in many files",
+    "query": "where does recall_memory score events and patterns",
+    "expected": ["palace/memory/recall.py"]
+  },
+  {
+    "_why": "apply_confidence_decay is the sole symbol; 'memory' and 'confidence' co-locate uniquely in decay.py",
+    "query": "how does apply_confidence_decay degrade memory over time",
+    "expected": ["palace/memory/decay.py"]
+  },
+  {
+    "_why": "run_learn is the exported entry point; 'learn' in node_id gives a direct match that beats broader hits on 'task' and 'outcomes'",
+    "query": "how does run_learn record task outcomes",
+    "expected": ["palace/memory/learn.py"]
+  },
+  {
+    "_why": "format_memory_context is a unique symbol; naive returns everything with 'context' or 'memory' but palace ranks this node #1",
+    "query": "how does format_memory_context assemble context for a query",
+    "expected": ["palace/memory/query_context.py"]
+  },
+  {
+    "_why": "reflect_memory is the unique symbol; 'patterns' is a false-positive magnet across the codebase",
+    "query": "where does reflect_memory update derived patterns",
+    "expected": ["palace/memory/reflect.py"]
+  },
+  {
+    "_why": "MemoryPaths is the exported class; 'paths' in node_id + label + symbol combine for a strong hit",
+    "query": "where are MemoryPaths file paths defined",
+    "expected": ["palace/memory/paths.py"]
+  },
+  {
+    "_why": "empty_patterns + empty_state are unique to schemas.py; palace scores it via symbol match while naive drowns in 'pattern' hits",
+    "query": "where are empty_patterns and empty_state defined",
+    "expected": ["palace/memory/schemas.py"]
+  },
+  {
+    "_why": "run_snapshot is the sole symbol; 'memory' + 'state' create noise across init.py and learn.py for the naive arm",
+    "query": "how does run_snapshot save memory state to disk",
+    "expected": ["palace/memory/snapshot.py"]
+  }
+]

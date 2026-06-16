@@ -1,9 +1,9 @@
 ---
 room: utils
 label: Utilities
-covers: js_a.js · js_b.js
+covers: palace/utils/language_detect.py
 functions: 2
-tokens: 95
+tokens: 90
 ---
 
 ## Overview
@@ -12,11 +12,11 @@ This room groups a set of files that are structurally connected (imports/calls).
 
 ## Functions
 
-### `greet(name)`
+### `LanguageInfo`
 Defined in this room.
-**Called from:** [js_a.js:4](js_a.js#L4)
+**Called from:** (none detected)
 
-### `run()`
+### `detect_language(path: str | Path)`
 Defined in this room.
 **Called from:** (none detected)
 
@@ -29,5 +29,4 @@ Defined in this room.
 
 | From file | Edge type | Weight |
 |---|---|---|
-| js_a.js | imports | 0.28 |
-| js_a.js | calls | 0.24 |
+| (none) | (none) | 0.00 |

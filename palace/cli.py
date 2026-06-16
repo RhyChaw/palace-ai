@@ -101,6 +101,11 @@ def main(argv: list[str] | None = None) -> None:
     p_snapshot.add_argument("--path", default=".", help="Repo path (default: .)")
     _add_memory_root_arg(p_snapshot)
 
+    p_eval = sub.add_parser("eval", help="Run retrieval-quality eval: palace vs naive baseline")
+    p_eval.add_argument("--path", default=".", help="Repo root with palace-out/ (default: .)")
+    p_eval.add_argument("--cases", default=None, help="Path to cases.json (default: evals/cases.json)")
+    p_eval.add_argument("--k", type=int, default=5, help="Top-k for hit@k metric (default: 5)")
+
     p_mem = sub.add_parser("mem", help="Standalone repo-independent memory service (JSON)")
     p_mem_sub = p_mem.add_subparsers(dest="mem_cmd", required=True)
 
@@ -165,6 +170,15 @@ def main(argv: list[str] | None = None) -> None:
         from palace.query.stats import show_stats
 
         show_stats(Path(args.path))
+        return
+
+    if args.cmd == "eval":
+        from palace.evals.__main__ import main as eval_main
+
+        argv_eval = ["--path", args.path, "--k", str(args.k)]
+        if args.cases:
+            argv_eval += ["--cases", args.cases]
+        eval_main(argv_eval)
         return
 
     if args.cmd == "install" and args.install_target == "claude":
