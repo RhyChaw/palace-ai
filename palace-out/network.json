@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-06-16T14:50:39.287271Z",
+  "built_at": "2026-06-16T15:41:25.044782Z",
   "edges": [
     {
       "evidence": "imports palace/install/claude.py at palace/cli.py:7",
@@ -7,7 +7,7 @@
       "source": "ast",
       "to": "palace/install/claude.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
       "evidence": "imports palace/memory/learn.py at palace/cli.py:8",
@@ -15,7 +15,7 @@
       "source": "ast",
       "to": "palace/memory/learn.py",
       "type": "imports",
-      "weight": 0.43573434535104366
+      "weight": 0.4133889943074004
     },
     {
       "evidence": "imports palace/memory/mem_cli.py at palace/cli.py:9",
@@ -23,7 +23,7 @@
       "source": "ast",
       "to": "palace/memory/mem_cli.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
       "evidence": "imports palace/memory/reflect.py at palace/cli.py:10",
@@ -31,7 +31,7 @@
       "source": "ast",
       "to": "palace/memory/reflect.py",
       "type": "imports",
-      "weight": 0.43573434535104366
+      "weight": 0.4133889943074004
     },
     {
       "evidence": "imports palace/memory/snapshot.py at palace/cli.py:11",
@@ -39,7 +39,7 @@
       "source": "ast",
       "to": "palace/memory/snapshot.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
       "evidence": "imports palace/memory/status.py at palace/cli.py:12",
@@ -47,7 +47,7 @@
       "source": "ast",
       "to": "palace/memory/status.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
       "evidence": "imports palace/query/activator.py at palace/cli.py:13",
@@ -55,7 +55,7 @@
       "source": "ast",
       "to": "palace/query/activator.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
       "evidence": "imports palace/visualizer/builder.py at palace/cli.py:14",
@@ -63,127 +63,239 @@
       "source": "ast",
       "to": "palace/visualizer/builder.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
-      "evidence": "imports palace/visualizer/serve.py at palace/cli.py:159",
+      "evidence": "imports palace/visualizer/serve.py at palace/cli.py:164",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/visualizer/serve.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
-      "evidence": "imports palace/query/stats.py at palace/cli.py:165",
+      "evidence": "imports palace/query/stats.py at palace/cli.py:170",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/query/stats.py",
       "type": "imports",
-      "weight": 0.46237571157495255
+      "weight": 0.4336091081593928
     },
     {
-      "evidence": "build_visualizer called at palace/cli.py:151",
+      "evidence": "imports palace/evals/__main__.py at palace/cli.py:176",
+      "from": "palace/cli.py",
+      "source": "ast",
+      "to": "palace/evals/__main__.py",
+      "type": "imports",
+      "weight": 0.4336091081593928
+    },
+    {
+      "evidence": "build_visualizer called at palace/cli.py:156",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/visualizer/builder.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "run_query called at palace/cli.py:155",
+      "evidence": "run_query called at palace/cli.py:160",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/query/activator.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "serve_visualizer called at palace/cli.py:161",
+      "evidence": "serve_visualizer called at palace/cli.py:166",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/visualizer/serve.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "show_stats called at palace/cli.py:167",
+      "evidence": "show_stats called at palace/cli.py:172",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/query/stats.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "install_claude called at palace/cli.py:171",
+      "evidence": "install_claude called at palace/cli.py:185",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/install/claude.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "run_learn called at palace/cli.py:180",
+      "evidence": "run_learn called at palace/cli.py:194",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/learn.py",
       "type": "calls",
-      "weight": 0.3703741935483871
+      "weight": 0.3513806451612903
     },
     {
-      "evidence": "run_reflect called at palace/cli.py:200",
+      "evidence": "run_reflect called at palace/cli.py:214",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/reflect.py",
       "type": "calls",
-      "weight": 0.3703741935483871
+      "weight": 0.3513806451612903
     },
     {
-      "evidence": "show_status called at palace/cli.py:209",
+      "evidence": "show_status called at palace/cli.py:223",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/status.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "run_snapshot called at palace/cli.py:213",
+      "evidence": "run_snapshot called at palace/cli.py:227",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/snapshot.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "cmd_recall called at palace/cli.py:221",
+      "evidence": "cmd_recall called at palace/cli.py:235",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/mem_cli.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "cmd_reflect called at palace/cli.py:227",
+      "evidence": "cmd_reflect called at palace/cli.py:241",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/mem_cli.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "cmd_add called at palace/cli.py:231",
+      "evidence": "cmd_add called at palace/cli.py:245",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "palace/memory/mem_cli.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
     },
     {
-      "evidence": "main called at palace/cli.py:247",
+      "evidence": "main called at palace/cli.py:261",
+      "from": "palace/cli.py",
+      "source": "ast",
+      "to": "palace/evals/__main__.py",
+      "type": "calls",
+      "weight": 0.3685677419354839
+    },
+    {
+      "evidence": "main called at palace/cli.py:261",
       "from": "palace/cli.py",
       "source": "ast",
       "to": "tests/fixture/py_a.py",
       "type": "calls",
-      "weight": 0.3930193548387097
+      "weight": 0.3685677419354839
+    },
+    {
+      "evidence": "imports palace/evals/harness.py at palace/evals/__main__.py:8",
+      "from": "palace/evals/__main__.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "imports",
+      "weight": 0.7087666034155599
+    },
+    {
+      "evidence": "run_eval called at palace/evals/__main__.py:47",
+      "from": "palace/evals/__main__.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "calls",
+      "weight": 0.6024516129032259
+    },
+    {
+      "evidence": "main called at palace/evals/__main__.py:96",
+      "from": "palace/evals/__main__.py",
+      "source": "ast",
+      "to": "palace/cli.py",
+      "type": "calls",
+      "weight": 0.5777548387096775
+    },
+    {
+      "evidence": "main called at palace/evals/__main__.py:96",
+      "from": "palace/evals/__main__.py",
+      "source": "ast",
+      "to": "tests/fixture/py_a.py",
+      "type": "calls",
+      "weight": 0.6226580645161292
+    },
+    {
+      "evidence": "imports palace/query/activator.py at palace/evals/harness.py:7",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/query/activator.py",
+      "type": "imports",
+      "weight": 0.6598861480075902
+    },
+    {
+      "evidence": "imports palace/utils/token_counter.py at palace/evals/harness.py:8",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/utils/token_counter.py",
+      "type": "imports",
+      "weight": 0.6598861480075902
+    },
+    {
+      "evidence": "_tokenize called at palace/evals/harness.py:71",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/memory/query_context.py",
+      "type": "calls",
+      "weight": 0.5420903225806453
+    },
+    {
+      "evidence": "_tokenize called at palace/evals/harness.py:71",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/memory/recall.py",
+      "type": "calls",
+      "weight": 0.5358193548387097
+    },
+    {
+      "evidence": "_tokenize called at palace/evals/harness.py:71",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/query/activator.py",
+      "type": "calls",
+      "weight": 0.5609032258064516
+    },
+    {
+      "evidence": "approx_token_count called at palace/evals/harness.py:78",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/utils/token_counter.py",
+      "type": "calls",
+      "weight": 0.5609032258064516
+    },
+    {
+      "evidence": "activate called at palace/evals/harness.py:98",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/query/activator.py",
+      "type": "calls",
+      "weight": 0.5609032258064516
+    },
+    {
+      "evidence": "approx_token_count called at palace/evals/harness.py:112",
+      "from": "palace/evals/harness.py",
+      "source": "ast",
+      "to": "palace/utils/token_counter.py",
+      "type": "calls",
+      "weight": 0.5609032258064516
     },
     {
       "evidence": "imports palace/memory/add.py at palace/memory/__init__.py:3",
@@ -231,7 +343,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "imports",
-      "weight": 0.6352941176470589
+      "weight": 0.6303757115749526
     },
     {
       "evidence": "imports palace/memory/reflect.py at palace/memory/__init__.py:9",
@@ -783,7 +895,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "imports",
-      "weight": 0.611764705882353
+      "weight": 0.6070284629981025
     },
     {
       "evidence": "imports palace/memory/reflect.py at palace/memory/mem_cli.py:10",
@@ -807,7 +919,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.52
+      "weight": 0.5159741935483871
     },
     {
       "evidence": "resolve_memory_paths called at palace/memory/mem_cli.py:37",
@@ -943,7 +1055,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "imports",
-      "weight": 0.424516129032258
+      "weight": 0.4154838709677419
     },
     {
       "evidence": "imports palace/memory/paths.py at palace/memory/query_context.py:6",
@@ -951,7 +1063,15 @@
       "source": "ast",
       "to": "palace/memory/paths.py",
       "type": "imports",
-      "weight": 0.5443795066413663
+      "weight": 0.5327969639468692
+    },
+    {
+      "evidence": "_tokenize called at palace/memory/query_context.py:14",
+      "from": "palace/memory/query_context.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "calls",
+      "weight": 0.46178064516129036
     },
     {
       "evidence": "_tokenize called at palace/memory/query_context.py:14",
@@ -959,7 +1079,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "_tokenize called at palace/memory/query_context.py:14",
@@ -967,7 +1087,7 @@
       "source": "ast",
       "to": "palace/query/activator.py",
       "type": "calls",
-      "weight": 0.4754580645161291
+      "weight": 0.46178064516129036
     },
     {
       "evidence": "memory_paths called at palace/memory/query_context.py:23",
@@ -975,7 +1095,7 @@
       "source": "ast",
       "to": "palace/memory/paths.py",
       "type": "calls",
-      "weight": 0.4627225806451613
+      "weight": 0.4528774193548388
     },
     {
       "evidence": "memory_exists called at palace/memory/query_context.py:24",
@@ -983,7 +1103,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.3608387096774193
+      "weight": 0.35316129032258065
     },
     {
       "evidence": "load_patterns called at palace/memory/query_context.py:27",
@@ -991,7 +1111,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.3608387096774193
+      "weight": 0.35316129032258065
     },
     {
       "evidence": "load_failures called at palace/memory/query_context.py:28",
@@ -999,7 +1119,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.3608387096774193
+      "weight": 0.35316129032258065
     },
     {
       "evidence": "load_state called at palace/memory/query_context.py:29",
@@ -1007,7 +1127,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.3608387096774193
+      "weight": 0.35316129032258065
     },
     {
       "evidence": "_relevance_score called at palace/memory/query_context.py:42",
@@ -1015,7 +1135,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "_relevance_score called at palace/memory/query_context.py:57",
@@ -1023,7 +1143,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "_relevance_score called at palace/memory/query_context.py:89",
@@ -1031,7 +1151,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "_relevance_score called at palace/memory/query_context.py:96",
@@ -1039,7 +1159,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "_relevance_score called at palace/memory/query_context.py:100",
@@ -1047,7 +1167,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "_relevance_score called at palace/memory/query_context.py:104",
@@ -1055,7 +1175,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.47
+      "weight": 0.45643870967741934
     },
     {
       "evidence": "imports palace/memory/init.py at palace/memory/recall.py:5",
@@ -1063,7 +1183,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "imports",
-      "weight": 0.4516129032258064
+      "weight": 0.44258064516129025
     },
     {
       "evidence": "imports palace/memory/paths.py at palace/memory/recall.py:6",
@@ -1071,7 +1191,15 @@
       "source": "ast",
       "to": "palace/memory/paths.py",
       "type": "imports",
-      "weight": 0.5791271347248578
+      "weight": 0.5675445920303606
+    },
+    {
+      "evidence": "_tokenize called at palace/memory/recall.py:14",
+      "from": "palace/memory/recall.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "calls",
+      "weight": 0.48620645161290316
     },
     {
       "evidence": "_tokenize called at palace/memory/recall.py:14",
@@ -1079,7 +1207,7 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "calls",
-      "weight": 0.49999999999999994
+      "weight": 0.48620645161290316
     },
     {
       "evidence": "_tokenize called at palace/memory/recall.py:14",
@@ -1087,7 +1215,7 @@
       "source": "ast",
       "to": "palace/query/activator.py",
       "type": "calls",
-      "weight": 0.49999999999999994
+      "weight": 0.48620645161290316
     },
     {
       "evidence": "_relevance_score called at palace/memory/recall.py:31",
@@ -1095,7 +1223,7 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "calls",
-      "weight": 0.49999999999999994
+      "weight": 0.48620645161290316
     },
     {
       "evidence": "_relevance_score called at palace/memory/recall.py:44",
@@ -1103,7 +1231,7 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "calls",
-      "weight": 0.49999999999999994
+      "weight": 0.48620645161290316
     },
     {
       "evidence": "_relevance_score called at palace/memory/recall.py:56",
@@ -1111,7 +1239,7 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "calls",
-      "weight": 0.49999999999999994
+      "weight": 0.48620645161290316
     },
     {
       "evidence": "ensure_memory called at palace/memory/recall.py:69",
@@ -1119,7 +1247,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.38387096774193546
+      "weight": 0.37619354838709673
     },
     {
       "evidence": "load_attempts called at palace/memory/recall.py:74",
@@ -1127,7 +1255,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.38387096774193546
+      "weight": 0.37619354838709673
     },
     {
       "evidence": "load_patterns called at palace/memory/recall.py:75",
@@ -1135,7 +1263,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.38387096774193546
+      "weight": 0.37619354838709673
     },
     {
       "evidence": "load_failures called at palace/memory/recall.py:76",
@@ -1143,7 +1271,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.38387096774193546
+      "weight": 0.37619354838709673
     },
     {
       "evidence": "load_state called at palace/memory/recall.py:77",
@@ -1151,7 +1279,7 @@
       "source": "ast",
       "to": "palace/memory/init.py",
       "type": "calls",
-      "weight": 0.38387096774193546
+      "weight": 0.37619354838709673
     },
     {
       "evidence": "imports palace/memory/decay.py at palace/memory/reflect.py:6",
@@ -1583,7 +1711,15 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "imports",
-      "weight": 0.6902770398481974
+      "weight": 0.6731840607210626
+    },
+    {
+      "evidence": "_tokenize called at palace/query/activator.py:40",
+      "from": "palace/query/activator.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "calls",
+      "weight": 0.5920645161290322
     },
     {
       "evidence": "_tokenize called at palace/query/activator.py:40",
@@ -1591,7 +1727,7 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "calls",
-      "weight": 0.5867354838709679
+      "weight": 0.5722064516129033
     },
     {
       "evidence": "_tokenize called at palace/query/activator.py:40",
@@ -1599,7 +1735,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.5800000000000001
+      "weight": 0.5655870967741935
     },
     {
       "evidence": "format_memory_context called at palace/query/activator.py:140",
@@ -1607,7 +1743,7 @@
       "source": "ast",
       "to": "palace/memory/query_context.py",
       "type": "calls",
-      "weight": 0.5867354838709679
+      "weight": 0.5722064516129033
     },
     {
       "evidence": "imports palace/utils/token_counter.py at palace/query/stats.py:6",
@@ -1615,7 +1751,7 @@
       "source": "ast",
       "to": "palace/utils/token_counter.py",
       "type": "imports",
-      "weight": 0.7478557874762809
+      "weight": 0.7451688804554081
     },
     {
       "evidence": "approx_token_count called at palace/query/stats.py:22",
@@ -1623,7 +1759,7 @@
       "source": "ast",
       "to": "palace/utils/token_counter.py",
       "type": "calls",
-      "weight": 0.6356774193548388
+      "weight": 0.6333935483870968
     },
     {
       "evidence": "approx_token_count called at palace/query/stats.py:26",
@@ -1631,7 +1767,7 @@
       "source": "ast",
       "to": "palace/utils/token_counter.py",
       "type": "calls",
-      "weight": 0.6356774193548388
+      "weight": 0.6333935483870968
     },
     {
       "evidence": "imports palace/utils/cache.py at palace/visualizer/builder.py:6",
@@ -1687,7 +1823,23 @@
       "source": "ast",
       "to": "tests/fixture/py_b.py",
       "type": "calls",
-      "weight": 0.6643096774193549
+      "weight": 0.6619483870967743
+    },
+    {
+      "evidence": "imports palace/evals/harness.py at tests/test_evals.py:17",
+      "from": "tests/test_evals.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "imports",
+      "weight": 0.7332068311195447
+    },
+    {
+      "evidence": "run_eval called at tests/test_evals.py:58",
+      "from": "tests/test_evals.py",
+      "source": "ast",
+      "to": "palace/evals/harness.py",
+      "type": "calls",
+      "weight": 0.623225806451613
     },
     {
       "evidence": "imports palace/memory/add.py at tests/test_memory.py:8",
@@ -1735,7 +1887,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "imports",
-      "weight": 0.45882352941176474
+      "weight": 0.4552713472485769
     },
     {
       "evidence": "imports palace/memory/reflect.py at tests/test_memory.py:14",
@@ -1839,7 +1991,7 @@
       "source": "ast",
       "to": "palace/memory/recall.py",
       "type": "calls",
-      "weight": 0.39
+      "weight": 0.3869806451612903
     },
     {
       "evidence": "memory_paths_at_root called at tests/test_memory.py:78",
@@ -1896,7 +2048,7 @@
       "reason": "High connectivity in the dependency/association network."
     },
     {
-      "degree": 25,
+      "degree": 27,
       "id": "palace/memory/recall.py",
       "reason": "High connectivity in the dependency/association network."
     }
@@ -1917,17 +2069,67 @@
     },
     {
       "activation": 0.0,
-      "hash": "sha256:ca7dc40e03e91e6947049877d78bed0e7e8f23f2e704434cc9c1c1d99b8a562e",
+      "hash": "sha256:8dd14bc2915a8cd989b59bbdb43638518c5cf7f06adc56a1e7246da7dcbc55ec",
       "id": "palace/cli.py",
       "label": "cli",
       "language": "python",
       "room_id": "build",
-      "size_tokens": 1197,
+      "size_tokens": 1279,
       "subtree_id": null,
       "summary": null,
       "symbols": [
         "_add_memory_root_arg",
         "main"
+      ],
+      "type": "file"
+    },
+    {
+      "activation": 0.0,
+      "hash": "sha256:43bf518dd54262236c91e6fd72f09492324bff6d87fd2d8e21fe25c8c6a33214",
+      "id": "palace/evals/__init__.py",
+      "label": "  init  ",
+      "language": "python",
+      "room_id": "build",
+      "size_tokens": 8,
+      "subtree_id": null,
+      "summary": null,
+      "symbols": [],
+      "type": "file"
+    },
+    {
+      "activation": 0.0,
+      "hash": "sha256:793177227b3791fa772ed2cbc4f5f13a72130923a87362ca0615e029a9d909e5",
+      "id": "palace/evals/__main__.py",
+      "label": "  main  ",
+      "language": "python",
+      "room_id": "data",
+      "size_tokens": 382,
+      "subtree_id": null,
+      "summary": null,
+      "symbols": [
+        "_find_cases",
+        "main"
+      ],
+      "type": "file"
+    },
+    {
+      "activation": 0.0,
+      "hash": "sha256:64f53c60600004ac4d5d29d7325e2bd411579078f963ca83ec14136b19515143",
+      "id": "palace/evals/harness.py",
+      "label": "harness",
+      "language": "python",
+      "room_id": "data",
+      "size_tokens": 609,
+      "subtree_id": null,
+      "summary": null,
+      "symbols": [
+        "_tokenize",
+        "_iter_source_files",
+        "_score_text",
+        "run_naive_arm",
+        "run_palace_arm",
+        "hit_at_k",
+        "run_eval"
       ],
       "type": "file"
     },
@@ -2117,7 +2319,7 @@
       "id": "palace/memory/paths.py",
       "label": "paths",
       "language": "python",
-      "room_id": "data",
+      "room_id": "build",
       "size_tokens": 164,
       "subtree_id": null,
       "summary": null,
@@ -2445,6 +2647,23 @@
     },
     {
       "activation": 0.0,
+      "hash": "sha256:f1bd1176bba721cc63231c2173f9e3d1f6efa510dd97d466adf4bbd44fe2fe60",
+      "id": "tests/test_evals.py",
+      "label": "test evals",
+      "language": "python",
+      "room_id": "tests",
+      "size_tokens": 352,
+      "subtree_id": null,
+      "summary": null,
+      "symbols": [
+        "eval_context",
+        "test_palace_beats_baseline",
+        "_per_case_summary"
+      ],
+      "type": "file"
+    },
+    {
+      "activation": 0.0,
       "hash": "sha256:bddbe7278d185fc7a5cb633709ae82c28e796d3f0d1e95d3cdc5e50c2c6ebffc",
       "id": "tests/test_memory.py",
       "label": "test memory",
@@ -2470,6 +2689,7 @@
       "files": [
         "palace/__init__.py",
         "palace/cli.py",
+        "palace/evals/__init__.py",
         "palace/install/__init__.py",
         "palace/install/claude.py",
         "palace/memory/__init__.py",
@@ -2479,6 +2699,7 @@
         "palace/memory/learn.py",
         "palace/memory/llm.py",
         "palace/memory/palace_md.py",
+        "palace/memory/paths.py",
         "palace/memory/reflect.py",
         "palace/memory/schemas.py",
         "palace/memory/snapshot.py",
@@ -2504,6 +2725,7 @@
           "palace/memory/learn.py",
           "palace/memory/llm.py",
           "palace/memory/palace_md.py",
+          "palace/memory/paths.py",
           "palace/memory/reflect.py",
           "palace/memory/schemas.py",
           "palace/memory/snapshot.py",
@@ -2518,25 +2740,29 @@
           "palace/__init__.py"
         ],
         "ST_3": [
-          "palace/install/__init__.py"
+          "palace/evals/__init__.py"
         ],
         "ST_4": [
-          "palace/query/__init__.py"
+          "palace/install/__init__.py"
         ],
         "ST_5": [
+          "palace/query/__init__.py"
+        ],
+        "ST_6": [
           "palace/visualizer/__init__.py"
         ]
       },
-      "summary": "22 files \u00b7 python \u00b7 exports: main, install_claude, run_snapshot",
-      "token_count": 701
+      "summary": "24 files \u00b7 python \u00b7 exports: add_event, add_event_at_root, apply_confidence_decay, ensure_memory, memory_exists",
+      "token_count": 722
     },
     {
       "color": "#378ADD",
       "cross_room_refs": [],
       "file": "palace-out/rooms/data.md",
       "files": [
+        "palace/evals/__main__.py",
+        "palace/evals/harness.py",
         "palace/memory/mem_cli.py",
-        "palace/memory/paths.py",
         "palace/memory/query_context.py",
         "palace/memory/recall.py",
         "palace/query/activator.py"
@@ -2545,15 +2771,16 @@
       "label": "Data Layer",
       "subtrees": {
         "ST_1": [
+          "palace/evals/__main__.py",
+          "palace/evals/harness.py",
           "palace/memory/mem_cli.py",
-          "palace/memory/paths.py",
           "palace/memory/query_context.py",
           "palace/memory/recall.py",
           "palace/query/activator.py"
         ]
       },
-      "summary": "5 files \u00b7 python \u00b7 exports: cmd_recall, cmd_reflect",
-      "token_count": 557
+      "summary": "6 files \u00b7 python \u00b7 exports: main",
+      "token_count": 544
     },
     {
       "color": "#999",
@@ -2564,6 +2791,7 @@
         "tests/fixture/js_b.js",
         "tests/fixture/py_a.py",
         "tests/fixture/py_b.py",
+        "tests/test_evals.py",
         "tests/test_memory.py"
       ],
       "id": "tests",
@@ -2577,10 +2805,13 @@
         "ST_2": [
           "tests/fixture/py_a.py",
           "tests/fixture/py_b.py"
+        ],
+        "ST_3": [
+          "tests/test_evals.py"
         ]
       },
-      "summary": "5 files \u00b7 javascript, python \u00b7 exports: run, greet, main, add, test_learn_appends_attempt_and_pattern",
-      "token_count": 229
+      "summary": "6 files \u00b7 javascript, python \u00b7 exports: run, greet, main, add, eval_context",
+      "token_count": 291
     },
     {
       "color": "#888",
@@ -2601,12 +2832,12 @@
     }
   ],
   "stats": {
-    "edges": 234,
+    "edges": 253,
     "languages": [
       "javascript",
       "python"
     ],
-    "nodes": 33,
+    "nodes": 37,
     "rooms": 4
   },
   "surprising_edges": [],

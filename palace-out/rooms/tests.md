@@ -1,9 +1,9 @@
 ---
 room: tests
 label: Tests
-covers: tests/fixture/js_a.js · tests/fixture/js_b.js · tests/fixture/py_a.py · tests/fixture/py_b.py · tests/test_memory.py
-functions: 7
-tokens: 229
+covers: tests/fixture/js_a.js · tests/fixture/js_b.js · tests/fixture/py_a.py · tests/fixture/py_b.py · tests/test_evals.py · tests/test_memory.py
+functions: 10
+tokens: 291
 ---
 
 ## Overview
@@ -16,6 +16,10 @@ This room groups a set of files that are structurally connected (imports/calls).
 Defined in this room.
 **Called from:** [palace/memory/learn.py:26](palace/memory/learn.py#L26) · [palace/memory/learn.py:33](palace/memory/learn.py#L33) · [palace/memory/llm.py:59](palace/memory/llm.py#L59) · [tests/test_memory.py:101](tests/test_memory.py#L101) · [tests/test_memory.py:112](tests/test_memory.py#L112)
 
+### `main()`
+Defined in this room.
+**Called from:** [palace/cli.py:261](palace/cli.py#L261) · [palace/cli.py:261](palace/cli.py#L261) · [palace/evals/__main__.py:96](palace/evals/__main__.py#L96) · [palace/evals/__main__.py:96](palace/evals/__main__.py#L96)
+
 ### `greet(name)`
 Defined in this room.
 **Called from:** [tests/fixture/js_a.js:4](tests/fixture/js_a.js#L4)
@@ -24,9 +28,17 @@ Defined in this room.
 Defined in this room.
 **Called from:** [tests/fixture/py_a.py:5](tests/fixture/py_a.py#L5)
 
-### `main()`
+### `eval_context(tmp_path_factory: pytest.TempPathFactory)`
 Defined in this room.
-**Called from:** [palace/cli.py:247](palace/cli.py#L247)
+**Called from:** (none detected)
+
+### `test_palace_beats_baseline(eval_context)`
+Defined in this room.
+**Called from:** (none detected)
+
+### `_per_case_summary(per_case: list[dict])`
+Defined in this room.
+**Called from:** (none detected)
 
 ### `test_learn_appends_attempt_and_pattern(tmp_path: Path)`
 Defined in this room.

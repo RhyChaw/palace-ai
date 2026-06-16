@@ -29,7 +29,7 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--path", default=".", help="Repo root with palace-out/ (default: .)")
     parser.add_argument("--cases", default=None, help="Path to cases.json (default: evals/cases.json)")
-    parser.add_argument("--k", type=int, default=5, help="Top-k for hit@k metric (default: 5)")
+    parser.add_argument("--k", type=int, default=5, help="Primary top-k (default: 5); hit@1 and hit@3 always shown")
     args = parser.parse_args(argv)
 
     repo_path = Path(args.path).resolve()
@@ -44,21 +44,28 @@ def main(argv: list[str] | None = None) -> None:
     cases = _find_cases(args.cases, repo_path)
     k = args.k
 
-    results = run_eval(cases, network=network, repo_path=repo_path, k=k)
+    # Always run all three k values for an honest multi-precision picture
+    ks_to_run = sorted({1, 3, k})
+    all_results = {kk: run_eval(cases, network=network, repo_path=repo_path, k=kk) for kk in ks_to_run}
+    results = all_results[k]
 
     n = results["n_cases"]
-    print(f"\nRetrieval eval — {n} cases, hit@{k}\n")
+    print(f"\nRetrieval eval — {n} cases, palace-ai source corpus\n")
 
-    col = f"{'arm':<12} {'hit@' + str(k):<10} {'recall':<10} {'avg tokens'}"
-    print(col)
-    print("-" * len(col))
+    # Multi-k summary table
+    header = f"{'arm':<12}" + "".join(f"  hit@{kk:<4}" for kk in ks_to_run) + "  avg tokens"
+    print(header)
+    print("-" * len(header))
     for arm in ("baseline", "palace"):
-        r = results[arm]
-        hit = r["avg_hit_at_k"]
-        tok = r["avg_tokens"]
-        print(f"{arm:<12} {hit:<10.3f} {hit:<10.3f} {tok}")
+        row = f"{arm:<12}"
+        for kk in ks_to_run:
+            row += f"  {all_results[kk][arm]['avg_hit_at_k']:.3f}   "
+        tok = results[arm]["avg_tokens"]
+        row += f" {tok}"
+        print(row)
 
-    print()
+    # Per-case detail at primary k
+    print(f"\nPer-case detail (hit@{k}):\n")
     hdr = f"{'#':<4} {'query':<52} {'B h@k':>6} {'P h@k':>6} {'B tok':>7} {'P tok':>7}"
     print(hdr)
     print("-" * len(hdr))
@@ -66,10 +73,12 @@ def main(argv: list[str] | None = None) -> None:
         q = case["query"][:50]
         b = case["baseline"]
         p = case["palace"]
+        marker = " *" if p["hit_at_k"] > b["hit_at_k"] else ""
         print(
             f"{i:<4} {q:<52} {b['hit_at_k']:>6.2f} {p['hit_at_k']:>6.2f}"
-            f" {b['tokens']:>7} {p['tokens']:>7}"
+            f" {b['tokens']:>7} {p['tokens']:>7}{marker}"
         )
+    print("  (* palace wins the case)")
 
     print()
     b_avg = results["baseline"]["avg_hit_at_k"]

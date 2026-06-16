@@ -1,9 +1,9 @@
 ---
 room: build
 label: Build & CLI
-covers: palace/__init__.py · palace/cli.py · palace/install/__init__.py · palace/install/claude.py · palace/memory/__init__.py · palace/memory/add.py · palace/memory/decay.py · palace/memory/init.py · palace/memory/learn.py · palace/memory/llm.py · … (+12 more)
+covers: palace/__init__.py · palace/cli.py · palace/evals/__init__.py · palace/install/__init__.py · palace/install/claude.py · palace/memory/__init__.py · palace/memory/add.py · palace/memory/decay.py · palace/memory/init.py · palace/memory/learn.py · … (+14 more)
 functions: 10
-tokens: 701
+tokens: 722
 ---
 
 ## Overview
@@ -24,9 +24,17 @@ Defined in this room.
 Defined in this room.
 **Called from:** [palace/memory/learn.py:159](palace/memory/learn.py#L159) · [palace/memory/palace_md.py:114](palace/memory/palace_md.py#L114) · [palace/memory/query_context.py:29](palace/memory/query_context.py#L29) · [palace/memory/recall.py:77](palace/memory/recall.py#L77) · [palace/memory/reflect.py:108](palace/memory/reflect.py#L108) · …
 
+### `resolve_memory_paths(*, repo_path: Path | None = None, root: Path | None = None)`
+Defined in this room.
+**Called from:** [palace/memory/add.py:134](palace/memory/add.py#L134) · [palace/memory/learn.py:219](palace/memory/learn.py#L219) · [palace/memory/mem_cli.py:24](palace/memory/mem_cli.py#L24) · [palace/memory/mem_cli.py:37](palace/memory/mem_cli.py#L37) · [palace/memory/mem_cli.py:56](palace/memory/mem_cli.py#L56) · …
+
 ### `load_attempts(mp: MemoryPaths)`
 Defined in this room.
 **Called from:** [palace/memory/palace_md.py:105](palace/memory/palace_md.py#L105) · [palace/memory/recall.py:74](palace/memory/recall.py#L74) · [palace/memory/reflect.py:63](palace/memory/reflect.py#L63) · [palace/memory/reflect.py:192](palace/memory/reflect.py#L192) · [palace/memory/snapshot.py:41](palace/memory/snapshot.py#L41) · …
+
+### `memory_paths(palace_out: Path)`
+Defined in this room.
+**Called from:** [palace/memory/learn.py:224](palace/memory/learn.py#L224) · [palace/memory/palace_md.py:103](palace/memory/palace_md.py#L103) · [palace/memory/query_context.py:23](palace/memory/query_context.py#L23) · [palace/memory/reflect.py:173](palace/memory/reflect.py#L173) · [palace/memory/snapshot.py:20](palace/memory/snapshot.py#L20) · …
 
 ### `utc_now_iso()`
 Defined in this room.
@@ -44,14 +52,6 @@ Defined in this room.
 Defined in this room.
 **Called from:** [palace/memory/init.py:19](palace/memory/init.py#L19) · [palace/memory/init.py:21](palace/memory/init.py#L21) · [palace/memory/init.py:23](palace/memory/init.py#L23) · [palace/memory/init.py:43](palace/memory/init.py#L43) · [palace/memory/init.py:47](palace/memory/init.py#L47) · …
 
-### `slug_id(text: str)`
-Defined in this room.
-**Called from:** [palace/memory/learn.py:52](palace/memory/learn.py#L52) · [palace/memory/learn.py:77](palace/memory/learn.py#L77) · [palace/memory/learn.py:108](palace/memory/learn.py#L108) · [palace/memory/learn.py:142](palace/memory/learn.py#L142) · [palace/memory/reflect.py:33](palace/memory/reflect.py#L33)
-
-### `save_patterns(mp: MemoryPaths, obj: dict)`
-Defined in this room.
-**Called from:** [palace/memory/learn.py:96](palace/memory/learn.py#L96) · [palace/memory/reflect.py:89](palace/memory/reflect.py#L89) · [palace/memory/reflect.py:97](palace/memory/reflect.py#L97) · [palace/memory/reflect.py:115](palace/memory/reflect.py#L115)
-
 ## Cross-room references
 
 - (none in AST-only mode)
@@ -67,14 +67,16 @@ Defined in this room.
 
 ## Also in this room
 
+- `palace/visualizer/builder.py`
 - `palace/memory/status.py`
 - `palace/memory/decay.py`
 - `palace/install/claude.py`
 - `palace/memory/snapshot.py`
 - `palace/query/stats.py`
 - `palace/visualizer/serve.py`
-- `palace/__init__.py`
 - `palace/cli.py`
+- `palace/__init__.py`
+- `palace/evals/__init__.py`
 - `palace/install/__init__.py`
 - `palace/memory/__init__.py`
 - `palace/query/__init__.py`

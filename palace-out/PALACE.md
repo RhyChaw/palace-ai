@@ -1,5 +1,5 @@
 # Palace — palace-ai
-Generated: 2026-06-16T14:50:39Z | Attempts: 0 | Patterns: 0
+Generated: 2026-06-16T15:41:25Z | Attempts: 0 | Patterns: 0
 
 This repository has a **memory palace**: rooms for orientation, a queryable network, and (v2) institutional memory from past agent attempts.
 
@@ -19,9 +19,9 @@ _No failure modes recorded yet._
 
 | room_id | label | files | summary |
 |---|---:|---:|---|
-| build | Build & CLI | 22 | 22 files · python · exports: main, install_claude, run_snapshot |
-| data | Data Layer | 5 | 5 files · python · exports: cmd_recall, cmd_reflect |
-| tests | Tests | 5 | 5 files · javascript, python · exports: run, greet, main, add, test_learn_appends_attempt_and_pattern |
+| build | Build & CLI | 24 | 24 files · python · exports: add_event, add_event_at_root, apply_confidence_decay, ensure_memory, memory_exists |
+| data | Data Layer | 6 | 6 files · python · exports: main |
+| tests | Tests | 6 | 6 files · javascript, python · exports: run, greet, main, add, eval_context |
 | utils | Utilities | 1 | 1 file · python · exports: LanguageInfo, detect_language |
 
 ## Navigation
