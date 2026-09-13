@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 
 
-_TOKEN_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*|\\d+|\\S", re.MULTILINE)
+_TOKEN_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*|\d+|\S", re.MULTILINE)
 
 
 def approx_token_count(text: str) -> int:
